@@ -1,0 +1,215 @@
+/*
+================================================================================
+FORM FOUNDATION
+================================================================================
+Accessibility-focused form assets, uses design system tokens.
+*/
+
+/*
+================================================================================
+FORM BASE - INHERIT FROM DESIGN SYSTEM
+================================================================================
+*/
+
+/* All form elements inherit from design system */
+input,
+button,
+select,
+textarea,
+fieldset {
+  font: inherit;
+  color: var(--text-primary);
+}
+
+/*
+================================================================================
+FORM CONTROLS - ESSENTIAL ONLY
+================================================================================
+*/
+
+/* Text inputs + textarea + select */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+  width: 100%;
+  min-height: var(--touch-target-default);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--surface-input);
+  border: var(--border-width-default) solid var(--border-default);
+  border-radius: var(--border-radius-input);
+  transition: var(--transition-interactive);
+}
+
+/* Hover states */
+input:hover:not(:disabled):not(:focus),
+textarea:hover:not(:disabled):not(:focus),
+select:hover:not(:disabled):not(:focus) {
+  border-color: var(--border-strong);
+}
+
+/* Focus states - uses design system focus */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-color: var(--border-focus);
+}
+
+/* Disabled states */
+input:disabled,
+textarea:disabled,
+select:disabled {
+  opacity: var(--opacity-disabled);
+  cursor: not-allowed;
+  background: var(--surface-3);
+}
+
+/* Placeholder text */
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-tertiary);
+  opacity: 1;
+}
+
+/*
+================================================================================
+VALIDATION STATES - ARIA COMPATIBLE
+================================================================================
+*/
+
+/* Error state */
+[aria-invalid="true"] {
+  border-color: var(--border-error) !important;
+}
+
+[aria-invalid="true"]:focus {
+  outline-color: var(--focus-ring-color-error);
+  border-color: var(--border-error);
+}
+
+/*
+================================================================================
+CHECKBOX & RADIO INPUTS
+================================================================================
+*/
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.125rem;
+  /* 18px */
+  height: 1.125rem;
+  /* 18px */
+  margin-right: var(--space-xs);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/*
+================================================================================
+SELECT DROPDOWN ARROW
+================================================================================
+*/
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-position: right var(--space-xs) center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  padding-right: calc(var(--space-sm) + 1.5rem);
+  cursor: pointer;
+}
+
+/*
+================================================================================
+TEXT AREA
+================================================================================
+*/
+
+textarea {
+  min-height: 6rem;
+  /* 96px - WCAG touch target */
+  resize: vertical;
+}
+
+/*
+================================================================================
+FIELDSET & LEGEND - SEMANTIC GROUPING
+================================================================================
+*/
+
+fieldset {
+  border: var(--border-width-default) solid var(--border-default);
+  border-radius: var(--border-radius-md);
+  padding: var(--space-md);
+  margin: 0;
+}
+
+legend {
+  font-weight: var(--font-weight-medium);
+  padding: 0 var(--space-xs);
+}
+
+fieldset:disabled {
+  opacity: var(--opacity-disabled);
+}
+
+/*
+================================================================================
+LABELS
+================================================================================
+*/
+
+label {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+/* Required field indicator that works with screen readers */
+[aria-required="true"]+label::after,
+label[aria-required="true"]::after {
+  content: " * required";
+  color: var(--text-error);
+}
+
+/*
+================================================================================
+ACCESSIBILITY UTILITIES
+================================================================================
+*/
+
+/* Error messages - properly announced */
+.error-message {
+  color: var(--text-error);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2xs);
+}
+
+/* Help text - properly associated */
+.help-text {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-top: var(--space-2xs);
+}
+
+/*
+================================================================================
+HIGH CONTRAST ENHANCEMENTS
+================================================================================
+*/
+
+@media (prefers-contrast: high) {
+
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    border-width: var(--border-width-thick);
+  }
+
+  [aria-invalid="true"] {
+    border-width: var(--border-width-focus) !important;
+  }
+}
