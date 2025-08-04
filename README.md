@@ -1,6 +1,19 @@
-# CSS Foundation
+# 🧩✨ CSS Foundation
 
-> Accessibility-first, zero-bloat CSS foundation for React/Next.js projects.
+[![Accessibility](https://img.shields.io/badge/WCAG-2.2%20AA-green.svg)](https://www.w3.org/WAI/WCAG22/quickref/)
+[![CSS Version](https://img.shields.io/badge/CSS-Module%204%2F5-blue.svg)](https://www.w3.org/Style/CSS/)
+[![Color System](https://img.shields.io/badge/Color-OKLCH-purple.svg)](https://oklch.com/)
+[![Zero JS](https://img.shields.io/badge/Dependencies-Zero%20JS-success.svg)](#)
+[![Mobile First](https://img.shields.io/badge/Design-Mobile%20First-ff69b4.svg)](#)
+[![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Built%20In-6366f1.svg)](#)
+
+[![Template](https://img.shields.io/badge/GitHub-Template-2ea44f.svg?logo=github)](https://github.com/cmtayl0r/css-foundation)
+[![Size](https://img.shields.io/badge/Size-~15KB%20gzipped-brightgreen.svg)](#)
+[![Built with Love](https://img.shields.io/badge/Built%20with-❤️%20and%20☕-red.svg)](#)
+
+> **Accessibility-first, minimal-bloat CSS foundation for my personal React/Next.js projects.**
+
+---
 
 ## 🚀 Quick Setup
 
@@ -18,9 +31,9 @@ cp -r styles/ src/styles/
 @import "./styles/index.css";
 ```
 
-### 3. Choose your color system approach
+### 3. Choose your color system approach 🌈
 
-#### Option 🅰️
+#### **Option 🅰️**
 
 - More comprehensive color design token system and layer model
 - 11-step scales: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
@@ -30,7 +43,7 @@ color-primitives-lean.css
 color-semantics-lean.css
 ```
 
-#### Option 🅱️
+#### **Option 🅱️**
 
 - Simplified color design tokens for fast prototyping
 - 5-step scales: lightest, light, default, dark, darkest
@@ -51,7 +64,11 @@ color-semantics-lean.css
   --brand-hue: 240; /* Your brand hue (0-360°) */
   --brand-chroma: 0.28; /* Adjust for your brand intensity */
 }
+
+/* Same for secondary, error, success, etc */
 ```
+
+---
 
 ## 🎯 What You Get
 
@@ -66,11 +83,11 @@ color-semantics-lean.css
 
 ## 📁 File Organization
 
-- `tokens/` - Design system foundation
+- `tokens/` - Design system tokens foundation
 - `foundation/` - Reset and base styles
 - `accessibility/` - Complete a11y system
 - `utilities/` - Essential utility classes
-- `components/` - Layout primitives and basic components
+- `components/` - Layout primitives and basic global components
 
 ## 🔧 Framework Integration
 
@@ -123,6 +140,8 @@ import "./globals.css"; // Contains @import "./styles/index.css"
   <div className="grid grid--cards">{/* Cards */}</div>
 </div>
 ```
+
+---
 
 ## 🚫 What This ISN'T
 
