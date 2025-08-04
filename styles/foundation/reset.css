@@ -27,7 +27,7 @@ ROOT CONFIGURATION
   scroll-behavior: smooth;
 
   /* Scroll anchor offset for fixed headers */
-  scroll-padding-top: var(--space-16);
+  scroll-padding-top: var(--space-md);
 
   /* === DESIGN SYSTEM FOUNDATION === */
   /* Typography foundation */
@@ -224,8 +224,10 @@ h5,
 h6 {
   overflow-wrap: break-word;
   /* Help prevent overflow of long words/names/URLs */
+  word-break: break-word;
+  /* Fallback */
   word-break: auto-phrase;
-  /* 2025 improvement: better line breaking */
+  /* Progressive enhancement */
 }
 
 /* 2025 text wrapping improvements */
