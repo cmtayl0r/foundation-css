@@ -1,0 +1,21 @@
+{
+  "name": "css-foundation",
+  "version": "1.0.0",
+  "description": "Accessibility-first CSS foundation for React/Next.js projects",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cmtayl0r/css-foundation"
+  },
+  "keywords": [
+    "css",
+    "accessibility",
+    "wcag",
+    "react",
+    "nextjs"
+  ],
+  "author": "Christopher Taylor",
+  "license": "MIT",
+  "files": [
+    "styles/**/*"
+  ]
+}
