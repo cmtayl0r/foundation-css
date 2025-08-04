@@ -1,0 +1,125 @@
+/*
+================================================================================
+STATES
+================================================================================
+Essential state design tokens for accessibility-first interactions.
+Strong, clear state indicators with maximum contrast.
+*/
+
+:root {
+  /* ===== FOCUS SYSTEM - WCAG 2.4.7 COMPLIANCE ===== */
+  --focus-ring-width: 3px;
+  /* Strong focus indicator */
+  --focus-ring-offset: 2px;
+  /* Clear separation */
+  --focus-ring-style: solid;
+  /* Maximum visibility */
+
+  /* ===== OVERLAY OPACITY VALUES ===== */
+  /* 🎯 USE FOR: Pure overlay effects on ANY surface/background */
+  /* High contrast overlay effects for surface interactions */
+  --state-overlay-hover: 0.1;
+  /* Strong hover feedback */
+  --state-overlay-focus: 0.15;
+  /* Clear focus indication */
+  --state-overlay-pressed: 0.2;
+  /* Strong pressed feedback */
+  --state-overlay-selected: 0.15;
+  /* Selection indication */
+  --state-overlay-disabled: 0.5;
+  /* Clear disabled state */
+
+  /* ===== LIGHTNESS MODIFIERS ===== */
+  /* 🎯 USE FOR: Direct OKLCH lightness adjustments on known colors */
+  --state-hover-lightness: -0.1;
+  --state-focus-lightness: -0.15;
+  --state-pressed-lightness: -0.2;
+  --state-selected-lightness: -0.15;
+  --state-disabled-opacity: var(--opacity-disabled);
+
+  /* ===== INTERACTION FEEDBACK ===== */
+  --interaction-scale-hover: 1.02;
+  /* Subtle grow on hover */
+  --interaction-scale-active: 0.97;
+  /* Press feedback */
+  --interaction-translate-hover: -1px;
+  /* Subtle lift on hover */
+}
+
+/*
+WHEN TO USE LIGHTNESS MODIFIERS:
+├── Known brand/semantic color? → Use --state-*-lightness
+├── Button with fixed background? → Use --state-*-lightness
+├── Maintaining color relationships? → Use --state-*-lightness
+└── Form validation states? → Use --state-*-lightness
+
+WHEN TO USE OVERLAY OPACITY:
+├── Unknown background color? → Use --state-overlay-*
+├── Background could be image/gradient? → Use --state-overlay-*
+├── Universal component (works anywhere)? → Use --state-overlay-*
+└── Card/surface interactions? → Use --state-overlay-*
+*/
+
+/*
+================================================================================
+DARK MODE STATE ADJUSTMENTS
+================================================================================
+*/
+
+/* Dark theme adjustments - Maintains contrast ratios */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ===== OVERLAY OPACITY VALUES ===== */
+    /* 🎯 USE FOR: Pure overlay effects on ANY surface/background */
+    /* Stronger overlays for dark backgrounds */
+    --state-overlay-hover: 0.15;
+    --state-overlay-focus: 0.2;
+    --state-overlay-pressed: 0.25;
+    --state-overlay-selected: 0.2;
+
+    /* ===== LIGHTNESS MODIFIERS ===== */
+    /* 🎯 USE FOR: Direct OKLCH lightness adjustments on known colors */
+    --state-hover-lightness: 0.15;
+    --state-focus-lightness: 0.2;
+    --state-pressed-lightness: 0.25;
+    --state-selected-lightness: 0.2;
+
+  }
+}
+
+/*
+================================================================================
+HIGH CONTRAST MODE ENHANCEMENTS
+================================================================================
+*/
+
+/* High contrast mode - Enhanced visibility (WCAG 1.4.11) */
+@media (prefers-contrast: high) {
+  :root {
+
+    /* Maximum visibility focus indicators */
+    --focus-ring-width: 4px;
+    /* Thicker focus rings */
+    --focus-ring-offset: 3px;
+    /* More separation */
+
+    /* Enhanced interaction feedback */
+    --interaction-scale-hover: 1.03;
+    --interaction-translate-hover: -2px;
+  }
+}
+
+/*
+================================================================================
+REDUCED MOTION PREFERENCES
+================================================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Remove motion-based feedback */
+    --interaction-scale-hover: 1;
+    --interaction-scale-active: 1;
+    --interaction-translate-hover: 0;
+  }
+}

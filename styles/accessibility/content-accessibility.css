@@ -1,0 +1,247 @@
+/*
+================================================================================
+CONTENT ACCESSIBILITY
+================================================================================
+Typography, touch targets, and live regions for accessible content.
+================================================================================
+*/
+
+/*
+================================================================================
+ACCESSIBLE TYPOGRAPHY
+================================================================================
+*/
+
+/* Optimal reading patterns
+   WHEN: Long-form content, articles, documentation
+   WHY: 70ch = optimal reading line length, prevents eye strain
+   HOW: <div className="text-readable">Article content...</div> */
+.text-readable {
+  max-width: 70ch;
+  line-height: var(--line-height-relaxed);
+}
+
+/* Enhanced readability typography
+   WHEN: Important content that needs to be easily readable
+   WHY: Larger text + better spacing improves comprehension
+   HOW: <p className="text-accessible">Important instructions</p> */
+.text-accessible {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Dyslexia-friendly typography
+   WHEN: User preference or specialized content
+   WHY: Specific fonts + spacing help users with dyslexia
+   HOW: <div className="text-dyslexia-friendly">Content for dyslexic users</div> */
+.text-dyslexia-friendly {
+  font-family: "OpenDyslexic", "Comic Sans MS", var(--font-sans);
+  font-size: var(--font-size-lg);
+  line-height: 1.8;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+/* Large text for low vision users
+   WHEN: User has vision difficulties or preference for larger text
+   WHY: Improves readability for users with visual impairments
+   HOW: <p className="text-large">Large text content</p> */
+.text-large {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-relaxed);
+  font-weight: var(--font-weight-medium);
+}
+
+/* Prevent text breaking
+   WHEN: Short important text that should stay together
+   WHY: Prevents awkward line breaks in UI elements
+   HOW: <span className="text-no-break">Don't break this text</span> */
+.text-no-break {
+  word-break: keep-all;
+  overflow-wrap: normal;
+}
+
+/*
+================================================================================
+TOUCH TARGETS - WCAG 2.2 COMPLIANT
+================================================================================
+*/
+
+/* Standard touch target (44px = iOS/Android standard)
+   WHEN: Any interactive element (buttons, links, form inputs)
+   WHY: WCAG 2.2 Level AA requirement, prevents accidental taps
+   HOW: <button className="touch-target">Click me</button> */
+.touch-target {
+  min-height: var(--touch-target-default);
+  min-width: var(--touch-target-default)
+}
+
+/* Small touch target (36px minimum)
+   WHEN: Compact UI, table actions, icon buttons in tight spaces
+   WHY: Still accessible but allows for denser layouts
+   HOW: <button className="touch-target-sm">✕</button> */
+.touch-target-sm {
+  min-height: var(--touch-target-sm);
+  min-width: var(--touch-target-sm);
+}
+
+/* Large touch target (48px)
+   WHEN: Primary actions, important buttons, accessibility-focused UI
+   WHY: More comfortable for users with motor difficulties
+   HOW: <button className="touch-target-lg">Submit Form</button> */
+.touch-target-lg {
+  min-height: var(--touch-target-lg);
+  min-width: var(--touch-target-lg);
+}
+
+/*
+================================================================================
+LIVE REGIONS - SCREEN READER ANNOUNCEMENTS
+================================================================================
+*/
+
+/* Base live region pattern (invisible to sighted users)
+   WHEN: Dynamic content that screen readers should announce
+   WHY: Notifies screen reader users of content changes
+   HOW: <div className="live-region status-region" aria-live="polite"></div> */
+.live-region {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+  clip-path: inset(50%);
+}
+
+/* Status updates (polite announcements)
+   WHEN: Form saved, data loaded, non-urgent updates
+   WHY: Announces when convenient, doesn't interrupt
+   HOW: <div className="live-region status-region" aria-live="polite" id="status"></div> */
+.status-region {
+  pointer-events: none;
+}
+
+/* Alert announcements (assertive interruptions)
+   WHEN: Errors, urgent notifications, critical updates
+   WHY: Interrupts current speech to announce immediately
+   HOW: <div className="live-region alert-region" aria-live="assertive" id="errors"></div> */
+.alert-region {
+  pointer-events: none;
+}
+
+/* Loading state announcements
+   WHEN: AI processing, form submission, data fetching
+   WHY: Keeps users informed of loading progress
+   HOW: <div className="live-region loading-region" aria-live="polite" id="loading"></div> */
+.loading-region {
+  pointer-events: none;
+}
+
+/*
+================================================================================
+DEVICE-AWARE ENHANCEMENTS
+================================================================================
+*/
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .touch-target-lg {
+    min-height: 56px;
+    min-width: 56px;
+  }
+}
+
+/* Coarse pointer optimizations */
+@media (pointer: coarse) {
+  .touch-target {
+    min-height: 52px;
+    min-width: 52px;
+  }
+
+  .touch-target-lg {
+    min-height: 60px;
+    min-width: 60px;
+  }
+}
+
+/* Fine pointer optimizations */
+@media (pointer: fine) {
+  .touch-target-sm {
+    min-height: 32px;
+    min-width: 32px;
+  }
+}
+
+/*
+================================================================================
+USER PREFERENCE OVERRIDES
+================================================================================
+*/
+
+/* High contrast enhancements */
+@media (prefers-contrast: high) {
+
+  .text-accessible,
+  .text-large {
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 0 1px currentColor;
+  }
+
+  .text-dyslexia-friendly {
+    background: var(--surface-page);
+    color: var(--text-primary);
+    padding: 0.125em 0.25em;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .touch-target,
+  .touch-target-sm,
+  .touch-target-lg {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+  }
+
+  .touch-target:focus-visible,
+  .touch-target-sm:focus-visible,
+  .touch-target-lg:focus-visible {
+    outline-color: var(--focus-ring-color);
+  }
+}
+
+/* Reduced motion safety */
+@media (prefers-reduced-motion: reduce) {
+
+  .text-accessible,
+  .text-large {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Print optimization */
+@media print {
+
+  .text-readable,
+  .text-accessible,
+  .text-large {
+    color: black !important;
+    background: white !important;
+    text-shadow: none !important;
+  }
+
+  .text-dyslexia-friendly {
+    font-family: "Times New Roman", serif;
+    letter-spacing: normal;
+    word-spacing: normal;
+  }
+}

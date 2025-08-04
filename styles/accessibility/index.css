@@ -1,0 +1,84 @@
+/*
+================================================================================
+ACCESSIBILITY SYSTEM
+================================================================================
+WCAG 2.2 Level AAA compliant
+Import order optimized for cascade and performance.
+================================================================================
+*/
+
+/* ===== FOUNDATIONAL PATTERNS ===== */
+/* Screen reader utilities - used everywhere, imported first */
+@import "./screen-reader.css";
+
+/* ===== INTERACTION LAYER ===== */
+/* Focus management and navigation patterns - core functionality */
+@import "./focus-and-navigation.css";
+
+/* ===== CONTENT LAYER ===== */
+/* Typography, touch targets, and live regions - content accessibility */
+@import "./content-accessibility.css";
+
+/* ===== SEMANTIC LAYER ===== */
+/* ARIA state visual feedback - imported last to override if needed */
+@import "./aria-states.css";
+
+/*
+================================================================================
+USAGE PATTERNS FOR PROTOTYPES
+================================================================================
+
+REACT BUTTON WITH FULL ACCESSIBILITY:
+<button
+  className="interactive touch-target focus-visible-only"
+  aria-expanded={isOpen}
+  aria-controls="menu"
+>
+  Menu <span className="chevron">▼</span>
+</button>
+
+---
+
+AI CHAT INTERFACE WITH LIVE UPDATES:
+<div className="live-region alert-region" aria-live="assertive" id="ai-status"></div>
+<div className="text-accessible container--chat">
+  <p>AI response content...</p>
+</div>
+
+---
+
+FORM WITH VALIDATION FEEDBACK:
+<input
+  className="touch-target focus-visible-only"
+  aria-invalid={hasError}
+  aria-describedby="field-help"
+/>
+<div id="field-help" className="sr-only">
+  {hasError ? 'Error: Email is required' : 'Enter your email address'}
+</div>
+
+---
+
+MODAL WITH FOCUS MANAGEMENT:
+<a href="#main" className="skip-link">Skip to main content</a>
+<main id="main" className={isModalOpen ? 'inert' : ''}>
+
+</main>
+<dialog className="focus-trap-active" open={isModalOpen}>
+   <h2>Modal Title</h2>
+   <button onClick= {closeModal}>Close</button>
+</dialog>
+
+---
+
+LOADING STATES FOR AI PROCESSING:
+<form aria-busy= {isSubmitting}>
+    <button className="touch-target" disabled={isSubmitting} aria-describedby="loading-status">
+    { isSubmitting ? 'Processing...': 'Send Message'}
+    </button>
+</form>
+<div id="loading-status" className="live-region loading-region" aria-live="polite">
+  { isSubmitting && 'AI is processing your request...'}
+</div>
+
+*/

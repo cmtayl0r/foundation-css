@@ -39,9 +39,9 @@ Accessibility-first Vanilla CSS design token system.
 /* ===== 4️⃣ COMPONENT STYLES ===== */
 /* Components that use the foundation */
 @import "./components/layout-primitives.css";
-@import "./components/buttons.css";
+/* @import "./components/buttons.css";
 @import "./components/forms.css";
-@import "./components/ai-ui.css";
+@import "./components/ai-ui.css"; */
 
 /*
 ================================================================================

@@ -1,0 +1,122 @@
+/*
+================================================================================
+TYPOGRAPHY
+================================================================================
+Essential typography scale for maximum readability and accessibility.
+WCAG AAA compliance focused with strong contrast and legibility.
+*/
+
+:root {
+  /* ===== ACCESSIBLE FONT FAMILIES ===== */
+  /* Optimized for readability and screen rendering */
+  --font-sans: "Inter", "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", "Iowan Old Style", "Apple Garamond", Baskerville, "Times New Roman", "Droid Serif", Times, serif;
+  --font-mono: "JetBrains Mono", "SF Mono", SFMono-Regular, "Roboto Mono", "Ubuntu Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-accessible: "Atkinson Hyperlegible", "OpenDyslexic", system-ui, sans-serif;
+
+  /* ===== CORE TYPE SCALE (Mobile-first fluid) ===== */
+  /* Ensures 16px minimum for body text (WCAG requirement) */
+  --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  /* 14-16px - Small UI text */
+  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  /* 16-18px - Body text */
+  --font-size-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  /* 20-24px - Large text */
+  --font-size-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  /* 24-32px - Small headings */
+  --font-size-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+  /* 32-48px - Medium headings */
+  --font-size-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
+  /* 40-64px - Large headings */
+
+  /* ===== LINE HEIGHT SCALE ===== */
+  --line-height-tight: 1.25;
+  /* Large headings only */
+  --line-height-normal: 1.5;
+  /* Body text minimum (WCAG) */
+  --line-height-relaxed: 1.6;
+  /* Comfortable reading */
+  --line-height-loose: 1.75;
+  /* Maximum readability */
+
+  /* ===== FONT WEIGHTS (Accessibility focused) ===== */
+  /* Limited scale prevents poor contrast from thin weights */
+  --font-weight-normal: 400;
+  /* Body text */
+  --font-weight-medium: 500;
+  /* UI emphasis */
+  --font-weight-semibold: 600;
+  /* Strong emphasis */
+  --font-weight-bold: 700;
+  /* Headings */
+
+  /* ===== LETTER SPACING ===== */
+  /* Improves readability, especially for accessibility */
+  --letter-spacing-tight: -0.025em;
+  /* Large headings */
+  --letter-spacing-normal: 0em;
+  /* Body text */
+  --letter-spacing-wide: 0.025em;
+  /* UI text, small caps */
+  --letter-spacing-wider: 0.05em;
+  /* High emphasis */
+
+  /* ===== SEMANTIC COMBINATIONS ===== */
+  /* Complete typography patterns for common use cases */
+
+  /* Body text patterns */
+  --typography-body: var(--font-weight-normal) var(--font-size-body)/var(--line-height-normal) var(--font-sans);
+  --typography-body-large: var(--font-weight-normal) var(--font-size-lg)/var(--line-height-normal) var(--font-sans);
+
+  /* Heading patterns */
+  --typography-h1: var(--font-weight-bold) var(--font-size-3xl)/var(--line-height-tight) var(--font-sans);
+  --typography-h2: var(--font-weight-bold) var(--font-size-2xl)/var(--line-height-tight) var(--font-sans);
+  --typography-h3: var(--font-weight-semibold) var(--font-size-xl)/var(--line-height-normal) var(--font-sans);
+  --typography-h4: var(--font-weight-semibold) var(--font-size-lg)/var(--line-height-normal) var(--font-sans);
+  --typography-h5: var(--font-weight-medium) var(--font-size-base)/var(--line-height-normal) var(--font-sans);
+}
+
+/*
+================================================================================
+HIGH CONTRAST MODE ENHANCEMENTS
+================================================================================
+*/
+
+@media (prefers-contrast: high) {
+  :root {
+    /* Stronger font weights for better visibility */
+    --font-weight-normal: 500;
+    /* Bolder body text */
+    --font-weight-medium: 600;
+    /* Stronger UI emphasis */
+    --font-weight-semibold: 700;
+    /* Even stronger emphasis */
+    --font-weight-bold: 800;
+    /* Maximum heading weight */
+
+    /* Enhanced letter spacing for clarity */
+    --letter-spacing-normal: 0.015em;
+    /* Slight spacing for readability */
+    --letter-spacing-wide: 0.04em;
+    /* More spacing for UI */
+
+    /* Prefer accessible font stack */
+    --font-sans: var(--font-accessible);
+  }
+}
+
+/*
+================================================================================
+LARGE TEXT PREFERENCES
+================================================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Larger minimum sizes for reduced motion users who may need larger text */
+    --font-size-base: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+    /* 18-20px minimum */
+    --font-size-lg: clamp(1.375rem, 1.25rem + 0.625vw, 1.625rem);
+    /* 22-26px */
+  }
+}

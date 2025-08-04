@@ -1,0 +1,139 @@
+/*
+================================================================================
+COLOR PRIMITIVES (LEAN)
+================================================================================
+Accessibility-first color system with maximum contrast ratios.
+Only essential colors: primary, secondary, error, success + neutrals.
+5-step scale: lightest, light, default, dark, darkest.
+*/
+
+:root {
+  /* ===== BRAND FOUNDATION ===== */
+  --brand-hue: 240;
+  /* Blue - reliable, trustworthy */
+  --brand-chroma: 0.280;
+  /* High chroma for maximum vibrancy */
+
+  /* ===== SECONDARY & ACCENT HUES ===== */
+  --secondary-hue: 295;
+  /* Magenta - distinct from primary */
+  --secondary-chroma: 0.270;
+  /* High chroma for clear differentiation */
+
+  --success-hue: 142;
+  /* Green - universal success indicator */
+  --success-chroma: 0.220;
+  /* High enough for visibility */
+
+  --error-hue: 20;
+  /* Red-orange - attention-grabbing */
+  --error-chroma: 0.300;
+  /* Maximum safe chroma for urgency */
+
+  /* ===== PRIMARY SCALE - HIGH CONTRAST ===== */
+  --color-primary-lightest: oklch(95% calc(var(--brand-chroma) * 0.15) var(--brand-hue));
+  /* Subtle backgrounds */
+  --color-primary-light: oklch(75% calc(var(--brand-chroma) * 0.60) var(--brand-hue));
+  /* Hover states */
+  --color-primary-default: oklch(55% var(--brand-chroma) var(--brand-hue));
+  /* Main brand color */
+  --color-primary-dark: oklch(35% calc(var(--brand-chroma) * 0.90) var(--brand-hue));
+  /* Active states */
+  --color-primary-darkest: oklch(20% calc(var(--brand-chroma) * 0.60) var(--brand-hue));
+  /* Text on light */
+
+  /* ===== SECONDARY SCALE - HIGH CONTRAST ===== */
+  --color-secondary-lightest: oklch(95% calc(var(--secondary-chroma) * 0.15) var(--secondary-hue));
+  --color-secondary-light: oklch(75% calc(var(--secondary-chroma) * 0.60) var(--secondary-hue));
+  --color-secondary-default: oklch(55% var(--secondary-chroma) var(--secondary-hue));
+  --color-secondary-dark: oklch(35% calc(var(--secondary-chroma) * 0.90) var(--secondary-hue));
+  --color-secondary-darkest: oklch(20% calc(var(--secondary-chroma) * 0.60) var(--secondary-hue));
+
+  /* ===== SUCCESS SCALE - HIGH CONTRAST ===== */
+  --color-success-lightest: oklch(95% calc(var(--success-chroma) * 0.15) var(--success-hue));
+  --color-success-light: oklch(75% calc(var(--success-chroma) * 0.60) var(--success-hue));
+  --color-success-default: oklch(55% var(--success-chroma) var(--success-hue));
+  --color-success-dark: oklch(35% calc(var(--success-chroma) * 0.90) var(--success-hue));
+  --color-success-darkest: oklch(20% calc(var(--success-chroma) * 0.60) var(--success-hue));
+
+  /* ===== ERROR SCALE - HIGH CONTRAST ===== */
+  --color-error-lightest: oklch(95% calc(var(--error-chroma) * 0.15) var(--error-hue));
+  --color-error-light: oklch(75% calc(var(--error-chroma) * 0.60) var(--error-hue));
+  --color-error-default: oklch(55% var(--error-chroma) var(--error-hue));
+  --color-error-dark: oklch(35% calc(var(--error-chroma) * 0.90) var(--error-hue));
+  --color-error-darkest: oklch(20% calc(var(--error-chroma) * 0.60) var(--error-hue));
+
+  /* ===== NEUTRAL SCALE - MAXIMUM CONTRAST ===== */
+  --color-neutral-lightest: oklch(98% 0.005 var(--brand-hue));
+  /* Almost white */
+  --color-neutral-light: oklch(85% 0.015 var(--brand-hue));
+  /* Light gray */
+  --color-neutral-default: oklch(50% 0.025 var(--brand-hue));
+  /* True middle */
+  --color-neutral-dark: oklch(25% 0.030 var(--brand-hue));
+  /* Dark gray */
+  --color-neutral-darkest: oklch(10% 0.025 var(--brand-hue));
+  /* Almost black */
+
+  /* ===== ABSOLUTE COLORS ===== */
+  --color-black: oklch(0% 0 0);
+  --color-white: oklch(100% 0 0);
+}
+
+/* ===== WIDE GAMUT ENHANCEMENT ===== */
+@media (color-gamut: p3) {
+  :root {
+    /* Enhanced chroma for P3 displays */
+    --brand-chroma: calc(var(--brand-chroma) * 1.15);
+    --secondary-chroma: calc(var(--secondary-chroma) * 1.15);
+    --success-chroma: calc(var(--success-chroma) * 1.15);
+    --error-chroma: calc(var(--error-chroma) * 1.15);
+  }
+}
+
+/* Future Rec2020 support */
+@media (color-gamut: rec2020) {
+  :root {
+    /* Ultra-wide gamut colors (+40% gamut) */
+    --brand-chroma: calc(var(--brand-chroma) * 1.40);
+    --secondary-chroma: calc(var(--secondary-chroma) * 1.40);
+    --success-chroma: calc(var(--success-chroma) * 1.40);
+    --error-chroma: calc(var(--error-chroma) * 1.40);
+  }
+}
+
+/* ===== LEGACY BROWSER FALLBACKS ===== */
+@supports not (color: oklch(0% 0 0)) {
+  :root {
+    /* High contrast hex fallbacks */
+    --color-primary-lightest: #f1f5f9;
+    --color-primary-light: #64748b;
+    --color-primary-default: #1e40af;
+    --color-primary-dark: #1e3a8a;
+    --color-primary-darkest: #0f172a;
+
+    --color-secondary-lightest: #fdf4ff;
+    --color-secondary-light: #a855f7;
+    --color-secondary-default: #7c3aed;
+    --color-secondary-dark: #5b21b6;
+    --color-secondary-darkest: #2e1065;
+
+    --color-success-lightest: #f0fdf4;
+    --color-success-light: #4ade80;
+    --color-success-default: #16a34a;
+    --color-success-dark: #15803d;
+    --color-success-darkest: #052e16;
+
+    --color-error-lightest: #fef2f2;
+    --color-error-light: #f87171;
+    --color-error-default: #dc2626;
+    --color-error-dark: #b91c1c;
+    --color-error-darkest: #450a0a;
+
+    --color-neutral-lightest: #ffffff;
+    --color-neutral-light: #e2e8f0;
+    --color-neutral-default: #64748b;
+    --color-neutral-dark: #1e293b;
+    --color-neutral-darkest: #0f172a;
+  }
+}

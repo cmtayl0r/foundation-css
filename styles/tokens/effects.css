@@ -1,0 +1,134 @@
+/*
+================================================================================
+EFFECTS
+================================================================================
+Essential visual effects for accessibility-first design.
+Strong shadows and clear opacity values for maximum contrast.
+*/
+
+:root {
+  /* ===== OPACITY SCALE===== */
+  --opacity-hidden: 0;
+  /* Completely hidden */
+  --opacity-disabled: 0.5;
+  /* Clearly disabled (WCAG minimum) */
+  --opacity-subtle: 0.75;
+  /* Subtle elements */
+  --opacity-visible: 1;
+  /* Fully visible */
+
+  /* ===== BLUR SCALE ===== */
+  --blur-none: 0;
+  --blur-sm: 4px;
+  /* Subtle blur */
+  --blur-md: 8px;
+  /* Standard blur */
+  --blur-lg: 16px;
+  /* Strong blur */
+
+  /* ===== SHADOW SYSTEM - HIGH CONTRAST ===== */
+  /* Stronger shadows for better depth perception */
+  --shadow-none: none;
+  --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+  /* Subtle elevation */
+  --shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  /* Card elevation */
+  --shadow-lg: 0 8px 16px 0 rgba(0, 0, 0, 0.35);
+  /* Modal/overlay */
+  --shadow-xl: 0 12px 24px 0 rgba(0, 0, 0, 0.4);
+
+  /* ===== COMPONENT-SPECIFIC SHADOWS ===== */
+  --shadow-button: var(--shadow-sm);
+  /* Button elevation */
+  --shadow-card: var(--shadow-md);
+  /* Card depth */
+  --shadow-modal: var(--shadow-lg);
+  /* Modal separation */
+  --shadow-dropdown: var(--shadow-lg);
+  /* Dropdown menus */
+  --shadow-tooltip: var(--shadow-sm);
+  /* Tooltip elevation */
+
+  /* ===== FOCUS SHADOWS - ACCESSIBILITY CRITICAL ===== */
+  --shadow-focus: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  /* Blue focus ring */
+  --shadow-focus-error: 0 0 0 3px rgba(245, 101, 101, 0.5);
+  /* Error focus ring */
+  --shadow-focus-success: 0 0 0 3px rgba(72, 187, 120, 0.5);
+  /* Success focus ring */
+
+  /* ===== BACKDROP EFFECTS ===== */
+  --backdrop-overlay: rgba(0, 0, 0, 0.75);
+  /* Strong modal backdrop */
+  --backdrop-blur: blur(4px);
+  /* Backdrop blur effect */
+  --backdrop-scrim: rgba(0, 0, 0, 0.5);
+  /* Drawer/sheet backdrop */
+}
+
+/*
+================================================================================
+HIGH CONTRAST MODE ENHANCEMENTS
+================================================================================
+*/
+
+@media (prefers-contrast: high) {
+  :root {
+    /* Remove subtle effects that might reduce contrast */
+    --blur-sm: 0;
+    /* No subtle blur */
+    --blur-md: 0;
+    /* Remove blur that might reduce clarity */
+
+    /* Stronger shadows for better definition */
+    --shadow-sm: 0 3px 6px 0 rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 6px 12px 0 rgba(0, 0, 0, 0.45);
+    --shadow-lg: 0 12px 24px 0 rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 18px 36px 0 rgba(0, 0, 0, 0.55);
+
+    /* Enhanced focus shadows for maximum visibility */
+    --shadow-focus: 0 0 0 4px rgba(66, 153, 225, 0.8);
+    --shadow-focus-error: 0 0 0 4px rgba(245, 101, 101, 0.8);
+    --shadow-focus-success: 0 0 0 4px rgba(72, 187, 120, 0.8);
+
+    /* Stronger backdrops */
+    --backdrop-overlay: rgba(0, 0, 0, 0.9);
+    --backdrop-scrim: rgba(0, 0, 0, 0.75);
+  }
+}
+
+/*
+================================================================================
+DARK MODE ADJUSTMENTS
+================================================================================
+*/
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Lighter shadows for dark backgrounds */
+    --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 8px 16px 0 rgba(0, 0, 0, 0.7);
+    --shadow-xl: 0 12px 24px 0 rgba(0, 0, 0, 0.8);
+
+    /* Darker backdrops for dark mode */
+    --backdrop-overlay: rgba(0, 0, 0, 0.85);
+    --backdrop-scrim: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/*
+================================================================================
+REDUCED MOTION PREFERENCES
+================================================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Remove blur effects that might cause motion sensitivity */
+    --blur-sm: 0;
+    --blur-md: 0;
+    --blur-lg: 0;
+    --backdrop-blur: none;
+  }
+}

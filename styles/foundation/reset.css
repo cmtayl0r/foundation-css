@@ -1,0 +1,300 @@
+/*
+================================================================================
+UNIVERSAL RESET & FOUNDATION STYLES
+================================================================================
+*/
+
+/*
+================================================================================
+ROOT CONFIGURATION
+================================================================================
+*/
+
+:root {
+  /* === BROWSER NORMALIZATION === */
+  /* Prevent font size inflation on some mobile browsers */
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+
+  /* Improve text rendering */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Respect user motion preferences */
+  scroll-behavior: smooth;
+
+  /* Scroll anchor offset for fixed headers */
+  scroll-padding-top: var(--space-16);
+
+  /* === DESIGN SYSTEM FOUNDATION === */
+  /* Typography foundation */
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base, 1rem);
+  line-height: var(--line-height-normal, 1.5);
+  font-weight: var(--font-weight-normal, 400);
+
+  /* Color foundation */
+  color: var(--text-primary);
+  background-color: var(--surface-0);
+}
+
+/*
+================================================================================
+DOCUMENT & LAYOUT FOUNDATION
+================================================================================
+*/
+
+/* 1rem = 16px baseline */
+html {
+  font-size: 100%;
+  /* Enables native color-scheme awareness */
+  color-scheme: dark light;
+}
+
+/* Modern document setup */
+body {
+  /* Typography inherited from :root */
+  line-height: var(--line-height-normal);
+  /* Ensure body fills viewport */
+  min-height: 100vh;
+  min-height: 100svh;
+  /* Safe area support */
+  /* Prevent horizontal scroll due to full-width elements */
+  overflow-x: hidden;
+}
+
+/*
+================================================================================
+UNIVERSAL BOX MODEL
+================================================================================
+*/
+
+/* Box-sizing globally applied for predictable layouts */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+================================================================================
+ELEMENT SPACING RESET
+================================================================================
+*/
+
+/* Selective reset - preserve semantic spacing but remove browser inconsistencies */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove default spacing for specific elements that benefit from reset */
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Preserve form element spacing but ensure consistency */
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* Horizontal rule improvements */
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+}
+
+/*
+================================================================================
+MEDIA ELEMENTS
+================================================================================
+*/
+
+/* Improve media defaults */
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  /* Maintain aspect ratio */
+  vertical-align: middle;
+  /* Correct alignment issue */
+  font-style: italic;
+  /* Fallback for alt text if broken */
+}
+
+/* Modern video defaults */
+video {
+  object-fit: cover;
+}
+
+/* SVG improvements */
+svg {
+  fill: currentColor;
+  /* Inherit text color by default */
+}
+
+/*
+================================================================================
+FORM ELEMENTS
+================================================================================
+*/
+
+/* Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  border: 0;
+}
+
+/* Modern form control improvements */
+input[type="file"] {
+  font-size: inherit;
+}
+
+/* Ensure buttons maintain semantic meaning */
+button,
+[role="button"] {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  /* Focus handling managed by component.states.css */
+}
+
+/* Improve textarea behavior */
+textarea {
+  resize: vertical;
+  /* Only allow vertical resize */
+}
+
+/* Details/Summary improvements */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+  cursor: pointer;
+}
+
+/*
+================================================================================
+TYPOGRAPHY & TEXT BEHAVIOR
+================================================================================
+*/
+
+/* Modern text overflow handling */
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+  /* Help prevent overflow of long words/names/URLs */
+  word-break: auto-phrase;
+  /* 2025 improvement: better line breaking */
+}
+
+/* 2025 text wrapping improvements */
+p {
+  text-wrap: pretty;
+  /* Better paragraph wrapping */
+  hyphenate-character: "‐";
+  /* Use proper hyphen character */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+  /* Better headline wrapping */
+}
+
+/* Code and preformatted text */
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-size: 1em;
+  /* Correct font size in all browsers */
+}
+
+/*
+================================================================================
+INTERACTIVE ELEMENTS
+================================================================================
+*/
+
+/* Remove unwanted tap highlights */
+a,
+button,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Modern link improvements */
+a {
+  color: inherit;
+  text-decoration: none;
+  /* Focus handling managed by component.states.css */
+}
+
+/* Semantic list preservation */
+ul[role="list"],
+ol[role="list"] {
+  list-style: revert;
+  padding: revert;
+  margin: revert;
+}
+
+/*
+================================================================================
+TABLE ELEMENTS
+================================================================================
+*/
+
+/* Modern table improvements */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-indent: 0;
+  /* Remove text indentation from table contents */
+}

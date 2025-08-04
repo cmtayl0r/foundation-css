@@ -1,0 +1,6 @@
+/* Main content container */
+.wrapper {
+  max-width: var(--container-lg);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-sm);
+}

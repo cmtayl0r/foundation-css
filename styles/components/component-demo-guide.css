@@ -1,0 +1,1049 @@
+/*
+================================================================================
+COMPONENT DEMO GUIDE - SEMANTIC COLOR & STATE SYSTEM + LAYOUT PRIMITIVES
+================================================================================
+
+This file demonstrates how to build common components using your semantic
+color and state system combined with layout primitives. Perfect for individual
+CSS modules in design systems.
+
+APPROACH:
+1. Use layout primitives as FOUNDATION (stack, cluster, grid, etc.)
+2. Use semantic surface utilities as BACKGROUND
+3. Add component-specific styling ONLY when needed
+4. Leverage your interactive state system for all interactions
+5. Keep component CSS minimal and focused
+
+LAYOUT PRIMITIVES AVAILABLE:
+- .stack (vertical spacing)
+- .cluster (horizontal grouping)
+- .grid (auto-responsive grid)
+- .switcher (responsive horizontal/vertical)
+- .with-sidebar (responsive sidebar)
+- .center (horizontal centering)
+- .box (consistent padding)
+- .cover (hero layouts)
+- .frame (aspect ratios)
+- .reel (horizontal scrolling)
+
+================================================================================
+*/
+
+/*
+================================================================================
+1️⃣ BUTTONS - Layout Primitives + Interactive Classes
+================================================================================
+*/
+
+/* ===== PRIMARY BUTTON ===== */
+.btn {
+  /* Base button styling - ADD to interactive classes */
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  border: 0;
+  /* No color/state styling - handled by interactive classes */
+}
+
+/* Usage: <button class="btn interactive-primary">Save</button> */
+
+/* ===== BUTTON GROUPS ===== */
+.btn-group {
+  /* Use cluster primitive for button grouping */
+}
+
+/* Usage: <div class="btn-group cluster"><button class="btn interactive-primary">Save</button></div> */
+
+/* ===== ICON BUTTONS ===== */
+.btn--icon {
+  padding: var(--space-2);
+  border-radius: var(--border-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--space-10);
+  min-height: var(--space-10);
+}
+
+/* Usage: <button class="btn btn--icon interactive-ghost with-icon">⚙️ Settings</button> */
+
+/*
+================================================================================
+2️⃣ CARDS - Layout Primitives + Surfaces + Interactions
+================================================================================
+*/
+
+/* ===== BASE CARD ===== */
+.card {
+  /* Structural styling only - use with layout primitives */
+  border-radius: var(--border-radius-lg);
+  /* No padding - handled by .box primitive */
+  /* No background - handled by surface classes */
+}
+
+/* Usage: <div class="card box surface-card">Static card content</div> */
+/* Usage: <div class="card box surface-card surface-interactive">Clickable card</div> */
+
+/* ===== CARD WITH INTERNAL LAYOUT ===== */
+/* Usage:
+<article class="card surface-card surface-interactive">
+  <div class="frame-photo">
+    <img src="..." alt="...">
+  </div>
+  <div class="stack box">
+    <h3>Card Title</h3>
+    <p>Card description</p>
+    <div class="cluster cluster--end">
+      <button class="btn interactive-primary">Action</button>
+    </div>
+  </div>
+</article>
+*/
+
+/* ===== CARD GRID ===== */
+/* Usage: <div class="grid"><div class="card box surface-card">...</div></div> */
+/* Auto-responsive grid - no media queries needed! */
+
+/*
+================================================================================
+3️⃣ NAVIGATION - Layout Primitives + Surfaces + States
+================================================================================
+*/
+
+/* ===== NAVIGATION BAR ===== */
+.navbar {
+  /* Use cluster primitive for nav layout */
+  border-radius: var(--border-radius-lg);
+  /* No padding/layout - handled by box + cluster */
+}
+
+/* Usage:
+<nav class="navbar box surface-floating">
+  <div class="cluster cluster--space">
+    <h1>Logo</h1>
+    <div class="cluster">
+      <a class="surface-interactive">Home</a>
+      <a class="surface-interactive">About</a>
+    </div>
+  </div>
+</nav>
+*/
+
+/* ===== SIDEBAR NAVIGATION ===== */
+/* Usage:
+<div class="with-sidebar">
+  <nav class="stack box surface-card">
+    <a class="surface-interactive">Dashboard</a>
+    <a class="surface-interactive selected">Settings</a>
+  </nav>
+  <main class="stack layout-container--prose">Main content</main>
+</div>
+*/
+
+/* ===== BREADCRUMBS ===== */
+.breadcrumbs {
+  /* Use cluster for horizontal layout */
+}
+
+/* Usage: <nav class="breadcrumbs cluster" aria-label="Breadcrumb"> */
+
+/*
+================================================================================
+4️⃣ FORMS - Layout Primitives + Surfaces + Validation
+================================================================================
+*/
+
+/* ===== FORM CONTAINER ===== */
+.form {
+  border-radius: var(--border-radius-lg);
+  /* No padding/background - use box + surface primitives */
+}
+
+/* Usage: <form class="form box surface-card"> */
+
+/* ===== FORM LAYOUTS ===== */
+/* Two-column form:
+<form class="form box surface-card">
+  <div class="stack">
+    <h2>Contact Information</h2>
+    <div class="switcher">
+      <input class="input surface-input" placeholder="First Name">
+      <input class="input surface-input" placeholder="Last Name">
+    </div>
+    <input class="input surface-input" placeholder="Email">
+    <div class="cluster cluster--end">
+      <button class="btn interactive-ghost">Cancel</button>
+      <button class="btn interactive-primary">Submit</button>
+    </div>
+  </div>
+</form>
+*/
+
+/* ===== INPUT FIELDS ===== */
+.input {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--border-default);
+  border-radius: var(--border-radius-md);
+  font-size: var(--font-size-base);
+  transition: var(--transition-colors);
+  /* Background handled by surface classes */
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 var(--focus-ring-width) oklch(from var(--border-focus) l c h / 0.2);
+}
+
+.input:invalid,
+.input[aria-invalid="true"] {
+  border-color: var(--border-error);
+}
+
+/* ===== FORM ERROR STATES ===== */
+/* Usage:
+<div class="stack stack--tight">
+  <input class="input surface-input" aria-invalid="true">
+  <div class="surface-error box">
+    <span style="color: var(--text-error)">This field is required</span>
+  </div>
+</div>
+*/
+
+/*
+================================================================================
+5️⃣ TABLES - Layout Primitives + Surface Classes
+================================================================================
+*/
+
+/* ===== TABLE CONTAINER ===== */
+.table-container {
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+  /* Background handled by surface classes */
+}
+
+/* Usage: <div class="table-container surface-card"> */
+
+/* ===== TABLE STRUCTURE ===== */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  border-bottom: 1px solid var(--border-default);
+}
+
+.table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-muted);
+}
+
+/* ===== TABLE WITH ACTIONS ===== */
+/* Usage:
+<div class="table-container surface-card">
+  <table class="table">
+    <thead style="background-color: var(--surface-card)">
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="surface-interactive">
+        <td>John Doe</td>
+        <td>
+          <div class="cluster">
+            <button class="btn interactive-ghost">Edit</button>
+            <button class="btn interactive-destructive">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+*/
+
+/*
+================================================================================
+6️⃣ MODALS & OVERLAYS - Layout Primitives + Backdrop
+================================================================================
+*/
+
+/* ===== MODAL BACKDROP ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+}
+
+/* Usage: <div class="modal-backdrop" style="background-color: var(--surface-backdrop)"> */
+
+/* ===== MODAL CONTENT ===== */
+.modal {
+  width: 100%;
+  max-width: 32rem;
+  border-radius: var(--border-radius-xl);
+  /* No padding - use box primitive */
+}
+
+/* Usage:
+<div class="modal-backdrop" style="background-color: var(--surface-backdrop)">
+  <div class="modal surface-overlay">
+    <div class="stack box">
+      <div class="cluster cluster--space">
+        <h2>Modal Title</h2>
+        <button class="btn interactive-ghost">×</button>
+      </div>
+      <p>Modal content goes here</p>
+      <div class="cluster cluster--end">
+        <button class="btn interactive-ghost">Cancel</button>
+        <button class="btn interactive-primary">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>
+*/
+
+/*
+================================================================================
+7️⃣ LISTS & MENUS - Layout Primitives + Interactive States
+================================================================================
+*/
+
+/* ===== LIST CONTAINER ===== */
+.list {
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+}
+
+/* ===== LIST WITH LAYOUT PRIMITIVES ===== */
+/* Usage:
+<ul class="list surface-card">
+  <li class="surface-interactive box">
+    <div class="cluster cluster--space">
+      <div class="with-icon">
+        <span class="icon">📄</span>
+        <span>Document.pdf</span>
+      </div>
+      <button class="btn interactive-ghost">Download</button>
+    </div>
+  </li>
+</ul>
+*/
+
+/* ===== DROPDOWN MENU ===== */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 12rem;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--border-default);
+  z-index: var(--z-index-dropdown);
+  /* Use stack primitive for menu items */
+}
+
+/* Usage:
+<div class="dropdown surface-overlay">
+  <div class="stack box">
+    <button class="surface-interactive box">Profile</button>
+    <button class="surface-interactive box">Settings</button>
+    <button class="surface-interactive box">Logout</button>
+  </div>
+</div>
+*/
+
+/*
+================================================================================
+8️⃣ STATUS COMPONENTS - Layout Primitives + Status Surfaces
+================================================================================
+*/
+
+/* ===== ALERT/NOTIFICATION ===== */
+.alert {
+  border-radius: var(--border-radius-md);
+  border: 1px solid;
+}
+
+/* Usage:
+<div class="alert surface-error box" style="border-color: var(--border-error)">
+  <div class="cluster">
+    <span class="icon">⚠️</span>
+    <div class="stack">
+      <strong style="color: var(--status-error)">Error</strong>
+      <p style="color: var(--status-error)">Something went wrong</p>
+    </div>
+  </div>
+</div>
+*/
+
+/* ===== TOAST NOTIFICATIONS ===== */
+/* Usage:
+<div class="surface-overlay box">
+  <div class="cluster">
+    <span class="icon">✅</span>
+    <span style="color: var(--status-success)">Operation completed successfully</span>
+    <button class="btn interactive-ghost">×</button>
+  </div>
+</div>
+*/
+
+/*
+================================================================================
+9️⃣ HERO SECTIONS - Cover Primitive + Layouts
+================================================================================
+*/
+
+/* ===== HERO LAYOUT ===== */
+/* Usage:
+<section class="cover surface-card">
+  <div class="layout-container">
+    <div class="stack cover__hero">
+      <h1 class="text-3xl">Welcome to Our App</h1>
+      <p class="text-lg">Build amazing interfaces with layout primitives</p>
+      <div class="cluster cluster--center">
+        <button class="btn interactive-primary">Get Started</button>
+        <button class="btn interactive-ghost">Learn More</button>
+      </div>
+    </div>
+  </div>
+</section>
+*/
+
+/*
+================================================================================
+🔟 MEDIA COMPONENTS - Frame + Reel Primitives
+================================================================================
+*/
+
+/* ===== IMAGE GALLERY ===== */
+/* Usage:
+<div class="reel">
+  <div class="frame frame--4-3">
+    <img src="image1.jpg" alt="Gallery image">
+  </div>
+  <div class="frame frame--4-3">
+    <img src="image2.jpg" alt="Gallery image">
+  </div>
+</div>
+*/
+
+/* ===== VIDEO PLAYER ===== */
+/* Usage:
+<div class="frame surface-card">
+  <video src="video.mp4" controls></video>
+</div>
+*/
+
+/* ===== MEDIA CARD ===== */
+/* Usage:
+<article class="card surface-card surface-interactive">
+  <div class="frame frame--4-3">
+    <img src="thumbnail.jpg" alt="Video thumbnail">
+  </div>
+  <div class="stack box">
+    <h3>Video Title</h3>
+    <div class="cluster cluster--space">
+      <span class="text-sm" style="color: var(--text-secondary)">2:30</span>
+      <button class="btn interactive-primary">Play</button>
+    </div>
+  </div>
+</article>
+*/
+
+/*
+================================================================================
+1️⃣1️⃣ DASHBOARD LAYOUTS - Complex Layout Combinations
+================================================================================
+*/
+
+/* ===== DASHBOARD GRID ===== */
+/* Usage:
+<div class="stack layout-container--prose">
+  <h1>Dashboard</h1>
+  <div class="grid">
+    <div class="card surface-card box">
+      <div class="stack stack--tight">
+        <h3>Revenue</h3>
+        <p class="text-2xl">$12,345</p>
+      </div>
+    </div>
+    <div class="card surface-card box">
+      <div class="stack stack--tight">
+        <h3>Users</h3>
+        <p class="text-2xl">1,234</p>
+      </div>
+    </div>
+  </div>
+</div>
+*/
+
+/* ===== SIDEBAR DASHBOARD ===== */
+/* Usage:
+<div class="with-sidebar">
+  <nav class="stack box surface-card">
+    <h2>Navigation</h2>
+    <a class="surface-interactive box">Dashboard</a>
+    <a class="surface-interactive box selected">Analytics</a>
+  </nav>
+  <main class="stack">
+    <header class="cluster cluster--space box surface-card">
+      <h1>Analytics</h1>
+      <div class="cluster">
+        <button class="btn interactive-ghost">Export</button>
+        <button class="btn interactive-primary">New Report</button>
+      </div>
+    </header>
+    <div class="switcher">
+      <div class="card surface-card box">Chart 1</div>
+      <div class="card surface-card box">Chart 2</div>
+    </div>
+  </main>
+</div>
+*/
+
+/*
+================================================================================
+1️⃣2️⃣ E-COMMERCE LAYOUTS - Product Grids + Complex Cards
+================================================================================
+*/
+
+/* ===== PRODUCT GRID ===== */
+/* Usage:
+<div class="grid">
+  <article class="card surface-card surface-interactive">
+    <div class="frame frame--4-3">
+      <img src="product.jpg" alt="Product">
+    </div>
+    <div class="stack box">
+      <h3>Product Name</h3>
+      <p style="color: var(--text-secondary)">Product description</p>
+      <div class="cluster cluster--space">
+        <span class="text-lg font-bold">$99.00</span>
+        <button class="btn interactive-primary">Add to Cart</button>
+      </div>
+    </div>
+  </article>
+</div>
+*/
+
+/* ===== PRODUCT DETAIL LAYOUT ===== */
+/* Usage:
+<div class="with-sidebar">
+  <div class="stack">
+    <div class="frame frame--1-1">
+      <img src="product-large.jpg" alt="Product">
+    </div>
+    <div class="reel">
+      <div class="frame frame--1-1">
+        <img src="thumb1.jpg" alt="Thumbnail">
+      </div>
+    </div>
+  </div>
+  <div class="stack box">
+    <h1>Product Title</h1>
+    <p class="text-2xl">$99.00</p>
+    <p>Product description goes here...</p>
+    <div class="cluster">
+      <button class="btn interactive-primary">Add to Cart</button>
+      <button class="btn interactive-ghost">Add to Wishlist</button>
+    </div>
+  </div>
+</div>
+*/
+
+/*
+================================================================================
+RESPONSIVE DESIGN NOTES
+================================================================================
+
+LAYOUT PRIMITIVES HANDLE MOST RESPONSIVE BEHAVIOR:
+- .grid: Auto-responsive without media queries
+- .switcher: Automatically switches between horizontal/vertical
+- .with-sidebar: Responsive sidebar that wraps on small screens
+- .cluster: Wraps items naturally
+- .center: Automatic horizontal centering with padding
+
+MANUAL RESPONSIVE (when needed):
+*/
+
+@media (max-width: 768px) {
+  .btn-group.cluster {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar .cluster.cluster--space {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+}
+
+/*
+================================================================================
+ACCESSIBILITY & PERFORMANCE NOTES
+================================================================================
+
+ACCESSIBILITY BUILT-IN:
+- All interactive states handle focus automatically
+- Surface colors maintain contrast ratios
+- Layout primitives use semantic HTML when possible
+- Proper spacing for touch targets
+
+PERFORMANCE OPTIMIZED:
+- Layout primitives eliminate most custom CSS
+- Semantic surfaces reduce style recalculation
+- Minimal JavaScript needed for interactions
+- Efficient CSS with no redundancy
+
+================================================================================
+*/
+/*
+================================================================================
+1️⃣3️⃣ LOADING COMPONENTS - Loading States + Layout Primitives
+================================================================================
+*/
+
+/* ===== LOADING BUTTON ===== */
+.btn--loading {
+  position: relative;
+}
+
+.btn--loading::before {
+  content: '';
+  position: absolute;
+  left: var(--space-3);
+  top: 50%;
+  transform: translateY(-50%);
+  width: var(--space-4);
+  height: var(--space-4);
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: var(--border-radius-full);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Usage: <button class="btn btn--loading interactive-primary interactive-loading">Loading...</button> */
+
+/* ===== SKELETON LOADER ===== */
+.skeleton {
+  border-radius: var(--border-radius-sm);
+  position: relative;
+  overflow: hidden;
+  /* Background handled by surface classes */
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
+  animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Usage: <div class="skeleton surface-card" style="height: 1rem; width: 8rem;"></div> */
+
+/* ===== LOADING CARD SKELETON ===== */
+/* Usage:
+<div class="card surface-card">
+  <div class="stack box">
+    <div class="skeleton surface-card" style="height: 1.5rem; width: 70%;"></div>
+    <div class="skeleton surface-card" style="height: 1rem; width: 100%;"></div>
+    <div class="skeleton surface-card" style="height: 1rem; width: 60%;"></div>
+    <div class="cluster cluster--end">
+      <div class="skeleton surface-card" style="height: 2rem; width: 4rem;"></div>
+    </div>
+  </div>
+</div>
+*/
+
+/*
+================================================================================
+1️⃣4️⃣ TOGGLE/SWITCH COMPONENTS - Toggle States + Layout
+================================================================================
+*/
+
+/* ===== CHECKBOX/TOGGLE ===== */
+.checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  cursor: pointer;
+}
+
+.checkbox__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkbox__indicator {
+  width: var(--space-5);
+  height: var(--space-5);
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--border-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Background/states handled by interactive-toggle */
+}
+
+/* Usage:
+<label class="checkbox">
+  <input type="checkbox" class="checkbox__input">
+  <span class="checkbox__indicator surface-interactive"></span>
+  <span>Enable feature</span>
+</label>
+*/
+
+/* ===== TOGGLE GROUP ===== */
+/* Usage:
+<div class="cluster">
+  <label class="checkbox">
+    <input type="checkbox" class="checkbox__input">
+    <span class="checkbox__indicator surface-interactive"></span>
+    <span>Option 1</span>
+  </label>
+  <label class="checkbox">
+    <input type="checkbox" class="checkbox__input">
+    <span class="checkbox__indicator surface-interactive"></span>
+    <span>Option 2</span>
+  </label>
+</div>
+*/
+
+/*
+================================================================================
+1️⃣5️⃣ ADVANCED LAYOUT COMBINATIONS
+================================================================================
+*/
+
+/* ===== COMPLEX DASHBOARD ===== */
+/* Usage:
+<div class="stack">
+  <!-- Header -->
+  <header class="cluster-between box surface-floating">
+    <h1>Dashboard</h1>
+    <div class="cluster">
+      <button class="interactive-ghost">Export</button>
+      <button class="interactive-primary">New Report</button>
+    </div>
+  </header>
+
+  <!-- Main Layout -->
+  <div class="with-sidebar">
+    <!-- Sidebar -->
+    <nav class="stack box surface-section">
+      <h2>Navigation</h2>
+      <a class="surface-interactive box-sm">Overview</a>
+      <a class="surface-interactive box-sm selected">Analytics</a>
+      <a class="surface-interactive box-sm">Settings</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="stack">
+      <!-- Stats Grid -->
+      <div class="grid">
+        <div class="card surface-card box">
+          <div class="stack-sm">
+            <h3>Total Revenue</h3>
+            <p class="text-3xl font-bold">$45,231</p>
+            <p class="text-sm text-success">+20.1% from last month</p>
+          </div>
+        </div>
+        <div class="card surface-card box">
+          <div class="stack-sm">
+            <h3>Active Users</h3>
+            <p class="text-3xl font-bold">2,350</p>
+            <p class="text-sm text-success">+180.1% from last month</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+      <div class="switcher">
+        <div class="card surface-card box">
+          <div class="stack">
+            <h3>Sales Overview</h3>
+            <div class="frame" style="height: 300px;">
+              <!-- Chart goes here -->
+            </div>
+          </div>
+        </div>
+        <div class="card surface-card box">
+          <div class="stack">
+            <h3>Recent Activity</h3>
+            <div class="stack-sm">
+              <div class="cluster-between surface-interactive box-sm">
+                <span>New user registration</span>
+                <span class="text-sm text-secondary">2 min ago</span>
+              </div>
+              <div class="cluster-between surface-interactive box-sm">
+                <span>Purchase completed</span>
+                <span class="text-sm text-secondary">5 min ago</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+*/
+
+/* ===== LANDING PAGE LAYOUT ===== */
+/* Usage:
+<div class="stack">
+  <!-- Hero Section -->
+  <section class="cover surface-card">
+    <div class="center">
+      <div class="stack cover-center">
+        <h1 class="text-3xl font-bold">Build Amazing Apps</h1>
+        <p class="text-xl text-secondary">
+          With layout primitives and semantic design tokens
+        </p>
+        <div class="cluster-center">
+          <button class="interactive-primary">Get Started</button>
+          <button class="interactive-ghost">View Demo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section class="center box">
+    <div class="stack">
+      <div class="center">
+        <h2 class="text-3xl font-bold">Features</h2>
+      </div>
+      <div class="grid">
+        <div class="card surface-card box">
+          <div class="stack">
+            <div class="icon">🚀</div>
+            <h3>Fast Development</h3>
+            <p>Build components quickly with layout primitives</p>
+          </div>
+        </div>
+        <div class="card surface-card box">
+          <div class="stack">
+            <div class="icon">♿</div>
+            <h3>Accessible by Default</h3>
+            <p>WCAG 2.2 AA compliance built into every component</p>
+          </div>
+        </div>
+        <div class="card surface-card box">
+          <div class="stack">
+            <div class="icon">🎨</div>
+            <h3>Themeable</h3>
+            <p>Semantic color system adapts to any brand</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+*/
+
+/* ===== BLOG LAYOUT ===== */
+/* Usage:
+<div class="with-sidebar">
+  <!-- Main Content -->
+  <main class="stack center-prose">
+    <article class="stack">
+      <header class="stack">
+        <h1 class="text-3xl font-bold">Article Title</h1>
+        <div class="cluster">
+          <span class="text-secondary">March 15, 2024</span>
+          <span class="text-secondary">5 min read</span>
+        </div>
+      </header>
+
+      <div class="frame-video">
+        <img src="hero-image.jpg" alt="Article hero">
+      </div>
+
+      <div class="stack prose">
+        <p>Article content goes here...</p>
+        <p>More content...</p>
+      </div>
+
+      <footer class="cluster-between surface-section box">
+        <div class="cluster">
+          <button class="interactive-ghost">Share</button>
+          <button class="interactive-ghost">Bookmark</button>
+        </div>
+        <button class="interactive-primary">Subscribe</button>
+      </footer>
+    </article>
+  </main>
+
+  <!-- Sidebar -->
+  <aside class="stack box surface-section">
+    <h3>Related Articles</h3>
+    <div class="stack-sm">
+      <a class="surface-interactive box-sm">
+        <div class="stack-xs">
+          <h4>Related Article 1</h4>
+          <p class="text-sm text-secondary">Brief description</p>
+        </div>
+      </a>
+      <a class="surface-interactive box-sm">
+        <div class="stack-xs">
+          <h4>Related Article 2</h4>
+          <p class="text-sm text-secondary">Brief description</p>
+        </div>
+      </a>
+    </div>
+  </aside>
+</div>
+*/
+
+/*
+================================================================================
+COMPONENT USAGE PATTERNS SUMMARY
+================================================================================
+
+🎯 CORE PRINCIPLE: Layout primitives + semantic system = 95% of styling
+Component CSS only adds MINIMAL structure and behavior
+
+PATTERN 1: LAYOUT + SURFACE + INTERACTION
+<div class="stack surface-card surface-interactive">
+  ↳ .stack = vertical layout primitive
+  ↳ surface-card = background color
+  ↳ surface-interactive = hover/focus states
+
+PATTERN 2: COMPLEX LAYOUTS WITH PRIMITIVES
+<div class="with-sidebar">
+  <nav class="stack box surface-card">...</nav>
+  <main class="layout-container--prose">...</main>
+</div>
+  ↳ .with-sidebar = responsive layout primitive
+  ↳ .stack/.layout-container = internal layout primitives
+  ↳ .box = padding primitive
+  ↳ surface-* = semantic backgrounds
+
+PATTERN 3: INTERACTIVE BUTTONS
+<button class="btn interactive-primary">
+  ↳ .btn = minimal structure/padding
+  ↳ interactive-primary = color + all states
+
+PATTERN 4: GRIDS & CARDS
+<div class="grid">
+  <div class="card box surface-card surface-interactive">
+    <div class="stack">
+      <h3>Card Title</h3>
+      <div class="cluster cluster--end">
+        <button class="btn interactive-primary">Action</button>
+      </div>
+    </div>
+  </div>
+</div>
+  ↳ .grid = auto-responsive layout primitive
+  ↳ .card = minimal structure
+  ↳ .box = padding primitive
+  ↳ .stack/.cluster = internal layout primitives
+  ↳ surface-* = backgrounds + interactions
+
+PATTERN 5: FORM LAYOUTS
+<form class="box surface-card">
+  <div class="stack">
+    <div class="switcher">
+      <input class="input surface-input">
+      <input class="input surface-input">
+    </div>
+    <div class="cluster cluster--end">
+      <button class="btn interactive-ghost">Cancel</button>
+      <button class="btn interactive-primary">Submit</button>
+    </div>
+  </div>
+</form>
+  ↳ Layout primitives handle ALL responsive behavior
+  ↳ Surface classes handle ALL backgrounds
+  ↳ Interactive classes handle ALL states
+
+================================================================================
+*/
+
+/*
+================================================================================
+REDUCED MOTION & ACCESSIBILITY
+================================================================================
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  .skeleton::after,
+  .btn--loading::before {
+    animation: none;
+  }
+}
+
+/*
+================================================================================
+RESPONSIVE DESIGN WITH LAYOUT PRIMITIVES
+================================================================================
+*/
+
+/* Most responsive behavior is handled by layout primitives automatically:
+   - .grid: Auto-responsive without media queries
+   - .switcher: Automatically switches layouts
+   - .with-sidebar: Responsive sidebar
+   - .cluster: Natural wrapping
+   - .center: Auto-centering with padding
+
+   Manual responsive overrides only needed for edge cases:
+*/
+
+@media (max-width: 768px) {
+
+  /* Force vertical layout for specific components */
+  .btn-group.cluster {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Adjust navbar for mobile */
+  .navbar .cluster.cluster--space {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  /* Reduce padding on mobile */
+  .hero .box {
+    padding: var(--space-4);
+  }
+}

@@ -1,0 +1,224 @@
+/*
+================================================================================
+COLOR SEMANTICS
+================================================================================
+Accessibility-first semantic color system.
+Maximum contrast ratios for WCAG AAA compliance.
+*/
+
+/*
+================================================================================
+LIGHT MODE (DEFAULT)
+================================================================================
+*/
+
+:root {
+  /* ===== TEXT/CONTENT ===== */
+  --text-primary: var(--color-neutral-900);
+  --text-secondary: var(--color-neutral-700);
+  --text-tertiary: var(--color-neutral-500);
+  --text-inverse: var(--color-white);
+  --text-brand: var(--color-primary-600);
+  --text-link: var(--color-primary-600);
+  --text-link-hover: var(--color-primary-700);
+  --text-error: var(--color-error-700);
+  --text-success: var(--color-success-700);
+
+  /* ===== SURFACE SCALE (0-5) ===== */
+  --surface-0: var(--color-white);
+  /* Pure base - page background */
+  --surface-1: var(--color-neutral-50);
+  /* Barely there - cards */
+  --surface-2: var(--color-neutral-100);
+  /* Subtle - sections */
+  --surface-3: var(--color-neutral-200);
+  /* Light - wells, inputs */
+  --surface-4: var(--color-neutral-300);
+  /* Strong - emphasis */
+
+  /* ===== SEMANTIC SURFACE ALIASES ===== */
+  /* FOUNDATION */
+  --surface-page: var(--surface-0);
+  /* Page background */
+  /* CONTENT */
+  --surface-well: var(--surface-1);
+  /* Input areas */
+  --surface-section: var(--surface-1);
+  /* Basic page sections */
+  --surface-section-elevated: var(--surface-2);
+  /* Important sections */
+  --surface-section-emphasis: var(--surface-3);
+  /* Highlighted sections */
+  --surface-section-strong: var(--surface-4);
+  /* ELEVATED */
+  --surface-card: var(--surface-2);
+  /* Cards */
+  --surface-raised: var(--surface-2);
+  /* Panels, Sidebars */
+  --surface-floating: var(--surface-1);
+  /* Navigation */
+  /* OVERLAY */
+  --surface-overlay: var(--surface-0);
+  /* Modals, dropdowns, tooltips */
+
+  /* ===== INVERSE ===== */
+  --surface-inverse: var(--color-neutral-900);
+  --surface-inverse-elevated: var(--color-neutral-800);
+
+  /* ===== BORDERS ===== */
+  --border-default: var(--color-neutral-200);
+  --border-muted: var(--color-neutral-100);
+  --border-strong: var(--color-neutral-300);
+  --border-focus: var(--color-primary-500);
+  --border-error: var(--color-error-500);
+  --border-success: var(--color-success-500);
+  --border-disabled: var(--color-neutral-300);
+
+  /* ===== INTERACTIVE STATES ===== */
+  /* 🎯 Base colors for interactive elements - states calculated in utilities */
+  --interactive-primary: var(--color-primary-600);
+  --interactive-secondary: var(--color-secondary-600);
+  --interactive-destructive: var(--color-error-600);
+
+  /* ===== STATUS ===== */
+  --status-error: var(--color-error-700);
+  --surface-error: var(--color-error-50);
+  --status-success: var(--color-success-700);
+  --surface-success: var(--color-success-50);
+
+  /* ===== BACKDROP ===== */
+  --surface-backdrop: rgba(0, 0, 0, 0.8);
+  /* Strong backdrop */
+
+  /* ===== FOCUS SYSTEM ===== */
+  /* Explicit focus color - no circular dependencies */
+  --focus-ring-color: var(--color-primary-500);
+  --focus-ring-color-error: var(--color-error-500);
+  --focus-ring-color-success: var(--color-success-500);
+}
+
+/*
+================================================================================
+SEMANTICS - DARK MODE
+================================================================================
+*/
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ===== TEXT/CONTENT ===== */
+    --text-primary: var(--color-neutral-50);
+    --text-secondary: var(--color-neutral-200);
+    --text-tertiary: var(--color-neutral-400);
+    --text-inverse: var(--color-neutral-900);
+    --text-brand: var(--color-primary-400);
+    --text-link: var(--color-primary-400);
+    --text-link-hover: var(--color-primary-300);
+    --text-error: var(--color-error-400);
+    --text-success: var(--color-success-400);
+
+    /* ===== SURFACE SCALE ===== */
+    --surface-0: var(--color-neutral-950);
+    /* Dark base */
+    --surface-1: var(--color-neutral-900);
+    /* Slightly lighter */
+    --surface-2: var(--color-neutral-800);
+    /* Medium dark */
+    --surface-3: var(--color-neutral-700);
+    /* Medium */
+    --surface-4: var(--color-neutral-600);
+    /* Strong - emphasis */
+
+
+    /* ===== INVERSE ===== */
+    --surface-inverse: var(--color-neutral-50);
+    --surface-inverse-elevated: var(--color-neutral-100);
+
+    /* ===== STATUS ===== */
+    --status-error: var(--color-error-400);
+    --surface-error: var(--color-error-950);
+    --status-success: var(--color-success-400);
+    --surface-success: var(--color-success-950);
+
+    /* ===== BORDERS ===== */
+    --border-default: var(--color-neutral-700);
+    --border-muted: var(--color-neutral-800);
+    --border-strong: var(--color-neutral-600);
+    --border-focus: var(--color-primary-400);
+    --border-error: var(--color-error-400);
+    --border-success: var(--color-success-400);
+
+    /* ===== BASE INTERACTIVE COLORS ===== */
+    --interactive-primary: var(--color-primary-400);
+    --interactive-secondary: var(--color-secondary-400);
+    --interactive-destructive: var(--color-error-400);
+  }
+}
+
+/*
+--------------------------------------------------------------------------------
+SEMANTICS - HIGH CONTRAST MODE
+--------------------------------------------------------------------------------
+*/
+
+@media (prefers-contrast: high) {
+  :root {
+    /* Enhanced text contrast */
+    --text-primary: var(--color-black);
+    /* Maximum contrast */
+    --text-secondary: var(--color-neutral-800);
+    /* Strong contrast */
+
+    /* Enhanced border contrast */
+    --border-default: var(--color-black);
+    /* Strong borders */
+    --border-focus: var(--color-primary-600);
+    /* High contrast focus */
+
+    /* Enhanced interactive contrasts */
+    --interactive-primary: var(--color-primary-700);
+    --interactive-secondary: var(--color-secondary-700);
+    --interactive-destructive: var(--color-error-700);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --text-primary: var(--color-white);
+      /* Pure white */
+      --text-secondary: var(--color-neutral-100);
+
+      --border-default: var(--color-white);
+      /* Pure white borders */
+      --border-focus: var(--color-primary-300);
+      /* Brightest focus */
+    }
+  }
+}
+
+
+/*
+================================================================================
+BROWSER COMPATIBILITY FALLBACKS
+================================================================================
+*/
+
+/* Fallback for browsers without OKLCH support */
+@supports not (color: oklch(0% 0 0)) {
+  :root {
+    /* Surface fallbacks using hex values */
+    --surface-0: #ffffff;
+    --surface-1: #f8fafc;
+    --surface-2: #f1f5f9;
+    --surface-3: #e2e8f0;
+    --surface-4: #cbd5e1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-0: #0f172a;
+      --surface-1: #1e293b;
+      --surface-2: #334155;
+      --surface-3: #475569;
+      --surface-4: #64748b;
+    }
+  }
+}

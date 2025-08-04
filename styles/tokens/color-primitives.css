@@ -1,0 +1,157 @@
+/*
+================================================================================
+COLOR PRIMITIVES
+================================================================================
+Accessibility-first color system with maximum contrast ratios.
+11-step scale: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950.
+*/
+
+:root {
+
+  /* ===== BRAND FOUNDATION ===== */
+  /* Adjust these values for your brand, everything else is calculated */
+  --brand-hue: 240;
+  /* Your brand hue (0-360°) */
+  --brand-chroma: 0.280;
+  /* Max safe chroma for this hue */
+
+  /* ===== SECONDARY & ACCENT HUES ===== */
+  --secondary-hue: 295;
+  /* Magenta family for secondary actions */
+  --secondary-chroma: 0.270;
+  /* High chroma for clear differentiation */
+
+  /* ===== SEMANTIC COLOR HUES ===== */
+  --success-hue: 142;
+  --success-chroma: 0.220;
+  --error-hue: 20;
+  --error-chroma: 0.300;
+
+  /* ===== PRIMARY OKLCH SCALE ===== */
+  /* Research-based lightness progression (Stevens' Power Law) */
+  /* Each step is visually equidistant for human perception */
+  --color-primary-50: oklch(97% calc(var(--brand-chroma) * 0.08) var(--brand-hue));
+  /* Subtle bg */
+  --color-primary-100: oklch(94% calc(var(--brand-chroma) * 0.15) var(--brand-hue));
+  /* Light bg */
+  --color-primary-200: oklch(87% calc(var(--brand-chroma) * 0.30) var(--brand-hue));
+  /* Borders */
+  --color-primary-300: oklch(78% calc(var(--brand-chroma) * 0.50) var(--brand-hue));
+  /* Disabled */
+  --color-primary-400: oklch(67% calc(var(--brand-chroma) * 0.75) var(--brand-hue));
+  /* Placeholder */
+  --color-primary-500: oklch(57% var(--brand-chroma) var(--brand-hue));
+  /* Brand primary */
+  --color-primary-600: oklch(48% calc(var(--brand-chroma) * 0.95) var(--brand-hue));
+  /* Hover */
+  --color-primary-700: oklch(40% calc(var(--brand-chroma) * 0.85) var(--brand-hue));
+  /* Active */
+  --color-primary-800: oklch(32% calc(var(--brand-chroma) * 0.70) var(--brand-hue));
+  /* Strong text */
+  --color-primary-900: oklch(25% calc(var(--brand-chroma) * 0.55) var(--brand-hue));
+  /* Headings */
+  --color-primary-950: oklch(18% calc(var(--brand-chroma) * 0.35) var(--brand-hue));
+  /* Max contrast */
+
+  /* ===== SECONDARY OKLCH SCALE ===== */
+  --color-secondary-50: oklch(97% calc(var(--secondary-chroma) * 0.08) var(--secondary-hue));
+  --color-secondary-100: oklch(94% calc(var(--secondary-chroma) * 0.15) var(--secondary-hue));
+  --color-secondary-200: oklch(87% calc(var(--secondary-chroma) * 0.30) var(--secondary-hue));
+  --color-secondary-300: oklch(78% calc(var(--secondary-chroma) * 0.50) var(--secondary-hue));
+  --color-secondary-400: oklch(67% calc(var(--secondary-chroma) * 0.75) var(--secondary-hue));
+  --color-secondary-500: oklch(57% var(--secondary-chroma) var(--secondary-hue));
+  --color-secondary-600: oklch(48% calc(var(--secondary-chroma) * 0.95) var(--secondary-hue));
+  --color-secondary-700: oklch(40% calc(var(--secondary-chroma) * 0.85) var(--secondary-hue));
+  --color-secondary-800: oklch(32% calc(var(--secondary-chroma) * 0.70) var(--secondary-hue));
+  --color-secondary-900: oklch(25% calc(var(--secondary-chroma) * 0.55) var(--secondary-hue));
+  --color-secondary-950: oklch(18% calc(var(--secondary-chroma) * 0.35) var(--secondary-hue));
+
+  /* ===== SUCCESS SCALE ===== */
+  --color-success-50: oklch(97% calc(var(--success-chroma) * 0.08) var(--success-hue));
+  --color-success-100: oklch(94% calc(var(--success-chroma) * 0.15) var(--success-hue));
+  --color-success-200: oklch(87% calc(var(--success-chroma) * 0.30) var(--success-hue));
+  --color-success-300: oklch(78% calc(var(--success-chroma) * 0.50) var(--success-hue));
+  --color-success-400: oklch(67% calc(var(--success-chroma) * 0.75) var(--success-hue));
+  --color-success-500: oklch(65% var(--success-chroma) var(--success-hue));
+  --color-success-600: oklch(55% calc(var(--success-chroma) * 0.95) var(--success-hue));
+  --color-success-700: oklch(45% calc(var(--success-chroma) * 0.85) var(--success-hue));
+  --color-success-800: oklch(35% calc(var(--success-chroma) * 0.70) var(--success-hue));
+  --color-success-900: oklch(25% calc(var(--success-chroma) * 0.55) var(--success-hue));
+  --color-success-950: oklch(18% calc(var(--success-chroma) * 0.35) var(--success-hue));
+
+  /* ===== ERROR SCALE ===== */
+  --color-error-50: oklch(97% calc(var(--error-chroma) * 0.08) var(--error-hue));
+  --color-error-100: oklch(94% calc(var(--error-chroma) * 0.15) var(--error-hue));
+  --color-error-200: oklch(87% calc(var(--error-chroma) * 0.30) var(--error-hue));
+  --color-error-300: oklch(78% calc(var(--error-chroma) * 0.50) var(--error-hue));
+  --color-error-400: oklch(67% calc(var(--error-chroma) * 0.75) var(--error-hue));
+  --color-error-500: oklch(60% var(--error-chroma) var(--error-hue));
+  --color-error-600: oklch(50% calc(var(--error-chroma) * 0.95) var(--error-hue));
+  --color-error-700: oklch(40% calc(var(--error-chroma) * 0.85) var(--error-hue));
+  --color-error-800: oklch(32% calc(var(--error-chroma) * 0.70) var(--error-hue));
+  --color-error-900: oklch(25% calc(var(--error-chroma) * 0.55) var(--error-hue));
+  --color-error-950: oklch(18% calc(var(--error-chroma) * 0.35) var(--error-hue));
+
+  /* ===== NEUTRAL SCALE (brand-tinted for cohesion) ===== */
+  --color-neutral-50: oklch(98% 0.005 var(--brand-hue));
+  --color-neutral-100: oklch(95% 0.010 var(--brand-hue));
+  --color-neutral-200: oklch(89% 0.020 var(--brand-hue));
+  --color-neutral-300: oklch(80% 0.030 var(--brand-hue));
+  --color-neutral-400: oklch(65% 0.038 var(--brand-hue));
+  --color-neutral-500: oklch(55% 0.038 var(--brand-hue));
+  --color-neutral-600: oklch(45% 0.038 var(--brand-hue));
+  --color-neutral-700: oklch(35% 0.038 var(--brand-hue));
+  --color-neutral-800: oklch(25% 0.038 var(--brand-hue));
+  --color-neutral-900: oklch(15% 0.038 var(--brand-hue));
+  --color-neutral-950: oklch(8% 0.038 var(--brand-hue));
+
+  /* ===== ABSOLUTE COLORS ===== */
+  --color-black: oklch(0% 0 0);
+  --color-white: oklch(100% 0 0);
+}
+
+/* ===== WIDE GAMUT DISPLAY ENHANCEMENT ===== */
+/* Automatic color enhancement for modern displays */
+@media (color-gamut: p3) {
+  :root {
+    /* +18% chroma for P3 displays */
+    --brand-chroma: calc(var(--brand-chroma) * 1.18);
+    --secondary-chroma: calc(var(--secondary-chroma) * 1.18);
+    --success-chroma: calc(var(--success-chroma) * 1.18);
+    --error-chroma: calc(var(--error-chroma) * 1.18);
+  }
+}
+
+/* Future Rec2020 support */
+@media (color-gamut: rec2020) {
+  :root {
+    /* Ultra-wide gamut colors (+40% gamut) */
+    --brand-chroma: calc(var(--brand-chroma) * 1.40);
+    --secondary-chroma: calc(var(--secondary-chroma) * 1.40);
+    --success-chroma: calc(var(--success-chroma) * 1.40);
+    --error-chroma: calc(var(--error-chroma) * 1.40);
+  }
+}
+
+/* ===== LEGACY BROWSER FALLBACKS ===== */
+/* Progressive enhancement for older browsers */
+@supports not (color: oklch(0% 0 0)) {
+  :root {
+    /* Carefully chosen hex fallbacks */
+    --color-primary-50: #f8fafc;
+    --color-primary-500: #3b82f6;
+    --color-primary-950: #1e3a8a;
+    --color-secondary-50: #fdf4ff;
+    --color-secondary-500: #d946ef;
+    --color-secondary-950: #4a044e;
+    --color-error-50: #fef2f2;
+    --color-error-500: #ef4444;
+    --color-error-950: #450a0a;
+    --color-success-50: #f0fdf4;
+    --color-success-500: #22c55e;
+    --color-success-950: #052e16;
+    --color-neutral-50: #f8fafc;
+    --color-neutral-500: #64748b;
+    --color-neutral-950: #0f172a;
+  }
+}
