@@ -1,21 +1,23 @@
-# 🧩✨ CSS Foundation
+# 🎨✨ CSS Foundation
 
 [![Accessibility](https://img.shields.io/badge/WCAG-2.2%20AA-green.svg)](https://www.w3.org/WAI/WCAG22/quickref/)
 [![CSS Version](https://img.shields.io/badge/CSS-Module%204%2F5-blue.svg)](https://www.w3.org/Style/CSS/)
 [![Color System](https://img.shields.io/badge/Color-OKLCH-purple.svg)](https://oklch.com/)
-[![Zero JS](https://img.shields.io/badge/Dependencies-Zero%20JS-success.svg)](#)
 [![Mobile First](https://img.shields.io/badge/Design-Mobile%20First-ff69b4.svg)](#)
 [![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Built%20In-6366f1.svg)](#)
-
 [![Template](https://img.shields.io/badge/GitHub-Template-2ea44f.svg?logo=github)](https://github.com/cmtayl0r/css-foundation)
-[![Size](https://img.shields.io/badge/Size-~15KB%20gzipped-brightgreen.svg)](#)
-[![Built with Love](https://img.shields.io/badge/Built%20with-❤️%20and%20☕-red.svg)](#)
 
-> **Accessibility-first, minimal-bloat CSS foundation for my personal React/Next.js projects.**
+## 🎯 **What This Does**
+
+An accessibility-first, minimal-bloat CSS foundation for my personal React/Next.js projects.
+
+### 👨‍🔧 My objective
+
+Explore advance React Patterns that are built with Accessibility as a focus in the process and Learning journey.
 
 ---
 
-## 🚀 Quick Setup
+## 🚀 Quick Start
 
 ### 1. Copy the `styles/` folder to your project
 
@@ -79,7 +81,7 @@ color-semantics-lean.css
 - ✅ **Mobile-first responsive** design
 - ✅ **Dark mode** and high contrast support
 - ✅ **Layout primitives** (Stack, Grid, Cluster, etc.)
-- ✅ **React integration** patterns
+- ✅ **React integration** pattern demos
 
 ## 📁 File Organization
 
@@ -160,4 +162,22 @@ import "./globals.css"; // Contains @import "./styles/index.css"
 
 ---
 
-**License:** MIT | **Size:** ~15KB gzipped
+## 📄 **Details**
+
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Size](https://img.shields.io/badge/Size-~15KB%20gzipped-brightgreen.svg)](#)
+[![Built with Love](https://img.shields.io/badge/Built%20with-❤️%20and%20☕-red.svg)](#)
+
+---
+
+## 👋 **Connect**
+
+Built by Chris Taylor - Design Engineer specializing in accessible AI
+
+- 💼 LinkedIn: [Chris Taylor](https://www.linkedin.com/in/uxchristophertaylor/)
+<!-- - 🌐 Portfolio: [apathofbravery.com](http://www.apathofbravery.com) -->
+- 📧 Email: [chris@pathtobravery.dev](mailto:chris@pathtobravery.dev)
+
+---
+
+_"Making technology that works for everyone isn't just good practice—it's better business, better design, and better for humanity."_
