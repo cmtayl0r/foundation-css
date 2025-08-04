@@ -146,6 +146,7 @@ SEMANTICS - DARK MODE
     --border-focus: var(--color-primary-400);
     --border-error: var(--color-error-400);
     --border-success: var(--color-success-400);
+    --border-disabled: var(--color-neutral-600);
 
     /* ===== BASE INTERACTIVE COLORS ===== */
     --interactive-primary: var(--color-primary-400);

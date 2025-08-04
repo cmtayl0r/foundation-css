@@ -14,9 +14,9 @@ Strong, visible borders for maximum contrast and clarity.
   /* Subtle borders */
   --border-width-default: 2px;
   /* Standard borders */
-  --border-width-thick: 3px;
+  --border-width-thick: 4px;
   /* Emphasis borders */
-  --border-width-focus: 3px;
+  --border-width-focus: 4px;
   /* Focus indicators */
 
   /* ===== BORDER STYLES ===== */
