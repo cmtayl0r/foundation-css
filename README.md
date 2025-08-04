@@ -9,11 +9,11 @@
 
 ## 🎯 **What This Does**
 
-An accessibility-first, minimal-bloat CSS foundation for my personal React/Next.js projects.
+An accessibility-first, minimal-bloat Vanilla CSS foundation for my personal React/Next.js projects.
 
 ### 👨‍🔧 My objective
 
-Explore advance React Patterns that are built with Accessibility as a focus in the process and Learning journey.
+Not to recreate Tailwind CSS, but to learn about scalable, usable and pleasurable CSS architectures to make projects more accessible and usable by designers and engineers.
 
 ---
 
