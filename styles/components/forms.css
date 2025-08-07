@@ -163,8 +163,6 @@ LABELS
 
 label {
   display: block;
-  font-weight: var(--font-weight-emphasis);
-  color: var(--text-primary);
   cursor: pointer;
 }
 
@@ -174,6 +172,14 @@ label[aria-required="true"]::after {
   content: " * required";
   color: var(--text-error);
 }
+
+.label-text {
+  font-size: var(--font-size-sm);
+  color: var(--font-weight-strong);
+  line-height: var(--line-height-base);
+  color: var(--text-primary);
+}
+
 
 /*
 ================================================================================
@@ -185,13 +191,17 @@ ACCESSIBILITY UTILITIES
 .error-message {
   color: var(--text-error);
   font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-emphasis);
+  line-height: var(--line-height-base);
   margin-top: var(--space-2xs);
 }
 
 /* Help text - properly associated */
 .help-text {
   color: var(--text-secondary);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-text);
+  line-height: var(--line-height-base);
   margin-top: var(--space-2xs);
 }
 

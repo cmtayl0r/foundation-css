@@ -62,8 +62,8 @@ LAYOUT PRIMITIVES AVAILABLE:
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: var(--space-10);
-  min-height: var(--space-10);
+  min-width: var(--touch-target);
+  min-height: var(--touch-target);
 }
 
 /* Usage: <button class="btn btn--icon interactive-ghost with-icon">⚙️ Settings</button> */

@@ -47,14 +47,70 @@ b {
   font-weight: var(--font-weight-strong);
 }
 
+
+/*
+================================================================================
+CODE AND TECHNICAL TEXT
+================================================================================
+*/
+
 code {
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
   line-height: var(--line-height-tight);
 }
 
+/* Inline code with proper distinction */
+code:not(pre code) {
+  font-family: var(--font-mono);
+  background: hsl(210 25% 97%);
+  font-size: 0.875em;
+  /* 14px */
+  font-weight: var(--font-weight-emphasis);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--border-radius-sm);
+  border: var(--border-width-thin) solid var(--border-default);
+}
 
-/* ===== FONT SIZE UTILITIES ===== */
+/* Preformatted code blocks */
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+  background: hsl(210 25% 97%);
+  padding: var(--space-md);
+  border-radius: var(--border-radius-sm);
+  overflow-x: auto;
+}
+
+pre code {
+  font-size: inherit;
+  background: none;
+  padding: 0;
+  border: none;
+}
+
+/* Keyboard shortcuts */
+
+.text__kbd {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-tight);
+  font-weight: var(--font-weight-strong);
+  background: hsl(210 25% 97%);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--border-radius-sm);
+  border: var(--border-width-thin) solid var(--border-default);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+/*
+================================================================================
+FONT SIZE UTILITIES
+================================================================================
+*/
+
 .text-xs {
   font-size: var(--font-size-xs);
 }
@@ -90,6 +146,12 @@ code {
 .text-5xl {
   font-size: var(--font-size-5xl);
 }
+
+/*
+================================================================================
+FONT STYLE UTILITIES
+================================================================================
+*/
 
 /* ===== FONT FAMILY UTILITIES ===== */
 .font-sans {
@@ -159,4 +221,20 @@ code {
 
 .tracking-wider {
   letter-spacing: var(--letter-spacing-wider);
+}
+
+/* ===== TYPOGRAPHY PATTERNS ===== */
+
+.lead-text {
+  font-size: var(--font-size-xl);
+  line-height: var(--line-height-snug);
+  font-weight: var(--font-weight-text);
+  max-width: 65ch;
+}
+
+.caps-text {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-emphasis);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
 }
