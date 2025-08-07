@@ -40,7 +40,7 @@ LAYOUT PRIMITIVES AVAILABLE:
   /* Base button styling - ADD to interactive classes */
   padding: var(--space-3) var(--space-6);
   border-radius: var(--border-radius-md);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
   font-size: var(--font-size-sm);
   border: 0;
   /* No color/state styling - handled by interactive classes */
@@ -238,7 +238,7 @@ LAYOUT PRIMITIVES AVAILABLE:
 .table th {
   padding: var(--space-3) var(--space-4);
   text-align: left;
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-strong);
   font-size: var(--font-size-sm);
   border-bottom: 1px solid var(--border-default);
 }

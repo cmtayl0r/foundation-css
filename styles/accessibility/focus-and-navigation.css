@@ -46,7 +46,7 @@ SKIP NAVIGATION
   border-radius: var(--border-radius-md);
   border: 2px solid var(--interactive-primary);
   z-index: var(--z-index-high);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
   transition: var(--transition-fast);
 }
 
@@ -136,7 +136,7 @@ USER PREFERENCE OVERRIDES
 @media (prefers-contrast: high) {
   .skip-link {
     border-width: 3px;
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-display);
   }
 
   .focus-visible-only:focus-visible {

@@ -50,7 +50,7 @@ ACCESSIBLE TYPOGRAPHY
 .text-large {
   font-size: var(--font-size-xl);
   line-height: var(--line-height-relaxed);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
 }
 
 /* Prevent text breaking
@@ -193,7 +193,7 @@ USER PREFERENCE OVERRIDES
 
   .text-accessible,
   .text-large {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-display);
     text-shadow: 0 0 1px currentColor;
   }
 

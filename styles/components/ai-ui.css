@@ -101,7 +101,7 @@ MESSAGE BUBBLES - ACCESSIBLE CONVERSATION
   align-items: center;
   justify-content: center;
   font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
   flex-shrink: 0;
 }
 

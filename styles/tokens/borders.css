@@ -32,6 +32,8 @@ Strong, visible borders for maximum contrast and clarity.
   /* 8px - Standard rounding */
   --border-radius-lg: 0.75rem;
   /* 12px - Generous rounding */
+  --border-radius-xl: 1.25rem;
+  /* 20px - Large rounding */
   --border-radius-full: 9999px;
   /* Circular/pill shapes */
 

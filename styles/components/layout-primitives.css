@@ -571,7 +571,7 @@ THE ICON
   height: 1cap;
   fill: currentColor;
   /* Icon color matches the text color */
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-text);
   /* Reset font weight for 3rd party Icons using <i> */
 }
 

@@ -52,19 +52,19 @@ Font size, weight, and typography utilities using design tokens.
 
 /* ===== FONT WEIGHT UTILITIES ===== */
 .font-normal {
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-text);
 }
 
 .font-medium {
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
 }
 
 .font-semibold {
-  font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-strong);
 }
 
 .font-bold {
-  font-weight: var(--font-weight-bold);
+  font-weight: var(--font-weight-display);
 }
 
 /* ===== LINE HEIGHT UTILITIES ===== */

@@ -147,7 +147,7 @@ fieldset {
 }
 
 legend {
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
   padding: 0 var(--space-xs);
 }
 
@@ -163,7 +163,7 @@ LABELS
 
 label {
   display: block;
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-emphasis);
   color: var(--text-primary);
   cursor: pointer;
 }
