@@ -238,3 +238,55 @@ FONT STYLE UTILITIES
   letter-spacing: var(--letter-spacing-wider);
   text-transform: uppercase;
 }
+
+/*
+================================================================================
+LOADING SKELETONS
+================================================================================
+*/
+
+.text__skeleton {
+  background: linear-gradient(to right,
+      hsl(210 25% 97%) 0%,
+      hsl(210 25% 90%) 50%,
+      hsl(210 25% 97%) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite linear;
+  color: transparent;
+  user-select: none;
+  border-radius: var(--border-radius-sm);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+
+}
+
+.text__skeleton--heading {
+  height: 2rem;
+  width: 70%;
+}
+
+.text__skeleton--paragraph {
+  height: 1rem;
+  width: 100%;
+  margin-bottom: var(--space-xs);
+}
+
+.text__skeleton--paragraph:last-child {
+  width: 60;
+  margin-bottom: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text__skeleton {
+    animation: none;
+    background: hsl(210 25% 97%);
+  }
+}
