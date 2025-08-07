@@ -38,15 +38,29 @@ LAYOUT PRIMITIVES AVAILABLE:
 /* ===== PRIMARY BUTTON ===== */
 .btn {
   /* Base button styling - ADD to interactive classes */
-  padding: var(--space-3) var(--space-6);
+  padding: var(--space-sm) var(--space-xl);
   border-radius: var(--border-radius-md);
   font-weight: var(--font-weight-emphasis);
+  letter-spacing: var(--letter-spacing-wide);
   font-size: var(--font-size-sm);
   border: 0;
   /* No color/state styling - handled by interactive classes */
 }
 
 /* Usage: <button class="btn interactive-primary">Save</button> */
+
+/* ===== BUTTON SIZES ===== */
+.btn--sm {
+  font-size: var(--font-size-xs);
+  padding: var(--space-xs) var(--space-md);
+  min-height: var(--touch-target-sm);
+}
+
+.btn--lg {
+  font-size: var(--font-size-lg);
+  padding: var(--space-md) var(--space-2xl);
+  min-height: var(--touch-target-lg);
+}
 
 /* ===== BUTTON GROUPS ===== */
 .btn-group {
@@ -184,10 +198,12 @@ LAYOUT PRIMITIVES AVAILABLE:
 /* ===== INPUT FIELDS ===== */
 .input {
   width: 100%;
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--border-default);
+  padding: var(--space-sm) var(--space-md);
+  border: var(--border-width-default) solid var(--border-default);
   border-radius: var(--border-radius-md);
   font-size: var(--font-size-base);
+  font-weight: var(--font-weight-text);
+  line-height: var(--line-height-base);
   transition: var(--transition-colors);
   /* Background handled by surface classes */
 }
@@ -233,19 +249,36 @@ LAYOUT PRIMITIVES AVAILABLE:
 .table {
   width: 100%;
   border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-base);
+  font-feature-settings: "tnum" 1;
+  /* Tabular numbers */
 }
 
 .table th {
-  padding: var(--space-3) var(--space-4);
-  text-align: left;
-  font-weight: var(--font-weight-strong);
   font-size: var(--font-size-sm);
-  border-bottom: 1px solid var(--border-default);
+  font-weight: var(--font-weight-strong);
+  letter-spacing: var(--letter-spacing-wider);
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  border-bottom: var(--border-width-default) solid var(--border-default);
 }
 
 .table td {
-  padding: var(--space-3) var(--space-4);
-  border-bottom: 1px solid var(--border-muted);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: var(--border-width-default)solid var(--border-muted);
+}
+
+.table__data-cell {
+  font-weight: var(--font-weight-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.table__data-cell--numeric {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  text-align: right;
 }
 
 /* ===== TABLE WITH ACTIONS ===== */
