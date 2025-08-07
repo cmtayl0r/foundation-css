@@ -28,7 +28,7 @@ ACCESSIBLE TYPOGRAPHY
 .text-accessible {
   font-size: var(--font-size-lg);
   line-height: var(--line-height-relaxed);
-  letter-spacing: var(--letter-spacing-normal);
+  letter-spacing: var(--letter-spacing-base);
 }
 
 /* Dyslexia-friendly typography

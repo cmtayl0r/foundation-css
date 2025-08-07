@@ -131,7 +131,7 @@ CHAT INPUT - ACCESSIBLE FORM
   border-radius: var(--border-radius-full);
   resize: none;
   font-family: inherit;
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-base);
   transition: var(--transition-interactive);
 }
 
@@ -259,7 +259,7 @@ CODE BLOCKS IN CHAT - ACCESSIBLE FORMATTING
   padding: var(--space-sm);
   font-family: var(--font-mono);
   font-size: var(--font-size-sm);
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-base);
 }
 
 .message__code-header {

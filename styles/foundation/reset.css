@@ -33,7 +33,7 @@ ROOT CONFIGURATION
   /* Typography foundation */
   font-family: var(--font-sans);
   font-size: var(--font-size-base, 1rem);
-  line-height: var(--line-height-normal, 1.5);
+  line-height: var(--line-height-base, 1.5);
   font-weight: var(--font-weight-text, 400);
 
   /* Color foundation */
@@ -57,7 +57,7 @@ html {
 /* Modern document setup */
 body {
   /* Typography inherited from :root */
-  line-height: var(--line-height-normal);
+  line-height: var(--line-height-base);
   /* Ensure body fills viewport */
   min-height: 100vh;
   min-height: 100svh;

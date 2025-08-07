@@ -15,29 +15,36 @@ WCAG AAA compliance focused with strong contrast and legibility.
   --font-accessible: "Atkinson Hyperlegible", "OpenDyslexic", system-ui, sans-serif;
 
   /* ===== CORE TYPE SCALE (Mobile-first fluid) ===== */
-  /* Ensures 16px minimum for body text (WCAG requirement) */
-  --font-size-sm: clamp(0.875rem, 0.825rem + 0.25vw, 1rem);
+  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  /* 12-14px - Extra small text */
+  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
   /* 14-16px - Small UI text */
-  --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
-  /* 16-18px - Body text */
-  --font-size-lg: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  /* 16-18px - Body text minimum (WCAG) */
+  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
+  /* 18-20px - Comfortable reading */
+  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
   /* 20-24px - Large text */
-  --font-size-xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
   /* 24-32px - Small headings */
-  --font-size-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);
-  /* 32-48px - Medium headings */
-  --font-size-3xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
-  /* 40-64px - Large headings */
+  --font-size-3xl: clamp(1.875rem, 1.6rem + 1.375vw, 2.5rem);
+  /* 30-40px - Medium headings */
+  --font-size-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+  /* 36-48px - Large headings */
+  --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+  /* 48-64px - Extra large headings */
 
   /* ===== LINE HEIGHT SCALE ===== */
   --line-height-tight: 1.25;
-  /* Large headings only */
-  --line-height-normal: 1.5;
+  /* Headings, buttons */
+  --line-height-snug: 1.375;
+  /* Subheadings */
+  --line-height-base: 1.5;
   /* Body text minimum (WCAG) */
   --line-height-relaxed: 1.6;
   /* Comfortable reading */
   --line-height-loose: 1.75;
-  /* Maximum readability */
+  /* Long-form content, Maximum readability */
 
   /* ===== FONT WEIGHTS (Accessibility focused) ===== */
   /* Limited scale prevents poor contrast from thin weights */
@@ -54,7 +61,7 @@ WCAG AAA compliance focused with strong contrast and legibility.
   /* Improves readability, especially for accessibility */
   --letter-spacing-tight: -0.025em;
   /* Large headings */
-  --letter-spacing-normal: 0em;
+  --letter-spacing-base: 0em;
   /* Body text */
   --letter-spacing-wide: 0.025em;
   /* UI text, small caps */
@@ -65,15 +72,15 @@ WCAG AAA compliance focused with strong contrast and legibility.
   /* Complete typography patterns for common use cases */
 
   /* Body text patterns */
-  --typography-body: var(--font-weight-text) var(--font-size-body)/var(--line-height-normal) var(--font-sans);
-  --typography-body-large: var(--font-weight-text) var(--font-size-lg)/var(--line-height-normal) var(--font-sans);
+  --typography-body: var(--font-weight-text) var(--font-size-body)/var(--line-height-base) var(--font-sans);
+  --typography-body-large: var(--font-weight-text) var(--font-size-lg)/var(--line-height-base) var(--font-sans);
 
   /* Heading patterns */
   --typography-h1: var(--font-weight-display) var(--font-size-3xl)/var(--line-height-tight) var(--font-sans);
   --typography-h2: var(--font-weight-display) var(--font-size-2xl)/var(--line-height-tight) var(--font-sans);
-  --typography-h3: var(--font-weight-strong) var(--font-size-xl)/var(--line-height-normal) var(--font-sans);
-  --typography-h4: var(--font-weight-strong) var(--font-size-lg)/var(--line-height-normal) var(--font-sans);
-  --typography-h5: var(--font-weight-emphasis) var(--font-size-base)/var(--line-height-normal) var(--font-sans);
+  --typography-h3: var(--font-weight-strong) var(--font-size-xl)/var(--line-height-base) var(--font-sans);
+  --typography-h4: var(--font-weight-strong) var(--font-size-lg)/var(--line-height-base) var(--font-sans);
+  --typography-h5: var(--font-weight-emphasis) var(--font-size-base)/var(--line-height-base) var(--font-sans);
 }
 
 /*
@@ -95,7 +102,7 @@ HIGH CONTRAST MODE ENHANCEMENTS
     /* Maximum heading weight */
 
     /* Enhanced letter spacing for clarity */
-    --letter-spacing-normal: 0.015em;
+    --letter-spacing-base: 0.015em;
     /* Slight spacing for readability */
     --letter-spacing-wide: 0.04em;
     /* More spacing for UI */
