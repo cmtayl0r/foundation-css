@@ -101,23 +101,6 @@ LIVE REGIONS - SCREEN READER ANNOUNCEMENTS
 ================================================================================
 */
 
-/* Base live region pattern (invisible to sighted users)
-   WHEN: Dynamic content that screen readers should announce
-   WHY: Notifies screen reader users of content changes
-   HOW: <div className="live-region status-region" aria-live="polite"></div> */
-.live-region {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-  clip-path: inset(50%);
-}
-
 /* Status updates (polite announcements)
    WHEN: Form saved, data loaded, non-urgent updates
    WHY: Announces when convenient, doesn't interrupt

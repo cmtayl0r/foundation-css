@@ -16,15 +16,15 @@ EXPANSION STATES
    WHEN: Dropdowns, accordions, collapsible menus
    WHY: Universal visual feedback for expand/collapse state
    HOW: <button aria-expanded={isOpen}><span className="chevron">▼</span></button> */
-[aria-expanded="true"] .chevron,
-[aria-expanded="true"] .icon-chevron {
+[aria-expanded="true"] :is(.chevron, .icon-chevron) {
   transform: rotate(180deg);
-  transition: transform var(--transition-fast);
 }
 
-[aria-expanded="false"] .chevron,
-[aria-expanded="false"] .icon-chevron {
+[aria-expanded="false"] :is(.chevron, .icon-chevron) {
   transform: rotate(0deg);
+}
+
+:is([aria-expanded] .chevron, [aria-expanded] .icon-chevron) {
   transition: transform var(--transition-fast);
 }
 
@@ -38,8 +38,8 @@ VISIBILITY STATES
    WHEN: Content hidden from all users (visual + screen readers)
    WHY: ARIA specification requirement
    HOW: <div aria-hidden="true">Decorative content</div> */
-[aria-hidden="true"] {
-  display: none !important;
+:where([aria-hidden="true"]) {
+  display: none;
 }
 
 /*

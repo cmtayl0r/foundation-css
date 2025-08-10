@@ -290,3 +290,24 @@ LOADING SKELETONS
     background: hsl(210 25% 97%);
   }
 }
+
+/*
+================================================================================
+UNIVERSAL TEXT SELECTION
+================================================================================
+*/
+
+::selection {
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+  text-shadow: none;
+  /* Remove text shadows on selection */
+}
+
+/* Firefox compatibility */
+::-moz-selection {
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+  text-shadow: none;
+  /* Remove text shadows on selection */
+}

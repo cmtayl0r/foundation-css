@@ -64,14 +64,14 @@ MODAL & DIALOG FOCUS MANAGEMENT
    WHEN: Modal/dialog opens and background content should be disabled
    WHY: Prevents focus escaping modal, required by WCAG
    HOW: <main className={isModalOpen ? 'inert' : ''}>...</main> */
-.inert {
-  pointer-events: none !important;
-  user-select: none !important;
+:where(.inert) {
+  pointer-events: none;
+  user-select: none;
 }
 
-.inert * {
-  pointer-events: none !important;
-  user-select: none !important;
+:where(.inert *) {
+  pointer-events: none;
+  user-select: none;
 }
 
 /* Focus trap indicator
