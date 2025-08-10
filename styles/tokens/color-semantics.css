@@ -182,6 +182,7 @@ Theme Architecture:
   --focus-ring-color: var(--theme-light-focus-ring-color);
   --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
   --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
+
   /* ===== SCROLLBAR ===== */
   --scrollbar-thumb: var(--theme-light-scrollbar-thumb);
   --scrollbar-track: var(--theme-light-scrollbar-track);
