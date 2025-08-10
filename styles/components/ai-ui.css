@@ -267,7 +267,7 @@ CODE BLOCKS IN CHAT - ACCESSIBLE FORMATTING
   justify-content: space-between;
   align-items: center;
   padding: var(--space-xs) var(--space-sm);
-  background: var(--surface-4);
+  background: var(--surface-3);
   border-bottom: var(--border-width-default) solid var(--border-default);
   font-size: var(--font-size-sm);
   color: var(--text-secondary);
@@ -346,6 +346,6 @@ ACCESSIBILITY ENHANCEMENTS
 /* Dark mode adjustments */
 @media (prefers-color-scheme: dark) {
   .message__code {
-    background: var(--surface-4);
+    background: var(--surface-3);
   }
 }

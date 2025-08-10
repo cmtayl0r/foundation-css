@@ -2,7 +2,9 @@
 ================================================================================
 COLOR SEMANTICS
 ================================================================================
-Accessibility-first semantic color system.
+Accessibility-f    --surface-2: var(--theme-dark-surface-2);
+    --surface-3: var(--theme-dark-surface-3);
+    --surface-inverse: var(--theme-dark-surface-inverse); semantic color system.
 Maximum contrast ratios for WCAG AAA compliance.
 
 Theme Architecture:
@@ -24,61 +26,77 @@ Theme Architecture:
   */
 
   /* ===== LIGHT THEME VALUES ===== */
-  --theme-light-text-primary: var(--color-neutral-900);
-  --theme-light-text-secondary: var(--color-neutral-700);
-  --theme-light-text-tertiary: var(--color-neutral-500);
+  /* Text */
+  --theme-light-text-primary: var(--color-neutral-950);
+  --theme-light-text-secondary: var(--color-neutral-800);
+  --theme-light-text-tertiary: var(--color-neutral-700);
+  --theme-light-text-disabled: var(--color-neutral-400);
   --theme-light-text-inverse: var(--color-white);
-  --theme-light-text-brand: var(--color-primary-600);
+  --theme-light-text-brand-primary: var(--color-primary-800);
+  --theme-light-text-brand-secondary: var(--color-secondary-800);
+  --theme-light-text-error: var(--color-error-800);
+  --theme-light-text-success: var(--color-success-800);
   --theme-light-text-link: var(--color-primary-600);
   --theme-light-text-link-hover: var(--color-primary-700);
-  --theme-light-text-error: var(--color-error-700);
-  --theme-light-text-success: var(--color-success-700);
+  /* Surface */
   --theme-light-surface-0: var(--color-white);
-  --theme-light-surface-1: var(--color-neutral-50);
-  --theme-light-surface-2: var(--color-neutral-100);
-  --theme-light-surface-3: var(--color-neutral-200);
-  --theme-light-surface-4: var(--color-neutral-300);
+  --theme-light-surface-1: var(--color-neutral-100);
+  --theme-light-surface-2: var(--color-neutral-200);
+  --theme-light-surface-3: var(--color-neutral-300);
+  --theme-light-surface-brand-primary: var(--color-primary-100);
+  --theme-light-surface-brand-secondary: var(--color-secondary-100);
   --theme-light-surface-inverse: var(--color-neutral-900);
   --theme-light-surface-inverse-elevated: var(--color-neutral-800);
-  --theme-light-surface-error: var(--color-error-50);
-  --theme-light-surface-success: var(--color-success-50);
-  --theme-light-surface-backdrop: rgba(0, 0, 0, 0.8);
-  --theme-light-border-default: var(--color-neutral-200);
-  --theme-light-border-muted: var(--color-neutral-100);
-  --theme-light-border-strong: var(--color-neutral-300);
+  --theme-light-surface-error: var(--color-error-100);
+  --theme-light-surface-success: var(--color-success-100);
+  --theme-light-surface-backdrop: rgba(0, 0, 0, 0.5);
+  /* Borders */
+  --theme-light-border-default: var(--color-neutral-400);
+  --theme-light-border-muted: var(--color-neutral-200);
+  --theme-light-border-strong: var(--color-neutral-500);
   --theme-light-border-focus: var(--color-primary-500);
   --theme-light-border-error: var(--color-error-500);
   --theme-light-border-success: var(--color-success-500);
-  --theme-light-border-disabled: var(--color-neutral-300);
+  --theme-light-border-disabled: var(--color-neutral-200);
+  /* Interactive */
   --theme-light-interactive-primary: var(--color-primary-600);
   --theme-light-interactive-secondary: var(--color-secondary-600);
   --theme-light-interactive-destructive: var(--color-error-600);
-  --theme-light-status-error: var(--color-error-700);
-  --theme-light-status-success: var(--color-success-700);
+  /* Focus Ring */
   --theme-light-focus-ring-color: var(--color-primary-500);
   --theme-light-focus-ring-color-error: var(--color-error-500);
   --theme-light-focus-ring-color-success: var(--color-success-500);
 
+  /* Scrollbar */
+  --theme-light-scrollbar-thumb: var(--color-neutral-400);
+  --theme-light-scrollbar-track: var(--color-neutral-200);
+  --theme-light-scrollbar-thumb-hover: var(--color-neutral-300);
+
   /* ===== DARK THEME VALUES ===== */
   --theme-dark-text-primary: var(--color-neutral-50);
   --theme-dark-text-secondary: var(--color-neutral-200);
-  --theme-dark-text-tertiary: var(--color-neutral-400);
-  --theme-dark-text-inverse: var(--color-neutral-900);
-  --theme-dark-text-brand: var(--color-primary-400);
+  --theme-dark-text-tertiary: var(--color-neutral-300);
+  --theme-dark-text-inverse: var(--color-neutral-950);
+  --theme-dark-text-disabled: var(--color-neutral-600);
+  --theme-dark-text-brand-primary: var(--color-primary-100);
+  --theme-dark-text-brand-secondary: var(--color-secondary-100);
   --theme-dark-text-link: var(--color-primary-400);
   --theme-dark-text-link-hover: var(--color-primary-300);
-  --theme-dark-text-error: var(--color-error-400);
-  --theme-dark-text-success: var(--color-success-400);
+  --theme-dark-text-error: var(--color-error-100);
+  --theme-dark-text-success: var(--color-success-100);
+  /* Surface */
   --theme-dark-surface-0: var(--color-neutral-950);
   --theme-dark-surface-1: var(--color-neutral-900);
   --theme-dark-surface-2: var(--color-neutral-800);
   --theme-dark-surface-3: var(--color-neutral-700);
-  --theme-dark-surface-4: var(--color-neutral-600);
+  --theme-dark-surface-brand-primary: var(--color-primary-900);
+  --theme-dark-surface-brand-secondary: var(--color-secondary-900);
   --theme-dark-surface-inverse: var(--color-neutral-50);
   --theme-dark-surface-inverse-elevated: var(--color-neutral-100);
-  --theme-dark-surface-error: var(--color-error-950);
-  --theme-dark-surface-success: var(--color-success-950);
+  --theme-dark-surface-error: var(--color-error-900);
+  --theme-dark-surface-success: var(--color-success-900);
   --theme-dark-surface-backdrop: rgba(0, 0, 0, 0.8);
+  /* Borders */
   --theme-dark-border-default: var(--color-neutral-700);
   --theme-dark-border-muted: var(--color-neutral-800);
   --theme-dark-border-strong: var(--color-neutral-600);
@@ -86,14 +104,19 @@ Theme Architecture:
   --theme-dark-border-error: var(--color-error-400);
   --theme-dark-border-success: var(--color-success-400);
   --theme-dark-border-disabled: var(--color-neutral-600);
+  /* Interactive */
   --theme-dark-interactive-primary: var(--color-primary-400);
   --theme-dark-interactive-secondary: var(--color-secondary-400);
   --theme-dark-interactive-destructive: var(--color-error-400);
-  --theme-dark-status-error: var(--color-error-400);
-  --theme-dark-status-success: var(--color-success-400);
+  /* Focus Ring */
   --theme-dark-focus-ring-color: var(--color-primary-400);
   --theme-dark-focus-ring-color-error: var(--color-error-400);
   --theme-dark-focus-ring-color-success: var(--color-success-400);
+
+  /* Scrollbar */
+  --theme-dark-scrollbar-thumb: var(--color-neutral-600);
+  --theme-dark-scrollbar-track: var(--color-neutral-800);
+  --theme-dark-scrollbar-thumb-hover: var(--color-neutral-500);
 
   /*
   ================================================================================
@@ -108,19 +131,20 @@ Theme Architecture:
   --text-primary: var(--theme-light-text-primary);
   --text-secondary: var(--theme-light-text-secondary);
   --text-tertiary: var(--theme-light-text-tertiary);
+  --text-disabled: var(--theme-light-text-disabled);
   --text-inverse: var(--theme-light-text-inverse);
-  --text-brand: var(--theme-light-text-brand);
+  --text-brand-primary: var(--theme-light-text-brand-primary);
+  --text-brand-secondary: var(--theme-light-text-brand-secondary);
   --text-link: var(--theme-light-text-link);
   --text-link-hover: var(--theme-light-text-link-hover);
   --text-error: var(--theme-light-text-error);
   --text-success: var(--theme-light-text-success);
 
-  /* ===== SURFACE SCALE (0-4) ===== */
+  /* ===== SURFACE SCALE (0-3) ===== */
   --surface-0: var(--theme-light-surface-0);
   --surface-1: var(--theme-light-surface-1);
   --surface-2: var(--theme-light-surface-2);
   --surface-3: var(--theme-light-surface-3);
-  --surface-4: var(--theme-light-surface-4);
 
   /* ===== SEMANTIC SURFACE ALIASES ===== */
   --surface-page: var(--surface-0);
@@ -128,13 +152,14 @@ Theme Architecture:
   --surface-section: var(--surface-1);
   --surface-section-elevated: var(--surface-2);
   --surface-section-emphasis: var(--surface-3);
-  --surface-section-strong: var(--surface-4);
   --surface-card: var(--surface-2);
   --surface-raised: var(--surface-2);
   --surface-floating: var(--surface-1);
   --surface-overlay: var(--surface-0);
   --surface-inverse: var(--theme-light-surface-inverse);
   --surface-inverse-elevated: var(--theme-light-surface-inverse-elevated);
+  --surface-brand-primary: var(--theme-light-surface-brand-primary);
+  --surface-brand-secondary: var(--theme-light-surface-brand-secondary);
   --surface-error: var(--theme-light-surface-error);
   --surface-success: var(--theme-light-surface-success);
   --surface-backdrop: var(--theme-light-surface-backdrop);
@@ -153,14 +178,14 @@ Theme Architecture:
   --interactive-secondary: var(--theme-light-interactive-secondary);
   --interactive-destructive: var(--theme-light-interactive-destructive);
 
-  /* ===== STATUS ===== */
-  --status-error: var(--theme-light-status-error);
-  --status-success: var(--theme-light-status-success);
-
   /* ===== FOCUS SYSTEM ===== */
   --focus-ring-color: var(--theme-light-focus-ring-color);
   --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
   --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
+  /* ===== SCROLLBAR ===== */
+  --scrollbar-thumb: var(--theme-light-scrollbar-thumb);
+  --scrollbar-track: var(--theme-light-scrollbar-track);
+  --scrollbar-thumb-hover: var(--theme-light-scrollbar-thumb-hover);
 }
 
 /*
@@ -177,7 +202,9 @@ DARK MODE THEME ACTIVATION
     --text-secondary: var(--theme-dark-text-secondary);
     --text-tertiary: var(--theme-dark-text-tertiary);
     --text-inverse: var(--theme-dark-text-inverse);
-    --text-brand: var(--theme-dark-text-brand);
+    --text-disabled: var(--theme-dark-text-disabled);
+    --text-brand-primary: var(--theme-dark-text-brand-primary);
+    --text-brand-secondary: var(--theme-dark-text-brand-secondary);
     --text-link: var(--theme-dark-text-link);
     --text-link-hover: var(--theme-dark-text-link-hover);
     --text-error: var(--theme-dark-text-error);
@@ -186,9 +213,10 @@ DARK MODE THEME ACTIVATION
     --surface-1: var(--theme-dark-surface-1);
     --surface-2: var(--theme-dark-surface-2);
     --surface-3: var(--theme-dark-surface-3);
-    --surface-4: var(--theme-dark-surface-4);
     --surface-inverse: var(--theme-dark-surface-inverse);
     --surface-inverse-elevated: var(--theme-dark-surface-inverse-elevated);
+    --surface-brand-primary: var(--theme-dark-surface-brand-primary);
+    --surface-brand-secondary: var(--theme-dark-surface-brand-secondary);
     --surface-error: var(--theme-dark-surface-error);
     --surface-success: var(--theme-dark-surface-success);
     --surface-backdrop: var(--theme-dark-surface-backdrop);
@@ -202,11 +230,14 @@ DARK MODE THEME ACTIVATION
     --interactive-primary: var(--theme-dark-interactive-primary);
     --interactive-secondary: var(--theme-dark-interactive-secondary);
     --interactive-destructive: var(--theme-dark-interactive-destructive);
-    --status-error: var(--theme-dark-status-error);
-    --status-success: var(--theme-dark-status-success);
     --focus-ring-color: var(--theme-dark-focus-ring-color);
     --focus-ring-color-error: var(--theme-dark-focus-ring-color-error);
     --focus-ring-color-success: var(--theme-dark-focus-ring-color-success);
+
+    /* Scrollbar */
+    --scrollbar-thumb: var(--theme-dark-scrollbar-thumb);
+    --scrollbar-track: var(--theme-dark-scrollbar-track);
+    --scrollbar-thumb-hover: var(--theme-dark-scrollbar-thumb-hover);
   }
 }
 
@@ -216,7 +247,9 @@ DARK MODE THEME ACTIVATION
   --text-secondary: var(--theme-dark-text-secondary);
   --text-tertiary: var(--theme-dark-text-tertiary);
   --text-inverse: var(--theme-dark-text-inverse);
-  --text-brand: var(--theme-dark-text-brand);
+  --text-disabled: var(--theme-dark-text-disabled);
+  --text-brand-primary: var(--theme-dark-text-brand-primary);
+  --text-brand-secondary: var(--theme-dark-text-brand-secondary);
   --text-link: var(--theme-dark-text-link);
   --text-link-hover: var(--theme-dark-text-link-hover);
   --text-error: var(--theme-dark-text-error);
@@ -225,9 +258,10 @@ DARK MODE THEME ACTIVATION
   --surface-1: var(--theme-dark-surface-1);
   --surface-2: var(--theme-dark-surface-2);
   --surface-3: var(--theme-dark-surface-3);
-  --surface-4: var(--theme-dark-surface-4);
   --surface-inverse: var(--theme-dark-surface-inverse);
   --surface-inverse-elevated: var(--theme-dark-surface-inverse-elevated);
+  --surface-brand-primary: var(--theme-dark-surface-brand-primary);
+  --surface-brand-secondary: var(--theme-dark-surface-brand-secondary);
   --surface-error: var(--theme-dark-surface-error);
   --surface-success: var(--theme-dark-surface-success);
   --surface-backdrop: var(--theme-dark-surface-backdrop);
@@ -241,11 +275,14 @@ DARK MODE THEME ACTIVATION
   --interactive-primary: var(--theme-dark-interactive-primary);
   --interactive-secondary: var(--theme-dark-interactive-secondary);
   --interactive-destructive: var(--theme-dark-interactive-destructive);
-  --status-error: var(--theme-dark-status-error);
-  --status-success: var(--theme-dark-status-success);
   --focus-ring-color: var(--theme-dark-focus-ring-color);
   --focus-ring-color-error: var(--theme-dark-focus-ring-color-error);
   --focus-ring-color-success: var(--theme-dark-focus-ring-color-success);
+
+  /* Scrollbar */
+  --scrollbar-thumb: var(--theme-dark-scrollbar-thumb);
+  --scrollbar-track: var(--theme-dark-scrollbar-track);
+  --scrollbar-thumb-hover: var(--theme-dark-scrollbar-thumb-hover);
 }
 
 /* User-controlled override for light theme (resets to default) */
@@ -253,8 +290,10 @@ DARK MODE THEME ACTIVATION
   --text-primary: var(--theme-light-text-primary);
   --text-secondary: var(--theme-light-text-secondary);
   --text-tertiary: var(--theme-light-text-tertiary);
+  --text-disabled: var(--theme-light-text-disabled);
   --text-inverse: var(--theme-light-text-inverse);
-  --text-brand: var(--theme-light-text-brand);
+  --text-brand-primary: var(--theme-light-text-brand-primary);
+  --text-brand-secondary: var(--theme-light-text-brand-secondary);
   --text-link: var(--theme-light-text-link);
   --text-link-hover: var(--theme-light-text-link-hover);
   --text-error: var(--theme-light-text-error);
@@ -263,9 +302,10 @@ DARK MODE THEME ACTIVATION
   --surface-1: var(--theme-light-surface-1);
   --surface-2: var(--theme-light-surface-2);
   --surface-3: var(--theme-light-surface-3);
-  --surface-4: var(--theme-light-surface-4);
   --surface-inverse: var(--theme-light-surface-inverse);
   --surface-inverse-elevated: var(--theme-light-surface-inverse-elevated);
+  --surface-brand-primary: var(--theme-light-surface-brand-primary);
+  --surface-brand-secondary: var(--theme-light-surface-brand-secondary);
   --surface-error: var(--theme-light-surface-error);
   --surface-success: var(--theme-light-surface-success);
   --surface-backdrop: var(--theme-light-surface-backdrop);
@@ -279,11 +319,14 @@ DARK MODE THEME ACTIVATION
   --interactive-primary: var(--theme-light-interactive-primary);
   --interactive-secondary: var(--theme-light-interactive-secondary);
   --interactive-destructive: var(--theme-light-interactive-destructive);
-  --status-error: var(--theme-light-status-error);
-  --status-success: var(--theme-light-status-success);
   --focus-ring-color: var(--theme-light-focus-ring-color);
   --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
   --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
+
+  /* Scrollbar */
+  --scrollbar-thumb: var(--theme-light-scrollbar-thumb);
+  --scrollbar-track: var(--theme-light-scrollbar-track);
+  --scrollbar-thumb-hover: var(--theme-light-scrollbar-thumb-hover);
 }
 
 /*
@@ -341,7 +384,6 @@ BROWSER COMPATIBILITY FALLBACKS
     --surface-1: #f8fafc;
     --surface-2: #f1f5f9;
     --surface-3: #e2e8f0;
-    --surface-4: #cbd5e1;
   }
 
   /* Dark theme fallback (system preference) */
@@ -351,7 +393,6 @@ BROWSER COMPATIBILITY FALLBACKS
       --surface-1: #1e293b;
       --surface-2: #334155;
       --surface-3: #475569;
-      --surface-4: #64748b;
     }
   }
 
@@ -361,6 +402,5 @@ BROWSER COMPATIBILITY FALLBACKS
     --surface-1: #1e293b;
     --surface-2: #334155;
     --surface-3: #475569;
-    --surface-4: #64748b;
   }
 }

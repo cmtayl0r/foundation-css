@@ -435,9 +435,9 @@ role="region" and aria-label requirements
 
 /*
 root: {
---scrollbar-thumb: var(--color-neutral-500);
---scrollbar-track: var(--color-neutral-200);
---scrollbar-thumb-hover: var(--color-neutral-400);
+--scrollbar-thumb: var(--scrollbar-thumb);
+--scrollbar-track: var(--scrollbar-track);
+--scrollbar-thumb-hover: var(--scrollbar-thumb-hover);
 --reel-gap: var(--space-md, 1rem);
 --reel-padding: var(--space-md, 1rem);
 }
