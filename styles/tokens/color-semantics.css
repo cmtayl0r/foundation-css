@@ -6,289 +6,290 @@ Accessibility-first semantic color system.
 Maximum contrast ratios for WCAG AAA compliance.
 
 Theme Architecture:
-1. LIGHT MODE is the default theme.
-2. DARK MODE is applied based on system preference (`prefers-color-scheme: dark`).
-3. USER OVERRIDES (`[data-theme]`) can force a specific theme,
-   taking precedence over system settings.
-4. HIGH CONTRAST mode layers on top of the active theme.
-================================================================================
-*/
-
-/*
-================================================================================
-LIGHT MODE (DEFAULT)
-- Base theme applied unless overridden by dark mode preference or data-theme.
+1. Core semantic tokens are defined in `:root`.
+2. Theme-specific variables (`--theme-light-*`, `--theme-dark-*`) store raw values.
+3. Light mode is the default.
+4. Dark mode is applied via `prefers-color-scheme` or `[data-theme='dark']`.
+5. High contrast mode layers on top, overriding only necessary variables.
 ================================================================================
 */
 
 :root {
-  /* ===== TEXT/CONTENT ===== */
-  --text-primary: var(--color-neutral-900);
-  --text-secondary: var(--color-neutral-700);
-  --text-tertiary: var(--color-neutral-500);
-  --text-inverse: var(--color-white);
-  --text-brand: var(--color-primary-600);
-  --text-link: var(--color-primary-600);
-  --text-link-hover: var(--color-primary-700);
-  --text-error: var(--color-error-700);
-  --text-success: var(--color-success-700);
+  /*
+  ================================================================================
+  THEME-SPECIFIC VARIABLE DEFINITIONS
+  - Define the raw color values for both light and dark themes here.
+  - This centralizes theme management, making it easy to see differences.
+  ================================================================================
+  */
 
-  /* ===== SURFACE SCALE (0-5) ===== */
-  --surface-0: var(--color-white);
-  /* Pure base - page background */
-  --surface-1: var(--color-neutral-50);
-  /* Barely there - cards */
-  --surface-2: var(--color-neutral-100);
-  /* Subtle - sections */
-  --surface-3: var(--color-neutral-200);
-  /* Light - wells, inputs */
-  --surface-4: var(--color-neutral-300);
-  /* Strong - emphasis */
+  /* ===== LIGHT THEME VALUES ===== */
+  --theme-light-text-primary: var(--color-neutral-900);
+  --theme-light-text-secondary: var(--color-neutral-700);
+  --theme-light-text-tertiary: var(--color-neutral-500);
+  --theme-light-text-inverse: var(--color-white);
+  --theme-light-text-brand: var(--color-primary-600);
+  --theme-light-text-link: var(--color-primary-600);
+  --theme-light-text-link-hover: var(--color-primary-700);
+  --theme-light-text-error: var(--color-error-700);
+  --theme-light-text-success: var(--color-success-700);
+  --theme-light-surface-0: var(--color-white);
+  --theme-light-surface-1: var(--color-neutral-50);
+  --theme-light-surface-2: var(--color-neutral-100);
+  --theme-light-surface-3: var(--color-neutral-200);
+  --theme-light-surface-4: var(--color-neutral-300);
+  --theme-light-surface-inverse: var(--color-neutral-900);
+  --theme-light-surface-inverse-elevated: var(--color-neutral-800);
+  --theme-light-surface-error: var(--color-error-50);
+  --theme-light-surface-success: var(--color-success-50);
+  --theme-light-surface-backdrop: rgba(0, 0, 0, 0.8);
+  --theme-light-border-default: var(--color-neutral-200);
+  --theme-light-border-muted: var(--color-neutral-100);
+  --theme-light-border-strong: var(--color-neutral-300);
+  --theme-light-border-focus: var(--color-primary-500);
+  --theme-light-border-error: var(--color-error-500);
+  --theme-light-border-success: var(--color-success-500);
+  --theme-light-border-disabled: var(--color-neutral-300);
+  --theme-light-interactive-primary: var(--color-primary-600);
+  --theme-light-interactive-secondary: var(--color-secondary-600);
+  --theme-light-interactive-destructive: var(--color-error-600);
+  --theme-light-status-error: var(--color-error-700);
+  --theme-light-status-success: var(--color-success-700);
+  --theme-light-focus-ring-color: var(--color-primary-500);
+  --theme-light-focus-ring-color-error: var(--color-error-500);
+  --theme-light-focus-ring-color-success: var(--color-success-500);
+
+  /* ===== DARK THEME VALUES ===== */
+  --theme-dark-text-primary: var(--color-neutral-50);
+  --theme-dark-text-secondary: var(--color-neutral-200);
+  --theme-dark-text-tertiary: var(--color-neutral-400);
+  --theme-dark-text-inverse: var(--color-neutral-900);
+  --theme-dark-text-brand: var(--color-primary-400);
+  --theme-dark-text-link: var(--color-primary-400);
+  --theme-dark-text-link-hover: var(--color-primary-300);
+  --theme-dark-text-error: var(--color-error-400);
+  --theme-dark-text-success: var(--color-success-400);
+  --theme-dark-surface-0: var(--color-neutral-950);
+  --theme-dark-surface-1: var(--color-neutral-900);
+  --theme-dark-surface-2: var(--color-neutral-800);
+  --theme-dark-surface-3: var(--color-neutral-700);
+  --theme-dark-surface-4: var(--color-neutral-600);
+  --theme-dark-surface-inverse: var(--color-neutral-50);
+  --theme-dark-surface-inverse-elevated: var(--color-neutral-100);
+  --theme-dark-surface-error: var(--color-error-950);
+  --theme-dark-surface-success: var(--color-success-950);
+  --theme-dark-surface-backdrop: rgba(0, 0, 0, 0.8);
+  --theme-dark-border-default: var(--color-neutral-700);
+  --theme-dark-border-muted: var(--color-neutral-800);
+  --theme-dark-border-strong: var(--color-neutral-600);
+  --theme-dark-border-focus: var(--color-primary-400);
+  --theme-dark-border-error: var(--color-error-400);
+  --theme-dark-border-success: var(--color-success-400);
+  --theme-dark-border-disabled: var(--color-neutral-600);
+  --theme-dark-interactive-primary: var(--color-primary-400);
+  --theme-dark-interactive-secondary: var(--color-secondary-400);
+  --theme-dark-interactive-destructive: var(--color-error-400);
+  --theme-dark-status-error: var(--color-error-400);
+  --theme-dark-status-success: var(--color-success-400);
+  --theme-dark-focus-ring-color: var(--color-primary-400);
+  --theme-dark-focus-ring-color-error: var(--color-error-400);
+  --theme-dark-focus-ring-color-success: var(--color-success-400);
+
+  /*
+  ================================================================================
+  CORE SEMANTIC TOKENS
+  - These tokens abstract the theme-specific values.
+  - They default to LIGHT mode values.
+  - Dark mode overrides the `--active-theme` variables to switch the values.
+  ================================================================================
+  */
+
+  /* ===== TEXT/CONTENT ===== */
+  --text-primary: var(--theme-light-text-primary);
+  --text-secondary: var(--theme-light-text-secondary);
+  --text-tertiary: var(--theme-light-text-tertiary);
+  --text-inverse: var(--theme-light-text-inverse);
+  --text-brand: var(--theme-light-text-brand);
+  --text-link: var(--theme-light-text-link);
+  --text-link-hover: var(--theme-light-text-link-hover);
+  --text-error: var(--theme-light-text-error);
+  --text-success: var(--theme-light-text-success);
+
+  /* ===== SURFACE SCALE (0-4) ===== */
+  --surface-0: var(--theme-light-surface-0);
+  --surface-1: var(--theme-light-surface-1);
+  --surface-2: var(--theme-light-surface-2);
+  --surface-3: var(--theme-light-surface-3);
+  --surface-4: var(--theme-light-surface-4);
 
   /* ===== SEMANTIC SURFACE ALIASES ===== */
-  /* FOUNDATION */
   --surface-page: var(--surface-0);
-  /* Page background */
-  /* CONTENT */
   --surface-well: var(--surface-1);
-  /* Input areas */
   --surface-section: var(--surface-1);
-  /* Basic page sections */
   --surface-section-elevated: var(--surface-2);
-  /* Important sections */
   --surface-section-emphasis: var(--surface-3);
-  /* Highlighted sections */
   --surface-section-strong: var(--surface-4);
-  /* ELEVATED */
   --surface-card: var(--surface-2);
-  /* Cards */
   --surface-raised: var(--surface-2);
-  /* Panels, Sidebars */
   --surface-floating: var(--surface-1);
-  /* Navigation */
-  /* OVERLAY */
   --surface-overlay: var(--surface-0);
-  /* Modals, dropdowns, tooltips */
-
-  /* ===== INVERSE ===== */
-  --surface-inverse: var(--color-neutral-900);
-  --surface-inverse-elevated: var(--color-neutral-800);
+  --surface-inverse: var(--theme-light-surface-inverse);
+  --surface-inverse-elevated: var(--theme-light-surface-inverse-elevated);
+  --surface-error: var(--theme-light-surface-error);
+  --surface-success: var(--theme-light-surface-success);
+  --surface-backdrop: var(--theme-light-surface-backdrop);
 
   /* ===== BORDERS ===== */
-  --border-default: var(--color-neutral-200);
-  --border-muted: var(--color-neutral-100);
-  --border-strong: var(--color-neutral-300);
-  --border-focus: var(--color-primary-500);
-  --border-error: var(--color-error-500);
-  --border-success: var(--color-success-500);
-  --border-disabled: var(--color-neutral-300);
+  --border-default: var(--theme-light-border-default);
+  --border-muted: var(--theme-light-border-muted);
+  --border-strong: var(--theme-light-border-strong);
+  --border-focus: var(--theme-light-border-focus);
+  --border-error: var(--theme-light-border-error);
+  --border-success: var(--theme-light-border-success);
+  --border-disabled: var(--theme-light-border-disabled);
 
   /* ===== INTERACTIVE STATES ===== */
-  /* 🎯 Base colors for interactive elements - states calculated in utilities */
-  --interactive-primary: var(--color-primary-600);
-  --interactive-secondary: var(--color-secondary-600);
-  --interactive-destructive: var(--color-error-600);
+  --interactive-primary: var(--theme-light-interactive-primary);
+  --interactive-secondary: var(--theme-light-interactive-secondary);
+  --interactive-destructive: var(--theme-light-interactive-destructive);
 
   /* ===== STATUS ===== */
-  --status-error: var(--color-error-700);
-  --surface-error: var(--color-error-50);
-  --status-success: var(--color-success-700);
-  --surface-success: var(--color-success-50);
-
-  /* ===== BACKDROP ===== */
-  --surface-backdrop: rgba(0, 0, 0, 0.8);
-  /* Strong backdrop */
+  --status-error: var(--theme-light-status-error);
+  --status-success: var(--theme-light-status-success);
 
   /* ===== FOCUS SYSTEM ===== */
-  /* Explicit focus color - no circular dependencies */
-  --focus-ring-color: var(--color-primary-500);
-  --focus-ring-color-error: var(--color-error-500);
-  --focus-ring-color-success: var(--color-success-500);
+  --focus-ring-color: var(--theme-light-focus-ring-color);
+  --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
+  --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
 }
 
 /*
 ================================================================================
-DARK MODE (SYSTEM PREFERENCE)
-- Automatically applies if OS is in dark mode.
-- Overridden by an explicit [data-theme] attribute.
+DARK MODE THEME ACTIVATION
+- Overrides core semantic tokens with dark theme values.
 ================================================================================
 */
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* ===== TEXT/CONTENT ===== */
-    --text-primary: var(--color-neutral-50);
-    --text-secondary: var(--color-neutral-200);
-    --text-tertiary: var(--color-neutral-400);
-    --text-inverse: var(--color-neutral-900);
-    --text-brand: var(--color-primary-400);
-    --text-link: var(--color-primary-400);
-    --text-link-hover: var(--color-primary-300);
-    --text-error: var(--color-error-400);
-    --text-success: var(--color-success-400);
-
-    /* ===== SURFACE SCALE ===== */
-    --surface-0: var(--color-neutral-950);
-    /* Dark base */
-    --surface-1: var(--color-neutral-900);
-    /* Slightly lighter */
-    --surface-2: var(--color-neutral-800);
-    /* Medium dark */
-    --surface-3: var(--color-neutral-700);
-    /* Medium */
-    --surface-4: var(--color-neutral-600);
-    /* Strong - emphasis */
-
-
-    /* ===== INVERSE ===== */
-    --surface-inverse: var(--color-neutral-50);
-    --surface-inverse-elevated: var(--color-neutral-100);
-
-    /* ===== STATUS ===== */
-    --status-error: var(--color-error-400);
-    --surface-error: var(--color-error-950);
-    --status-success: var(--color-success-400);
-    --surface-success: var(--color-success-950);
-
-    /* ===== BORDERS ===== */
-    --border-default: var(--color-neutral-700);
-    --border-muted: var(--color-neutral-800);
-    --border-strong: var(--color-neutral-600);
-    --border-focus: var(--color-primary-400);
-    --border-error: var(--color-error-400);
-    --border-success: var(--color-success-400);
-    --border-disabled: var(--color-neutral-600);
-
-    /* ===== BASE INTERACTIVE COLORS ===== */
-    --interactive-primary: var(--color-primary-400);
-    --interactive-secondary: var(--color-secondary-400);
-    --interactive-destructive: var(--color-error-400);
+    /* Switch to dark theme values */
+    --text-primary: var(--theme-dark-text-primary);
+    --text-secondary: var(--theme-dark-text-secondary);
+    --text-tertiary: var(--theme-dark-text-tertiary);
+    --text-inverse: var(--theme-dark-text-inverse);
+    --text-brand: var(--theme-dark-text-brand);
+    --text-link: var(--theme-dark-text-link);
+    --text-link-hover: var(--theme-dark-text-link-hover);
+    --text-error: var(--theme-dark-text-error);
+    --text-success: var(--theme-dark-text-success);
+    --surface-0: var(--theme-dark-surface-0);
+    --surface-1: var(--theme-dark-surface-1);
+    --surface-2: var(--theme-dark-surface-2);
+    --surface-3: var(--theme-dark-surface-3);
+    --surface-4: var(--theme-dark-surface-4);
+    --surface-inverse: var(--theme-dark-surface-inverse);
+    --surface-inverse-elevated: var(--theme-dark-surface-inverse-elevated);
+    --surface-error: var(--theme-dark-surface-error);
+    --surface-success: var(--theme-dark-surface-success);
+    --surface-backdrop: var(--theme-dark-surface-backdrop);
+    --border-default: var(--theme-dark-border-default);
+    --border-muted: var(--theme-dark-border-muted);
+    --border-strong: var(--theme-dark-border-strong);
+    --border-focus: var(--theme-dark-border-focus);
+    --border-error: var(--theme-dark-border-error);
+    --border-success: var(--theme-dark-border-success);
+    --border-disabled: var(--theme-dark-border-disabled);
+    --interactive-primary: var(--theme-dark-interactive-primary);
+    --interactive-secondary: var(--theme-dark-interactive-secondary);
+    --interactive-destructive: var(--theme-dark-interactive-destructive);
+    --status-error: var(--theme-dark-status-error);
+    --status-success: var(--theme-dark-status-success);
+    --focus-ring-color: var(--theme-dark-focus-ring-color);
+    --focus-ring-color-error: var(--theme-dark-focus-ring-color-error);
+    --focus-ring-color-success: var(--theme-dark-focus-ring-color-success);
   }
 }
 
-/*
-================================================================================
-USER-CONTROLLED THEMES
-- Force a theme by setting `data-theme` on the `<html>` or `<body>` element.
-- This will override any system-level `prefers-color-scheme` setting.
-================================================================================
-*/
-
-/* ===== LIGHT THEME (USER OVERRIDE) ===== */
-[data-theme='light'] {
-  /* ===== TEXT/CONTENT ===== */
-  --text-primary: var(--color-neutral-900);
-  --text-secondary: var(--color-neutral-700);
-  --text-tertiary: var(--color-neutral-500);
-  --text-inverse: var(--color-white);
-  --text-brand: var(--color-primary-600);
-  --text-link: var(--color-primary-600);
-  --text-link-hover: var(--color-primary-700);
-  --text-error: var(--color-error-700);
-  --text-success: var(--color-success-700);
-
-  /* ===== SURFACE SCALE (0-5) ===== */
-  --surface-0: var(--color-white);
-  --surface-1: var(--color-neutral-50);
-  --surface-2: var(--color-neutral-100);
-  --surface-3: var(--color-neutral-200);
-  --surface-4: var(--color-neutral-300);
-
-  /* ===== SEMANTIC SURFACE ALIASES ===== */
-  --surface-page: var(--surface-0);
-  --surface-well: var(--surface-1);
-  --surface-section: var(--surface-1);
-  --surface-section-elevated: var(--surface-2);
-  --surface-section-emphasis: var(--surface-3);
-  --surface-section-strong: var(--surface-4);
-  --surface-card: var(--surface-2);
-  --surface-raised: var(--surface-2);
-  --surface-floating: var(--surface-1);
-  --surface-overlay: var(--surface-0);
-
-  /* ===== INVERSE ===== */
-  --surface-inverse: var(--color-neutral-900);
-  --surface-inverse-elevated: var(--color-neutral-800);
-
-  /* ===== BORDERS ===== */
-  --border-default: var(--color-neutral-200);
-  --border-muted: var(--color-neutral-100);
-  --border-strong: var(--color-neutral-300);
-  --border-focus: var(--color-primary-500);
-  --border-error: var(--color-error-500);
-  --border-success: var(--color-success-500);
-  --border-disabled: var(--color-neutral-300);
-
-  /* ===== INTERACTIVE STATES ===== */
-  --interactive-primary: var(--color-primary-600);
-  --interactive-secondary: var(--color-secondary-600);
-  --interactive-destructive: var(--color-error-600);
-
-  /* ===== STATUS ===== */
-  --status-error: var(--color-error-700);
-  --surface-error: var(--color-error-50);
-  --status-success: var(--color-success-700);
-  --surface-success: var(--color-success-50);
-
-  /* ===== BACKDROP ===== */
-  --surface-backdrop: rgba(0, 0, 0, 0.8);
-
-  /* ===== FOCUS SYSTEM ===== */
-  --focus-ring-color: var(--color-primary-500);
-  --focus-ring-color-error: var(--color-error-500);
-  --focus-ring-color-success: var(--color-success-500);
-}
-
-/* ===== DARK THEME (USER OVERRIDE) ===== */
+/* User-controlled override for dark theme */
 [data-theme='dark'] {
-  /* ===== TEXT/CONTENT ===== */
-  --text-primary: var(--color-neutral-50);
-  --text-secondary: var(--color-neutral-200);
-  --text-tertiary: var(--color-neutral-400);
-  --text-inverse: var(--color-neutral-900);
-  --text-brand: var(--color-primary-400);
-  --text-link: var(--color-primary-400);
-  --text-link-hover: var(--color-primary-300);
-  --text-error: var(--color-error-400);
-  --text-success: var(--color-success-400);
-
-  /* ===== SURFACE SCALE ===== */
-  --surface-0: var(--color-neutral-950);
-  --surface-1: var(--color-neutral-900);
-  --surface-2: var(--color-neutral-800);
-  --surface-3: var(--color-neutral-700);
-  --surface-4: var(--color-neutral-600);
-
-  /* ===== INVERSE ===== */
-  --surface-inverse: var(--color-neutral-50);
-  --surface-inverse-elevated: var(--color-neutral-100);
-
-  /* ===== STATUS ===== */
-  --status-error: var(--color-error-400);
-  --surface-error: var(--color-error-950);
-  --status-success: var(--color-success-400);
-  --surface-success: var(--color-success-950);
-
-  /* ===== BORDERS ===== */
-  --border-default: var(--color-neutral-700);
-  --border-muted: var(--color-neutral-800);
-  --border-strong: var(--color-neutral-600);
-  --border-focus: var(--color-primary-400);
-  --border-error: var(--color-error-400);
-  --border-success: var(--color-success-400);
-  --border-disabled: var(--color-neutral-600);
-
-  /* ===== BASE INTERACTIVE COLORS ===== */
-  --interactive-primary: var(--color-primary-400);
-  --interactive-secondary: var(--color-secondary-400);
-  --interactive-destructive: var(--color-error-400);
+  --text-primary: var(--theme-dark-text-primary);
+  --text-secondary: var(--theme-dark-text-secondary);
+  --text-tertiary: var(--theme-dark-text-tertiary);
+  --text-inverse: var(--theme-dark-text-inverse);
+  --text-brand: var(--theme-dark-text-brand);
+  --text-link: var(--theme-dark-text-link);
+  --text-link-hover: var(--theme-dark-text-link-hover);
+  --text-error: var(--theme-dark-text-error);
+  --text-success: var(--theme-dark-text-success);
+  --surface-0: var(--theme-dark-surface-0);
+  --surface-1: var(--theme-dark-surface-1);
+  --surface-2: var(--theme-dark-surface-2);
+  --surface-3: var(--theme-dark-surface-3);
+  --surface-4: var(--theme-dark-surface-4);
+  --surface-inverse: var(--theme-dark-surface-inverse);
+  --surface-inverse-elevated: var(--theme-dark-surface-inverse-elevated);
+  --surface-error: var(--theme-dark-surface-error);
+  --surface-success: var(--theme-dark-surface-success);
+  --surface-backdrop: var(--theme-dark-surface-backdrop);
+  --border-default: var(--theme-dark-border-default);
+  --border-muted: var(--theme-dark-border-muted);
+  --border-strong: var(--theme-dark-border-strong);
+  --border-focus: var(--theme-dark-border-focus);
+  --border-error: var(--theme-dark-border-error);
+  --border-success: var(--theme-dark-border-success);
+  --border-disabled: var(--theme-dark-border-disabled);
+  --interactive-primary: var(--theme-dark-interactive-primary);
+  --interactive-secondary: var(--theme-dark-interactive-secondary);
+  --interactive-destructive: var(--theme-dark-interactive-destructive);
+  --status-error: var(--theme-dark-status-error);
+  --status-success: var(--theme-dark-status-success);
+  --focus-ring-color: var(--theme-dark-focus-ring-color);
+  --focus-ring-color-error: var(--theme-dark-focus-ring-color-error);
+  --focus-ring-color-success: var(--theme-dark-focus-ring-color-success);
 }
 
+/* User-controlled override for light theme (resets to default) */
+[data-theme='light'] {
+  --text-primary: var(--theme-light-text-primary);
+  --text-secondary: var(--theme-light-text-secondary);
+  --text-tertiary: var(--theme-light-text-tertiary);
+  --text-inverse: var(--theme-light-text-inverse);
+  --text-brand: var(--theme-light-text-brand);
+  --text-link: var(--theme-light-text-link);
+  --text-link-hover: var(--theme-light-text-link-hover);
+  --text-error: var(--theme-light-text-error);
+  --text-success: var(--theme-light-text-success);
+  --surface-0: var(--theme-light-surface-0);
+  --surface-1: var(--theme-light-surface-1);
+  --surface-2: var(--theme-light-surface-2);
+  --surface-3: var(--theme-light-surface-3);
+  --surface-4: var(--theme-light-surface-4);
+  --surface-inverse: var(--theme-light-surface-inverse);
+  --surface-inverse-elevated: var(--theme-light-surface-inverse-elevated);
+  --surface-error: var(--theme-light-surface-error);
+  --surface-success: var(--theme-light-surface-success);
+  --surface-backdrop: var(--theme-light-surface-backdrop);
+  --border-default: var(--theme-light-border-default);
+  --border-muted: var(--theme-light-border-muted);
+  --border-strong: var(--theme-light-border-strong);
+  --border-focus: var(--theme-light-border-focus);
+  --border-error: var(--theme-light-border-error);
+  --border-success: var(--theme-light-border-success);
+  --border-disabled: var(--theme-light-border-disabled);
+  --interactive-primary: var(--theme-light-interactive-primary);
+  --interactive-secondary: var(--theme-light-interactive-secondary);
+  --interactive-destructive: var(--theme-light-interactive-destructive);
+  --status-error: var(--theme-light-status-error);
+  --status-success: var(--theme-light-status-success);
+  --focus-ring-color: var(--theme-light-focus-ring-color);
+  --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
+  --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
+}
 
 /*
 --------------------------------------------------------------------------------
 HIGH CONTRAST MODE
-- Layers on top of the active theme (light or dark) to enhance contrast.
+- Layers on top of the active theme to enhance contrast.
 --------------------------------------------------------------------------------
 */
 
@@ -297,19 +298,10 @@ HIGH CONTRAST MODE
   /* High Contrast Light Theme */
   :root,
   [data-theme='light'] {
-    /* Enhanced text contrast */
     --text-primary: var(--color-black);
-    /* Maximum contrast */
     --text-secondary: var(--color-neutral-800);
-    /* Strong contrast */
-
-    /* Enhanced border contrast */
     --border-default: var(--color-black);
-    /* Strong borders */
     --border-focus: var(--color-primary-600);
-    /* High contrast focus */
-
-    /* Enhanced interactive contrasts */
     --interactive-primary: var(--color-primary-700);
     --interactive-secondary: var(--color-secondary-700);
     --interactive-destructive: var(--color-error-700);
@@ -319,28 +311,19 @@ HIGH CONTRAST MODE
   @media (prefers-color-scheme: dark) {
     :root {
       --text-primary: var(--color-white);
-      /* Pure white */
       --text-secondary: var(--color-neutral-100);
-
       --border-default: var(--color-white);
-      /* Pure white borders */
       --border-focus: var(--color-primary-300);
-      /* Brightest focus */
     }
   }
 
   [data-theme='dark'] {
     --text-primary: var(--color-white);
-    /* Pure white */
     --text-secondary: var(--color-neutral-100);
-
     --border-default: var(--color-white);
-    /* Pure white borders */
     --border-focus: var(--color-primary-300);
-    /* Brightest focus */
   }
 }
-
 
 /*
 ================================================================================
@@ -354,7 +337,6 @@ BROWSER COMPATIBILITY FALLBACKS
   /* Light theme fallback */
   :root,
   [data-theme='light'] {
-    /* Surface fallbacks using hex values */
     --surface-0: #ffffff;
     --surface-1: #f8fafc;
     --surface-2: #f1f5f9;
