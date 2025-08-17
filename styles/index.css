@@ -34,7 +34,7 @@ Accessibility-first Vanilla CSS design token system.
 @import "./utilities/spacing-utilities.css";
 @import "./utilities/borders-utilities.css";
 @import "./utilities/motion-utilities.css";
-@import "./utilities/states-utilities.css";
+@import "./utilities/surface-utilities.css";
 
 /* ===== 4️⃣ COMPONENT STYLES ===== */
 /* Components that use the foundation */

@@ -1,407 +1,256 @@
 /*
 ================================================================================
-COLOR SEMANTICS
-================================================================================
-Accessibility-f    --surface-2: var(--theme-dark-surface-2);
-    --surface-3: var(--theme-dark-surface-3);
-    --surface-inverse: var(--theme-dark-surface-inverse); semantic color system.
-Maximum contrast ratios for WCAG AAA compliance.
-
-Theme Architecture:
-1. Core semantic tokens are defined in `:root`.
-2. Theme-specific variables (`--theme-light-*`, `--theme-dark-*`) store raw values.
-3. Light mode is the default.
-4. Dark mode is applied via `prefers-color-scheme` or `[data-theme='dark']`.
-5. High contrast mode layers on top, overriding only necessary variables.
+DARK THEME (DEFAULT)
 ================================================================================
 */
-
 :root {
-  /*
-  ================================================================================
-  THEME-SPECIFIC VARIABLE DEFINITIONS
-  - Define the raw color values for both light and dark themes here.
-  - This centralizes theme management, making it easy to see differences.
-  ================================================================================
-  */
+  color-scheme: dark;
 
-  /* ===== LIGHT THEME VALUES ===== */
-  /* Text */
-  --theme-light-text-primary: var(--color-neutral-950);
-  --theme-light-text-secondary: var(--color-neutral-800);
-  --theme-light-text-tertiary: var(--color-neutral-700);
-  --theme-light-text-disabled: var(--color-neutral-400);
-  --theme-light-text-inverse: var(--color-white);
-  --theme-light-text-brand-primary: var(--color-primary-800);
-  --theme-light-text-brand-secondary: var(--color-secondary-800);
-  --theme-light-text-error: var(--color-error-800);
-  --theme-light-text-success: var(--color-success-800);
-  --theme-light-text-link: var(--color-primary-600);
-  --theme-light-text-link-hover: var(--color-primary-700);
-  /* Surface */
-  --theme-light-surface-0: var(--color-white);
-  --theme-light-surface-1: var(--color-neutral-100);
-  --theme-light-surface-2: var(--color-neutral-200);
-  --theme-light-surface-3: var(--color-neutral-300);
-  --theme-light-surface-brand-primary: var(--color-primary-100);
-  --theme-light-surface-brand-secondary: var(--color-secondary-100);
-  --theme-light-surface-inverse: var(--color-neutral-900);
-  --theme-light-surface-inverse-elevated: var(--color-neutral-800);
-  --theme-light-surface-error: var(--color-error-100);
-  --theme-light-surface-success: var(--color-success-100);
-  --theme-light-surface-backdrop: rgba(0, 0, 0, 0.5);
-  /* Borders */
-  --theme-light-border-default: var(--color-neutral-400);
-  --theme-light-border-muted: var(--color-neutral-200);
-  --theme-light-border-strong: var(--color-neutral-500);
-  --theme-light-border-focus: var(--color-primary-500);
-  --theme-light-border-error: var(--color-error-500);
-  --theme-light-border-success: var(--color-success-500);
-  --theme-light-border-disabled: var(--color-neutral-200);
-  /* Interactive */
-  --theme-light-interactive-primary: var(--color-primary-600);
-  --theme-light-interactive-secondary: var(--color-secondary-600);
-  --theme-light-interactive-destructive: var(--color-error-600);
-  /* Focus Ring */
-  --theme-light-focus-ring-color: var(--color-primary-500);
-  --theme-light-focus-ring-color-error: var(--color-error-500);
-  --theme-light-focus-ring-color-success: var(--color-success-500);
+  /* ===== SURFACE FOUNDATION HIERARCHY ===== */
+  /* Simple rule: Each layer is 1 step lighter than the previous */
+  /* Page → Container → Card → Nested Card */
 
-  /* Scrollbar */
-  --theme-light-scrollbar-thumb: var(--color-neutral-400);
-  --theme-light-scrollbar-track: var(--color-neutral-200);
-  --theme-light-scrollbar-thumb-hover: var(--color-neutral-300);
+  --surface-page: var(--color-neutral-950);
+  --surface-container: var(--color-neutral-900);
+  /* Main content areas */
+  --surface-card: var(--color-neutral-800);
+  /* Cards, panels */
+  --surface-nested: var(--color-neutral-600);
+  /* Nested elements in cards */
+  --surface-overlay: var(--color-neutral-950);
+  /* Modals, dropdowns, tooltips */
+  --surface-inverse: var(--color-white);
+  /* Inverse elements */
+  --surface-scrim: rgba(0, 0, 0, 0.6);
+  /* Scrim elements */
 
-  /* ===== DARK THEME VALUES ===== */
-  --theme-dark-text-primary: var(--color-neutral-50);
-  --theme-dark-text-secondary: var(--color-neutral-200);
-  --theme-dark-text-tertiary: var(--color-neutral-300);
-  --theme-dark-text-inverse: var(--color-neutral-950);
-  --theme-dark-text-disabled: var(--color-neutral-600);
-  --theme-dark-text-brand-primary: var(--color-primary-100);
-  --theme-dark-text-brand-secondary: var(--color-secondary-100);
-  --theme-dark-text-link: var(--color-primary-400);
-  --theme-dark-text-link-hover: var(--color-primary-300);
-  --theme-dark-text-error: var(--color-error-100);
-  --theme-dark-text-success: var(--color-success-100);
-  /* Surface */
-  --theme-dark-surface-0: var(--color-neutral-950);
-  --theme-dark-surface-1: var(--color-neutral-900);
-  --theme-dark-surface-2: var(--color-neutral-800);
-  --theme-dark-surface-3: var(--color-neutral-700);
-  --theme-dark-surface-brand-primary: var(--color-primary-900);
-  --theme-dark-surface-brand-secondary: var(--color-secondary-900);
-  --theme-dark-surface-inverse: var(--color-neutral-50);
-  --theme-dark-surface-inverse-elevated: var(--color-neutral-100);
-  --theme-dark-surface-error: var(--color-error-900);
-  --theme-dark-surface-success: var(--color-success-900);
-  --theme-dark-surface-backdrop: rgba(0, 0, 0, 0.8);
-  /* Borders */
-  --theme-dark-border-default: var(--color-neutral-700);
-  --theme-dark-border-muted: var(--color-neutral-800);
-  --theme-dark-border-strong: var(--color-neutral-600);
-  --theme-dark-border-focus: var(--color-primary-400);
-  --theme-dark-border-error: var(--color-error-400);
-  --theme-dark-border-success: var(--color-success-400);
-  --theme-dark-border-disabled: var(--color-neutral-600);
-  /* Interactive */
-  --theme-dark-interactive-primary: var(--color-primary-400);
-  --theme-dark-interactive-secondary: var(--color-secondary-400);
-  --theme-dark-interactive-destructive: var(--color-error-400);
-  /* Focus Ring */
-  --theme-dark-focus-ring-color: var(--color-primary-400);
-  --theme-dark-focus-ring-color-error: var(--color-error-400);
-  --theme-dark-focus-ring-color-success: var(--color-success-400);
+  /* ===== COMPONENT SURFACE VARIANTS ===== */
 
-  /* Scrollbar */
-  --theme-dark-scrollbar-thumb: var(--color-neutral-600);
-  --theme-dark-scrollbar-track: var(--color-neutral-800);
-  --theme-dark-scrollbar-thumb-hover: var(--color-neutral-500);
+  --surface-ghost: transparent;
+  --surface-neutral: var(--surface-card);
+  --surface-primary: var(--color-primary-700);
+  --surface-primary-muted: var(--color-primary-950);
+  --surface-secondary: var(--color-secondary-700);
+  --surface-secondary-muted: var(--color-secondary-950);
 
-  /*
-  ================================================================================
-  CORE SEMANTIC TOKENS
-  - These tokens abstract the theme-specific values.
-  - They default to LIGHT mode values.
-  - Dark mode overrides the `--active-theme` variables to switch the values.
-  ================================================================================
-  */
+  /* ===== INTERACTION CONFIGURATION ===== */
+  /* Centralized control for all interactive states */
+  --interaction-mix-target: var(--color-white);
+  --interaction-hover-strength: 12%;
+  --interaction-focus-strength: 15%;
+  --interaction-active-strength: 18%;
+  --interaction-selected-strength: 15%;
+  --interaction-drag-strength: 15%;
 
-  /* ===== TEXT/CONTENT ===== */
-  --text-primary: var(--theme-light-text-primary);
-  --text-secondary: var(--theme-light-text-secondary);
-  --text-tertiary: var(--theme-light-text-tertiary);
-  --text-disabled: var(--theme-light-text-disabled);
-  --text-inverse: var(--theme-light-text-inverse);
-  --text-brand-primary: var(--theme-light-text-brand-primary);
-  --text-brand-secondary: var(--theme-light-text-brand-secondary);
-  --text-link: var(--theme-light-text-link);
-  --text-link-hover: var(--theme-light-text-link-hover);
-  --text-error: var(--theme-light-text-error);
-  --text-success: var(--theme-light-text-success);
+  /* Generic state mix definitions */
+  --state-color-hover: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-hover-strength)), var(--interaction-mix-target) var(--interaction-hover-strength));
+  --state-color-focus: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-focus-strength)), var(--interaction-mix-target) var(--interaction-focus-strength));
+  --state-color-active: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-active-strength)), var(--interaction-mix-target) var(--interaction-active-strength));
+  --state-color-selected: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-selected-strength)), var(--interaction-mix-target) var(--interaction-selected-strength));
+  --state-color-drag: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-drag-strength)), var(--interaction-mix-target) var(--interaction-drag-strength));
 
-  /* ===== SURFACE SCALE (0-3) ===== */
-  --surface-0: var(--theme-light-surface-0);
-  --surface-1: var(--theme-light-surface-1);
-  --surface-2: var(--theme-light-surface-2);
-  --surface-3: var(--theme-light-surface-3);
+  /* ===== UNIVERSAL INTERACTION STATES ===== */
+  /* Assign states to each surface variant by setting a --surface-base */
 
-  /* ===== SEMANTIC SURFACE ALIASES ===== */
-  --surface-page: var(--surface-0);
-  --surface-well: var(--surface-1);
-  --surface-section: var(--surface-1);
-  --surface-section-elevated: var(--surface-2);
-  --surface-section-emphasis: var(--surface-3);
-  --surface-card: var(--surface-2);
-  --surface-raised: var(--surface-2);
-  --surface-floating: var(--surface-1);
-  --surface-overlay: var(--surface-0);
-  --surface-inverse: var(--theme-light-surface-inverse);
-  --surface-inverse-elevated: var(--theme-light-surface-inverse-elevated);
-  --surface-brand-primary: var(--theme-light-surface-brand-primary);
-  --surface-brand-secondary: var(--theme-light-surface-brand-secondary);
-  --surface-error: var(--theme-light-surface-error);
-  --surface-success: var(--theme-light-surface-success);
-  --surface-backdrop: var(--theme-light-surface-backdrop);
+  /* Ghost states use surface-card as base for visibility */
+  --surface-ghost-hover: var(--state-color-hover, transparent);
+  --surface-ghost-focus: var(--state-color-focus, transparent);
+  --surface-ghost-active: var(--state-color-active, transparent);
+  --surface-ghost-selected: var(--state-color-selected, transparent);
+  --surface-ghost-drag: var(--state-color-drag, transparent);
+  --surface-ghost-disabled: var(--color-neutral-700);
 
-  /* ===== BORDERS ===== */
-  --border-default: var(--theme-light-border-default);
-  --border-muted: var(--theme-light-border-muted);
-  --border-strong: var(--theme-light-border-strong);
-  --border-focus: var(--theme-light-border-focus);
-  --border-error: var(--theme-light-border-error);
-  --border-success: var(--theme-light-border-success);
-  --border-disabled: var(--theme-light-border-disabled);
+  /* All other surfaces use their base + interaction formula */
+  --surface-neutral-hover: var(--state-color-hover, transparent);
+  --surface-neutral-focus: var(--state-color-focus, transparent);
+  --surface-neutral-active: var(--state-color-active, transparent);
+  --surface-neutral-selected: var(--state-color-selected, transparent);
+  --surface-neutral-drag: var(--state-color-drag, transparent);
+  --surface-neutral-disabled: var(--color-neutral-700);
 
-  /* ===== INTERACTIVE STATES ===== */
-  --interactive-primary: var(--theme-light-interactive-primary);
-  --interactive-secondary: var(--theme-light-interactive-secondary);
-  --interactive-destructive: var(--theme-light-interactive-destructive);
+  --surface-primary-hover: var(--state-color-hover, transparent);
+  --surface-primary-focus: var(--state-color-focus, transparent);
+  --surface-primary-active: var(--state-color-active, transparent);
+  --surface-primary-selected: var(--state-color-selected, transparent);
+  --surface-primary-drag: var(--state-color-drag, transparent);
+  --surface-primary-disabled: var(--color-primary-800);
 
-  /* ===== FOCUS SYSTEM ===== */
-  --focus-ring-color: var(--theme-light-focus-ring-color);
-  --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
-  --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
+  --surface-primary-muted-hover: var(--state-color-hover, transparent);
+  --surface-primary-muted-focus: var(--state-color-focus, transparent);
+  --surface-primary-muted-active: var(--state-color-active, transparent);
+  --surface-primary-muted-selected: var(--state-color-selected, transparent);
+  --surface-primary-muted-drag: var(--state-color-drag, transparent);
+  --surface-primary-muted-disabled: var(--color-primary-800);
 
-  /* ===== SCROLLBAR ===== */
-  --scrollbar-thumb: var(--theme-light-scrollbar-thumb);
-  --scrollbar-track: var(--theme-light-scrollbar-track);
-  --scrollbar-thumb-hover: var(--theme-light-scrollbar-thumb-hover);
+  --surface-secondary-hover: var(--state-color-hover, transparent);
+  --surface-secondary-focus: var(--state-color-focus, transparent);
+  --surface-secondary-active: var(--state-color-active, transparent);
+  --surface-secondary-selected: var(--state-color-selected, transparent);
+  --surface-secondary-drag: var(--state-color-drag, transparent);
+  --surface-secondary-disabled: var(--color-secondary-800);
+
+  --surface-secondary-muted-hover: var(--state-color-hover, transparent);
+  --surface-secondary-muted-focus: var(--state-color-focus, transparent);
+  --surface-secondary-muted-active: var(--state-color-active, transparent);
+  --surface-secondary-muted-selected: var(--state-color-selected, transparent);
+  --surface-secondary-muted-drag: var(--state-color-drag, transparent);
+  --surface-secondary-muted-disabled: var(--color-secondary-800);
+
+  /* ===== CONTENT ===== */
+
+  --content-base: var(--color-white);
+  --content-weak: var(--color-neutral-200);
+  --content-weakest: var(--color-neutral-400);
+  --content-disabled: var(--color-neutral-500);
+  --content-inverse: var(--color-black);
+  --content-fixed-light: var(--color-white);
+  --content-fixed-dark: var(--color-neutral-950);
+  --content-on-primary: var(--color-white);
+  --content-on-secondary: var(--color-white);
+  --content-on-primary-muted: var(--color-primary-200);
+  --content-on-secondary-muted: var(--color-secondary-200);
+  --content-error: var(--color-error-400);
+  --content-success: var(--color-success-400);
+
+  /* ===== BORDER ===== */
+
+  --border-base: var(--color-neutral-400);
+  --border-weak: var(--color-neutral-500);
+  --border-strong: var(--color-neutral-300);
+  --border-strongest: var(--color-neutral-100);
+  --border-primary: var(--color-primary-400);
+  --border-secondary: var(--color-secondary-400);
+  --border-error: var(--color-error-400);
+  --border-success: var(--color-success-400);
+  --border-focus: var(--color-secondary-400);
 }
 
 /*
 ================================================================================
-DARK MODE THEME ACTIVATION
-- Overrides core semantic tokens with dark theme values.
+LIGHT THEME OVERRIDES
 ================================================================================
 */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* Switch to dark theme values */
-    --text-primary: var(--theme-dark-text-primary);
-    --text-secondary: var(--theme-dark-text-secondary);
-    --text-tertiary: var(--theme-dark-text-tertiary);
-    --text-inverse: var(--theme-dark-text-inverse);
-    --text-disabled: var(--theme-dark-text-disabled);
-    --text-brand-primary: var(--theme-dark-text-brand-primary);
-    --text-brand-secondary: var(--theme-dark-text-brand-secondary);
-    --text-link: var(--theme-dark-text-link);
-    --text-link-hover: var(--theme-dark-text-link-hover);
-    --text-error: var(--theme-dark-text-error);
-    --text-success: var(--theme-dark-text-success);
-    --surface-0: var(--theme-dark-surface-0);
-    --surface-1: var(--theme-dark-surface-1);
-    --surface-2: var(--theme-dark-surface-2);
-    --surface-3: var(--theme-dark-surface-3);
-    --surface-inverse: var(--theme-dark-surface-inverse);
-    --surface-inverse-elevated: var(--theme-dark-surface-inverse-elevated);
-    --surface-brand-primary: var(--theme-dark-surface-brand-primary);
-    --surface-brand-secondary: var(--theme-dark-surface-brand-secondary);
-    --surface-error: var(--theme-dark-surface-error);
-    --surface-success: var(--theme-dark-surface-success);
-    --surface-backdrop: var(--theme-dark-surface-backdrop);
-    --border-default: var(--theme-dark-border-default);
-    --border-muted: var(--theme-dark-border-muted);
-    --border-strong: var(--theme-dark-border-strong);
-    --border-focus: var(--theme-dark-border-focus);
-    --border-error: var(--theme-dark-border-error);
-    --border-success: var(--theme-dark-border-success);
-    --border-disabled: var(--theme-dark-border-disabled);
-    --interactive-primary: var(--theme-dark-interactive-primary);
-    --interactive-secondary: var(--theme-dark-interactive-secondary);
-    --interactive-destructive: var(--theme-dark-interactive-destructive);
-    --focus-ring-color: var(--theme-dark-focus-ring-color);
-    --focus-ring-color-error: var(--theme-dark-focus-ring-color-error);
-    --focus-ring-color-success: var(--theme-dark-focus-ring-color-success);
+@media (prefers-color-scheme: light) {
+  :root:not(.theme-dark):not([data-theme="dark"]) {
+    color-scheme: light;
 
-    /* Scrollbar */
-    --scrollbar-thumb: var(--theme-dark-scrollbar-thumb);
-    --scrollbar-track: var(--theme-dark-scrollbar-track);
-    --scrollbar-thumb-hover: var(--theme-dark-scrollbar-thumb-hover);
+    /* ===== SURFACE OVERRIDES ===== */
+    --surface-page: var(--color-white);
+    --surface-container: var(--color-neutral-50);
+    --surface-card: var(--color-neutral-100);
+    --surface-nested: var(--color-neutral-300);
+    --surface-overlay: var(--color-white);
+    --surface-inverse: var(--color-black);
+    --surface-scrim: rgba(0, 0, 0, 0.4);
+
+    /* ===== COMPONENT SURFACE OVERRIDES ===== */
+    --surface-primary: var(--color-primary-600);
+    --surface-primary-muted: var(--color-primary-100);
+    --surface-secondary: var(--color-secondary-600);
+    --surface-secondary-muted: var(--color-secondary-100);
+
+    /* ===== INTERACTION OVERRIDE ===== */
+    --interaction-mix-target: var(--color-black);
+    --interaction-hover-strength: 8%;
+    --interaction-focus-strength: 10%;
+    --interaction-active-strength: 12%;
+    --interaction-selected-strength: 10%;
+    --interaction-drag-strength: 10%;
+    /* All interaction states automatically recalculate! */
+
+    /* ===== CONTENT OVERRIDES ===== */
+    --content-base: var(--color-black);
+    --content-weak: var(--color-neutral-700);
+    --content-weakest: var(--color-neutral-500);
+    --content-disabled: var(--color-neutral-400);
+    --content-inverse: var(--color-white);
+    --content-fixed-dark: var(--color-black);
+    --content-on-primary-muted: var(--color-primary-800);
+    --content-on-secondary-muted: var(--color-secondary-800);
+    --content-error: var(--color-error-600);
+    --content-success: var(--color-success-600);
+
+    /* ===== BORDER OVERRIDES ===== */
+    --border-weak: var(--color-neutral-300);
+    --border-strong: var(--color-neutral-600);
+    --border-strongest: var(--color-neutral-800);
+    --border-primary: var(--color-primary-300);
+    --border-secondary: var(--color-secondary-300);
+    --border-error: var(--color-error-300);
+    --border-success: var(--color-success-300);
+    --border-focus: var(--color-secondary-600);
   }
 }
 
-/* User-controlled override for dark theme */
-[data-theme='dark'] {
-  --text-primary: var(--theme-dark-text-primary);
-  --text-secondary: var(--theme-dark-text-secondary);
-  --text-tertiary: var(--theme-dark-text-tertiary);
-  --text-inverse: var(--theme-dark-text-inverse);
-  --text-disabled: var(--theme-dark-text-disabled);
-  --text-brand-primary: var(--theme-dark-text-brand-primary);
-  --text-brand-secondary: var(--theme-dark-text-brand-secondary);
-  --text-link: var(--theme-dark-text-link);
-  --text-link-hover: var(--theme-dark-text-link-hover);
-  --text-error: var(--theme-dark-text-error);
-  --text-success: var(--theme-dark-text-success);
-  --surface-0: var(--theme-dark-surface-0);
-  --surface-1: var(--theme-dark-surface-1);
-  --surface-2: var(--theme-dark-surface-2);
-  --surface-3: var(--theme-dark-surface-3);
-  --surface-inverse: var(--theme-dark-surface-inverse);
-  --surface-inverse-elevated: var(--theme-dark-surface-inverse-elevated);
-  --surface-brand-primary: var(--theme-dark-surface-brand-primary);
-  --surface-brand-secondary: var(--theme-dark-surface-brand-secondary);
-  --surface-error: var(--theme-dark-surface-error);
-  --surface-success: var(--theme-dark-surface-success);
-  --surface-backdrop: var(--theme-dark-surface-backdrop);
-  --border-default: var(--theme-dark-border-default);
-  --border-muted: var(--theme-dark-border-muted);
-  --border-strong: var(--theme-dark-border-strong);
-  --border-focus: var(--theme-dark-border-focus);
-  --border-error: var(--theme-dark-border-error);
-  --border-success: var(--theme-dark-border-success);
-  --border-disabled: var(--theme-dark-border-disabled);
-  --interactive-primary: var(--theme-dark-interactive-primary);
-  --interactive-secondary: var(--theme-dark-interactive-secondary);
-  --interactive-destructive: var(--theme-dark-interactive-destructive);
-  --focus-ring-color: var(--theme-dark-focus-ring-color);
-  --focus-ring-color-error: var(--theme-dark-focus-ring-color-error);
-  --focus-ring-color-success: var(--theme-dark-focus-ring-color-success);
+/*
+================================================================================
+MANUAL THEME OVERRIDES (INHERIT FROM MEDIA QUERIES)
+================================================================================
+*/
 
-  /* Scrollbar */
-  --scrollbar-thumb: var(--theme-dark-scrollbar-thumb);
-  --scrollbar-track: var(--theme-dark-scrollbar-track);
-  --scrollbar-thumb-hover: var(--theme-dark-scrollbar-thumb-hover);
+:root.theme-light,
+:root[data-theme="light"] {
+  color-scheme: light;
 }
 
-/* User-controlled override for light theme (resets to default) */
-[data-theme='light'] {
-  --text-primary: var(--theme-light-text-primary);
-  --text-secondary: var(--theme-light-text-secondary);
-  --text-tertiary: var(--theme-light-text-tertiary);
-  --text-disabled: var(--theme-light-text-disabled);
-  --text-inverse: var(--theme-light-text-inverse);
-  --text-brand-primary: var(--theme-light-text-brand-primary);
-  --text-brand-secondary: var(--theme-light-text-brand-secondary);
-  --text-link: var(--theme-light-text-link);
-  --text-link-hover: var(--theme-light-text-link-hover);
-  --text-error: var(--theme-light-text-error);
-  --text-success: var(--theme-light-text-success);
-  --surface-0: var(--theme-light-surface-0);
-  --surface-1: var(--theme-light-surface-1);
-  --surface-2: var(--theme-light-surface-2);
-  --surface-3: var(--theme-light-surface-3);
-  --surface-inverse: var(--theme-light-surface-inverse);
-  --surface-inverse-elevated: var(--theme-light-surface-inverse-elevated);
-  --surface-brand-primary: var(--theme-light-surface-brand-primary);
-  --surface-brand-secondary: var(--theme-light-surface-brand-secondary);
-  --surface-error: var(--theme-light-surface-error);
-  --surface-success: var(--theme-light-surface-success);
-  --surface-backdrop: var(--theme-light-surface-backdrop);
-  --border-default: var(--theme-light-border-default);
-  --border-muted: var(--theme-light-border-muted);
-  --border-strong: var(--theme-light-border-strong);
-  --border-focus: var(--theme-light-border-focus);
-  --border-error: var(--theme-light-border-error);
-  --border-success: var(--theme-light-border-success);
-  --border-disabled: var(--theme-light-border-disabled);
-  --interactive-primary: var(--theme-light-interactive-primary);
-  --interactive-secondary: var(--theme-light-interactive-secondary);
-  --interactive-destructive: var(--theme-light-interactive-destructive);
-  --focus-ring-color: var(--theme-light-focus-ring-color);
-  --focus-ring-color-error: var(--theme-light-focus-ring-color-error);
-  --focus-ring-color-success: var(--theme-light-focus-ring-color-success);
+:root.theme-dark,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
 
-  /* Scrollbar */
-  --scrollbar-thumb: var(--theme-light-scrollbar-thumb);
-  --scrollbar-track: var(--theme-light-scrollbar-track);
-  --scrollbar-thumb-hover: var(--theme-light-scrollbar-thumb-hover);
+/* Re-apply dark theme variables for manual override without duplication */
+.theme-dark,
+[data-theme="dark"] {
+  --interaction-mix-target: var(--color-white);
+
+  /* Component surfaces */
+  --surface-primary: var(--color-primary-700);
+  --surface-primary-muted: var(--color-primary-950);
+  --surface-secondary: var(--color-secondary-700);
+  --surface-secondary-muted: var(--color-secondary-950);
 }
 
 /*
---------------------------------------------------------------------------------
-HIGH CONTRAST MODE
-- Layers on top of the active theme to enhance contrast.
---------------------------------------------------------------------------------
+================================================================================
+HIGH CONTRAST ENHANCEMENT
+================================================================================
 */
 
 @media (prefers-contrast: high) {
+  :root {
+    /* High contrast mode uses stronger surface differentiation */
+    --interaction-hover-strength: 25%;
+    --interaction-focus-strength: 30%;
+    --interaction-active-strength: 35%;
+    --interaction-selected-strength: 30%;
+    --interaction-drag-strength: 30%;
 
-  /* High Contrast Light Theme */
-  :root,
-  [data-theme='light'] {
-    --text-primary: var(--color-black);
-    --text-secondary: var(--color-neutral-800);
-    --border-default: var(--color-black);
-    --border-focus: var(--color-primary-600);
-    --interactive-primary: var(--color-primary-700);
-    --interactive-secondary: var(--color-secondary-700);
-    --interactive-destructive: var(--color-error-700);
+    /* Maximum contrast surfaces */
+    --surface-page: var(--color-black);
+    --surface-container: var(--color-neutral-950);
+    --surface-card: var(--color-neutral-900);
+    --surface-nested: var(--color-neutral-700);
+
+    /* Enhanced content contrast */
+    --content-weak: var(--color-neutral-100);
+    --content-weakest: var(--color-neutral-300);
+
+    /* Enhanced border contrast */
+    --border-base: var(--color-neutral-300);
+    --border-weak: var(--color-neutral-400);
   }
 
-  /* High Contrast Dark Theme */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --text-primary: var(--color-white);
-      --text-secondary: var(--color-neutral-100);
-      --border-default: var(--color-white);
-      --border-focus: var(--color-primary-300);
-    }
-  }
+  :root.theme-light,
+  :root[data-theme="light"] {
+    --surface-page: var(--color-white);
+    --surface-container: var(--color-neutral-50);
+    --surface-card: var(--color-neutral-100);
+    --surface-nested: var(--color-neutral-200);
 
-  [data-theme='dark'] {
-    --text-primary: var(--color-white);
-    --text-secondary: var(--color-neutral-100);
-    --border-default: var(--color-white);
-    --border-focus: var(--color-primary-300);
-  }
-}
-
-/*
-================================================================================
-BROWSER COMPATIBILITY FALLBACKS
-================================================================================
-*/
-
-/* Fallback for browsers without OKLCH support */
-@supports not (color: oklch(0% 0 0)) {
-
-  /* Light theme fallback */
-  :root,
-  [data-theme='light'] {
-    --surface-0: #ffffff;
-    --surface-1: #f8fafc;
-    --surface-2: #f1f5f9;
-    --surface-3: #e2e8f0;
-  }
-
-  /* Dark theme fallback (system preference) */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --surface-0: #0f172a;
-      --surface-1: #1e293b;
-      --surface-2: #334155;
-      --surface-3: #475569;
-    }
-  }
-
-  /* Dark theme fallback (user override) */
-  [data-theme='dark'] {
-    --surface-0: #0f172a;
-    --surface-1: #1e293b;
-    --surface-2: #334155;
-    --surface-3: #475569;
+    --content-weak: var(--color-neutral-800);
+    --content-weakest: var(--color-neutral-600);
+    --border-base: var(--color-neutral-500);
+    --border-weak: var(--color-neutral-400);
   }
 }

@@ -38,7 +38,7 @@ SKIP NAVIGATION
 .skip-link {
   position: absolute;
   top: calc(-1 * var(--space-xl));
-  left: var(--space-xs);
+  inset-inline-start: var(--space-xs);
   background: var(--surface-page);
   color: var(--text-primary);
   padding: var(--space-xs) var(--space-sm);
