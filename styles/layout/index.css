@@ -56,3 +56,15 @@ GRID PRIMITIVES - Grid-based layouts
 
 /* The Grid - Simple layout of grid items */
 @import './grid.css';
+
+/*
+================================================================================
+MEDIA PRIMITIVES - Responsive media containers
+================================================================================
+*/
+
+/* The Frame - Responsive media container with aspect ratio control */
+@import './frame.css';
+
+/* The Reel - Horizontal scrolling container with scroll snap */
+@import './reel.css';

@@ -32,6 +32,7 @@ Accessibility-first Vanilla CSS design token system.
 @import "./utilities/borders-utilities.css";
 @import "./utilities/motion-utilities.css";
 @import "./utilities/interactive-states.css";
+@import "./utilities/scrollbar-utilities.css";
 
 /* ===== 4️⃣ LAYOUT STYLES===== */
 /* Layout primitives to reduce complexity */
@@ -42,8 +43,6 @@ Accessibility-first Vanilla CSS design token system.
 @import "./components/layout-primitives.css";
 @import "./components/forms.css";
 @import "./components/ai-ui.css";
-
-
 
 /*
 ================================================================================
@@ -66,7 +65,7 @@ SYSTEM OVERVIEW
 
 📏 SPACING SYSTEM:
 - 7-step scale: none, xs, sm, md, lg, xl, 2xl
-- 8px base grid for crisp pixel alignment
+- 4px base grid for crisp pixel alignment
 - Semantic aliases: tight, default, comfortable, generous
 - Fluid spacing with responsive clamp()
 

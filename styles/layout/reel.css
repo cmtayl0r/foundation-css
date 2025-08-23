@@ -1,0 +1,294 @@
+/*
+================================================================================
+THE REEL - Horizontal scrolling container with scroll snap
+================================================================================
+Horizontally scrollable container with accessibility features and visual affordances.
+Perfect for: image galleries, card carousels, navigation tabs, product listings.
+Accessible: Keyboard navigable, screen reader friendly, respects motion preferences.
+*/
+
+.reel {
+  /* Core flex layout for horizontal scrolling */
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  /* Smooth scroll snapping for better UX */
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+
+  /* Use spacing tokens for consistent padding */
+  padding-inline: var(--reel-padding, var(--space-md));
+  padding-block: var(--reel-block-padding, var(--space-xs));
+
+  /* Scroll padding creates breathing room when snapping */
+  scroll-padding-inline: var(--reel-padding, var(--space-md));
+
+  /* Container queries for responsive behavior */
+  container-type: inline-size;
+
+  /* Use existing scrollbar system - inherits from scrollbar-utilities.css */
+
+  /* Focus management for keyboard users */
+  position: relative;
+}
+
+/* Child elements get proper flex behavior and scroll snapping */
+.reel>* {
+  /* Prevent shrinking, allow natural sizing */
+  flex: 0 0 auto;
+
+  /* Snap to start of each item for consistent positioning */
+  scroll-snap-align: start;
+
+  /* Ensure focusable elements work with keyboard nav */
+  scroll-margin-inline-start: var(--reel-padding, var(--space-md));
+}
+
+/* Spacing between items using margin instead of gap for better browser support */
+.reel>*+* {
+  margin-inline-start: var(--reel-gap, var(--space-md));
+}
+
+/* Special handling for images in reels */
+.reel>img {
+  /* Maintain aspect ratio while fitting container height */
+  block-size: 100%;
+  inline-size: auto;
+  flex-basis: auto;
+
+  /* Prevent layout shifts */
+  min-inline-size: 0;
+}
+
+/*
+================================================================================
+SCROLLBAR VARIANTS FOR REEL
+================================================================================
+*/
+
+/* Default thin scrollbar for horizontal reels */
+.reel {
+  --scrollbar-width: 6px;
+}
+
+/* Hidden scrollbars for cleaner mobile experience */
+.reel--no-scrollbar {
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.reel--no-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Webkit */
+}
+
+/*
+================================================================================
+OVERFLOW VISUAL AFFORDANCES
+================================================================================
+*/
+
+/* Gradient shadows indicate more content is available */
+.reel::before,
+.reel::after {
+  content: '';
+  position: sticky;
+  z-index: 1;
+  inline-size: var(--space-lg);
+  flex-shrink: 0;
+  pointer-events: none;
+
+  /* Smooth gradient transition */
+  transition: opacity 0.3s ease;
+}
+
+/* Left shadow - indicates content scrolled out of view */
+.reel::before {
+  inset-inline-start: 0;
+  background: linear-gradient(to right,
+      var(--surface-page, #ffffff) 0%,
+      var(--surface-page, #ffffff) 20%,
+      transparent 100%);
+  margin-inline-end: calc(-1 * var(--space-lg));
+}
+
+/* Right shadow - indicates more content available */
+.reel::after {
+  inset-inline-end: 0;
+  background: linear-gradient(to left,
+      var(--surface-page, #ffffff) 0%,
+      var(--surface-page, #ffffff) 20%,
+      transparent 100%);
+  margin-inline-start: calc(-1 * var(--space-lg));
+}
+
+/*
+================================================================================
+SIZE VARIANTS
+================================================================================
+*/
+
+/* Standard cards - good for product cards, feature cards */
+.reel--cards>* {
+  inline-size: min(300px, 80vw);
+  min-inline-size: 280px;
+}
+
+/* Compact items - good for tags, small thumbnails */
+.reel--compact>* {
+  inline-size: min(200px, 60vw);
+  min-inline-size: 160px;
+}
+
+/* Large items - good for hero cards, featured content */
+.reel--large>* {
+  inline-size: min(400px, 90vw);
+  min-inline-size: 350px;
+}
+
+/* Auto-sizing - items size themselves naturally */
+.reel--auto>* {
+  inline-size: max-content;
+  max-inline-size: 90vw;
+}
+
+/* Equal width items - all items same size based on content */
+.reel--equal>* {
+  flex: 1 1 0;
+  min-inline-size: min(250px, 70vw);
+}
+
+/*
+================================================================================
+SPACING VARIANTS
+================================================================================
+*/
+
+/* Tight spacing for related items */
+.reel--tight {
+  --reel-gap: var(--space-xs);
+  --reel-padding: var(--space-sm);
+}
+
+/* Loose spacing for distinct items */
+.reel--loose {
+  --reel-gap: var(--space-xl);
+  --reel-padding: var(--space-lg);
+}
+
+/* No padding - edge-to-edge content */
+.reel--flush {
+  --reel-padding: 0;
+  --reel-gap: var(--space-sm);
+}
+
+/*
+================================================================================
+ACCESSIBILITY ENHANCEMENTS
+================================================================================
+*/
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .reel {
+    scroll-behavior: auto;
+    scroll-snap-type: none;
+  }
+
+  /* Disable gradient animations */
+  .reel::before,
+  .reel::after {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .reel {
+    /* Inherits enhanced contrast from scrollbar.css system */
+  }
+}
+
+/* Focus management for keyboard navigation */
+.reel:focus-within {
+  outline: 2px solid var(--focus-color, #f6f03b);
+  outline-offset: 2px;
+}
+
+/* When reel overflows, add extra bottom padding for scrollbar */
+.reel--overflowing {
+  padding-block-end: var(--space-md);
+}
+
+/*
+================================================================================
+RESPONSIVE BEHAVIOR
+================================================================================
+*/
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .reel {
+    /* Reduce padding on mobile for more content visibility */
+    --reel-padding: var(--space-sm);
+  }
+
+  /* Adjust card sizes for mobile */
+  .reel--cards>* {
+    inline-size: min(280px, 85vw);
+    min-inline-size: 240px;
+  }
+
+  .reel--compact>* {
+    inline-size: min(160px, 70vw);
+    min-inline-size: 120px;
+  }
+}
+
+/* Touch device optimizations */
+@media (pointer: coarse) {
+  .reel {
+    /* Inherits larger touch scrollbars from scrollbar.css system */
+    --scrollbar-width: 8px;
+  }
+
+  /* Add momentum scrolling on iOS */
+  .reel {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/*
+================================================================================
+LOADING STATES
+================================================================================
+*/
+
+/* Skeleton loading state */
+.reel[aria-busy="true"]>* {
+  background: linear-gradient(90deg,
+      var(--color-neutral-200, #e5e7eb) 25%,
+      var(--color-neutral-100, #f3f4f6) 50%,
+      var(--color-neutral-200, #e5e7eb) 75%);
+  background-size: 200% 100%;
+  animation: reel-loading 1.5s infinite;
+}
+
+@keyframes reel-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Disable loading animation for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reel[aria-busy="true"]>* {
+    animation: none;
+    background: var(--color-neutral-200, #e5e7eb);
+  }
+}
