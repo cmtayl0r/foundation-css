@@ -14,8 +14,6 @@ Perfect for: landing pages, hero sections, splash screens, full-page content.
   container-type: block-size;
   container-name: cover;
 
-  /* Fallback for older browsers */
-  min-height: 100vh;
   min-height: var(--cover-height, 100dvh);
 }
 

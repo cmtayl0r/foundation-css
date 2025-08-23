@@ -13,6 +13,9 @@ Accessible: Keyboard navigable, screen reader friendly, respects motion preferen
   overflow-x: auto;
   overflow-y: hidden;
 
+  /* Use gap for consistent spacing */
+  gap: var(--reel-gap, var(--space-md));
+
   /* Smooth scroll snapping for better UX */
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
@@ -40,14 +43,6 @@ Accessible: Keyboard navigable, screen reader friendly, respects motion preferen
 
   /* Snap to start of each item for consistent positioning */
   scroll-snap-align: start;
-
-  /* Ensure focusable elements work with keyboard nav */
-  scroll-margin-inline-start: var(--reel-padding, var(--space-md));
-}
-
-/* Spacing between items using margin instead of gap for better browser support */
-.reel>*+* {
-  margin-inline-start: var(--reel-gap, var(--space-md));
 }
 
 /* Special handling for images in reels */

@@ -6,18 +6,8 @@ Accessibility-first Vanilla CSS design token system.
 */
 
 /* ===== 1️⃣ DESIGN TOKENS (FOUNDATION) ===== */
-/* Import order matters - primitives first, then semantics */
-/* Core visual tokens */
-@import "./tokens/color-primitives.css";
-@import "./tokens/color-semantics.css";
-@import "./tokens/typography.css";
-@import "./tokens/spacing.css";
-@import "./tokens/layout.css";
-@import "./tokens/borders.css";
-@import "./tokens/elevation.css";
-@import "./tokens/motion.css";
-@import "./tokens/states.css";
-@import "./tokens/effects.css";
+/* Single import for all design tokens */
+@import "./tokens/index.css";
 
 /* ===== 2️⃣ BASE STYLES (RESET & FOUNDATIONS) ===== */
 /* Establish foundation before components */

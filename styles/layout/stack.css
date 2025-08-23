@@ -13,12 +13,6 @@ Perfect for: content sections, forms, cards, articles, page layouts.
   gap: var(--gap, var(--space-md));
 }
 
-/*
-================================================================================
-ALIGNMENT VARIANTS
-================================================================================
-*/
-
 .stack--center {
   justify-content: center;
 }
@@ -31,36 +25,7 @@ ALIGNMENT VARIANTS
   justify-content: space-between;
 }
 
-.stack--around {
-  justify-content: space-around;
-}
-
-.stack--evenly {
-  justify-content: space-evenly;
-}
-
 /*
-================================================================================
-LAYOUT MODIFIERS
-================================================================================
+  NOTE: .stack__exception and .stack__no-spacing utilities have been removed.
+  Use margin utilities (e.g., `m-block-start space-xl`) for overrides.
 */
-
-.stack--fullHeight {
-  min-height: 100%;
-}
-
-/*
-================================================================================
-UTILITY CLASSES
-================================================================================
-*/
-
-/* Exception class for breaking spacing pattern */
-.stack__exception {
-  margin-block-start: var(--space-xl, 2rem) !important;
-}
-
-/* Remove spacing for specific child */
-.stack__no-spacing {
-  margin-block-start: 0 !important;
-}

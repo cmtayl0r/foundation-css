@@ -32,20 +32,6 @@ Based on 4px grid for crisp pixel alignment.
   --space-5xl: 5rem;
   /* 80px - Extra large section spacing */
 
-  /* ===== SEMANTIC SPACING ALIASES ===== */
-  --space-tight: var(--space-xs);
-  /* Component internal spacing */
-  --space-default: var(--space-sm);
-  /* Standard component spacing */
-  --space-comfortable: var(--space-md);
-  /* Readable content spacing */
-  --space-generous: var(--space-lg);
-  /* Between major elements */
-  --space-section: var(--space-xl);
-  /* Between content sections */
-  --space-layout: var(--space-2xl);
-  /* Major layout divisions */
-
   /* ===== FLUID SPACING (Responsive) ===== */
   /* Scales between mobile and desktop for natural responsive design */
   --space-fluid-xs: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);
