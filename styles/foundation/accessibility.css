@@ -1,0 +1,256 @@
+/*
+================================================================================
+ACCESSIBILITY
+================================================================================
+*/
+:root {
+  /* WCAG 2.2 Level AA requirement, prevents accidental taps */
+  --touch-target-xs: 24px;
+  --touch-target-sm: 36px;
+  --touch-target-default: 44px;
+  --touch-target-lg: 48px;
+
+  --focus-width: 4px;
+  --focus-offset: 4px;
+  /* Focus indicators */
+}
+
+/*
+================================================================================
+FOCUS MANAGEMENT
+================================================================================
+*/
+
+/* Focus ring for keyboard navigation */
+*:focus-visible {
+  outline: var(--focus-width) solid var(--border-focus);
+  outline-offset: var(--focus-offset);
+}
+
+/* Remove focus outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/*
+  Force focus on form inputs (JS focus() support)
+  Fix to display focus ring on checkboxes and radio buttons when using focus() in js
+  because, element.focus(); // programmatic focus → ❌ no :focus-visible
+*/
+
+input:focus,
+textarea:focus,
+select:focus,
+input[type="checkbox"]:focus,
+input[type="radio"]:focus,
+input[role="switch"]:focus {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
+/*
+================================================================================
+TOUCH TARGETS - WCAG 2.2 COMPLIANT
+================================================================================
+*/
+
+/* Extra small touch target (24px)
+   WHEN: Very compact UI, small buttons
+   WHY: Still accessible but allows for denser layouts
+   HOW: <button className="touch-target-xs">✕</button> */
+.touch-target-xs {
+  min-height: var(--touch-target-xs);
+  min-width: var(--touch-target-xs);
+}
+
+/* Small touch target (36px minimum)
+   WHEN: Compact UI, table actions, icon buttons in tight spaces
+   WHY: Still accessible but allows for denser layouts
+   HOW: <button className="touch-target-sm">✕</button> */
+.touch-target-sm {
+  min-height: var(--touch-target-sm);
+  min-width: var(--touch-target-sm);
+}
+
+/* Standard touch target (44px = iOS/Android standard)
+   WHEN: Any interactive element (buttons, links, form inputs)
+   WHY: WCAG 2.2 Level AA requirement, prevents accidental taps
+   HOW: <button className="touch-target">Click me</button> */
+.touch-target-md {
+  min-height: var(--touch-target-default);
+  min-width: var(--touch-target-default)
+}
+
+/* Large touch target (48px)
+   WHEN: Primary actions, important buttons, accessibility-focused UI
+   WHY: More comfortable for users with motor difficulties
+   HOW: <button className="touch-target-lg">Submit Form</button> */
+.touch-target-lg {
+  min-height: var(--touch-target-lg);
+  min-width: var(--touch-target-lg);
+}
+
+/* Coarse pointer optimizations */
+@media (pointer: coarse) {
+  .touch-target-md {
+    min-height: var(--touch-target-lg);
+    min-width: var(--touch-target-lg);
+  }
+}
+
+/*
+================================================================================
+SCREEN READER UTILITIES
+================================================================================
+*/
+
+/* Hide visually, keep for screen readers */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Show screen reader content on focus
+   WHEN: Skip links, help text that should appear when focused
+   WHY: Provides keyboard users visual feedback while maintaining clean UI
+   HOW: <a className="sr-only-focusable" href="#main">Skip to content</a> */
+.sr-only-focusable:focus,
+.sr-only-focusable:focus-within {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  padding: 0.5rem 1rem !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+  z-index: 999999 !important;
+}
+
+/* Live regions for dynamic content (AI responses, status updates) */
+.sr-live {
+  position: absolute !important;
+  left: -10000px !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+/* Hide completely from everyone */
+.hidden {
+  display: none !important;
+}
+
+/*
+================================================================================
+MOTION & ANIMATION
+================================================================================
+*/
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Animation control classes */
+.motion-safe {
+  animation-duration: var(--animation-duration, 0.3s);
+  transition-duration: var(--transition-duration, 0.2s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe {
+    animation-duration: 0.01ms;
+    transition-duration: 0.01ms;
+  }
+}
+
+/*
+================================================================================
+INTERACTION CONTROL
+================================================================================
+*/
+
+/* Prevent text selection */
+.no-select {
+  user-select: none;
+}
+
+/* Disable pointer interactions */
+.no-pointer {
+  pointer-events: none;
+}
+
+/*
+================================================================================
+MODAL & FOCUS TRAPPING
+================================================================================
+*/
+
+/* Inert content - disables interaction
+   WHEN: Modal/dialog opens and background content should be disabled
+   WHY: Prevents focus escaping modal, required by WCAG
+   HOW: <main className={isModalOpen ? 'inert' : ''}>...</main> */
+/* Disable interactions when modal is open */
+.inert {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Focus trap indicator
+   WHEN: Modal or dialog is active
+   WHY: Creates stacking context for focus containment
+   HOW: <dialog className="focus-trap-active">...</dialog> */
+/* Focus containment for modals */
+.focus-trap {
+  isolation: isolate;
+}
+
+/*
+================================================================================
+COMMON PATTERNS
+================================================================================
+
+<!-- Skip navigation -->
+<a href="#main" class="skip-link">Skip to main content</a>
+
+<!-- Touch-friendly button -->
+<button class="touch-target">Click me</button>
+
+<!-- AI loading state -->
+<div class="ai-loading" aria-live="polite">
+  <span class="sr-only">AI is processing your request</span>
+  Processing...
+</div>
+
+<!-- Screen reader announcements -->
+<div class="sr-live" aria-live="polite" id="status"></div>
+<script>
+  document.getElementById('status').textContent = 'Task completed';
+</script>
+
+<!-- Modal with focus trap -->
+<dialog class="focus-trap" open>
+  <div class="inert" aria-hidden="true">Background content</div>
+  <div>Modal content</div>
+</dialog>
+
+================================================================================
+*/

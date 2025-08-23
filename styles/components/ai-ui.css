@@ -136,8 +136,8 @@ CHAT INPUT - ACCESSIBLE FORM
 }
 
 .chat-input__field:focus {
-  outline: var(--focus-ring-width) solid var(--focus-ring-color);
-  outline-offset: var(--focus-ring-offset);
+  outline: var(--focus-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-offset);
   border-color: var(--border-focus);
 }
 
@@ -165,8 +165,8 @@ CHAT INPUT - ACCESSIBLE FORM
 }
 
 .chat-input__send:focus-visible {
-  outline: var(--focus-ring-width) solid var(--focus-ring-color);
-  outline-offset: var(--focus-ring-offset);
+  outline: var(--focus-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-offset);
 }
 
 .chat-input__send:disabled {
@@ -288,7 +288,7 @@ CODE BLOCKS IN CHAT - ACCESSIBLE FORMATTING
 }
 
 .message__code-copy:focus-visible {
-  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline: var(--focus-width) solid var(--focus-ring-color);
 }
 
 /*

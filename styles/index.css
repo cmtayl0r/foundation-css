@@ -7,7 +7,6 @@ Accessibility-first Vanilla CSS design token system.
 
 /* ===== 1️⃣ DESIGN TOKENS (FOUNDATION) ===== */
 /* Import order matters - primitives first, then semantics */
-
 /* Core visual tokens */
 @import "./tokens/color-primitives.css";
 @import "./tokens/color-semantics.css";
@@ -22,25 +21,29 @@ Accessibility-first Vanilla CSS design token system.
 
 /* ===== 2️⃣ BASE STYLES (RESET & FOUNDATIONS) ===== */
 /* Establish foundation before components */
-
 @import "./foundation/reset.css";
 @import "./foundation/app.css";
-@import "./accessibility/index.css";
+@import "./foundation/accessibility.css";
 
 /* ===== 3️⃣ UTILITY CLASSES ===== */
 /* Import utility classes in optimal cascade order */
-
 @import "./utilities/typography-utilities.css";
 @import "./utilities/spacing-utilities.css";
 @import "./utilities/borders-utilities.css";
 @import "./utilities/motion-utilities.css";
-@import "./utilities/surface-utilities.css";
+@import "./utilities/interactive-states.css";
 
-/* ===== 4️⃣ COMPONENT STYLES ===== */
+/* ===== 4️⃣ LAYOUT STYLES===== */
+/* Layout primitives to reduce complexity */
+@import "./layout/index.css";
+
+/* ===== 5️⃣ COMPONENT STYLES ===== */
 /* Components that use the foundation */
 @import "./components/layout-primitives.css";
 @import "./components/forms.css";
 @import "./components/ai-ui.css";
+
+
 
 /*
 ================================================================================

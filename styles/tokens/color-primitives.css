@@ -44,6 +44,13 @@ COLOR PRIMITIVES
   --secondary-chroma-p3: 0.45;
   --secondary-chroma: var(--secondary-chroma-srgb);
 
+  --accent-hue: 300;
+  /* Bright magenta */
+  --accent-chroma-srgb: 0.32;
+  /* High contrast */
+  --accent-chroma-p3: 0.45;
+  --accent-chroma: var(--accent-chroma-srgb);
+
   --success-hue: 142;
   /* Natural green */
   --success-chroma-srgb: 0.35;
@@ -121,6 +128,19 @@ COLOR PRIMITIVES
   --color-secondary-900: oklch(var(--l-900) calc(var(--secondary-chroma) * var(--c-900)) var(--secondary-hue));
   --color-secondary-950: oklch(var(--l-950) calc(var(--secondary-chroma) * var(--c-950)) var(--secondary-hue));
 
+  /* ===== ACCENT SCALE ===== */
+  --color-accent-50: oklch(var(--l-50) calc(var(--accent-chroma) * var(--c-50)) var(--accent-hue));
+  --color-accent-100: oklch(var(--l-100) calc(var(--accent-chroma) * var(--c-100)) var(--accent-hue));
+  --color-accent-200: oklch(var(--l-200) calc(var(--accent-chroma) * var(--c-200)) var(--accent-hue));
+  --color-accent-300: oklch(var(--l-300) calc(var(--accent-chroma) * var(--c-300)) var(--accent-hue));
+  --color-accent-400: oklch(var(--l-400) calc(var(--accent-chroma) * var(--c-400)) var(--accent-hue));
+  --color-accent-500: oklch(var(--l-500) calc(var(--accent-chroma) * var(--c-500)) var(--accent-hue));
+  --color-accent-600: oklch(var(--l-600) calc(var(--accent-chroma) * var(--c-600)) var(--accent-hue));
+  --color-accent-700: oklch(var(--l-700) calc(var(--accent-chroma) * var(--c-700)) var(--accent-hue));
+  --color-accent-800: oklch(var(--l-800) calc(var(--accent-chroma) * var(--c-800)) var(--accent-hue));
+  --color-accent-900: oklch(var(--l-900) calc(var(--accent-chroma) * var(--c-900)) var(--accent-hue));
+  --color-accent-950: oklch(var(--l-950) calc(var(--accent-chroma) * var(--c-950)) var(--accent-hue));
+
   /* ===== SUCCESS SCALE ===== */
   --color-success-50: oklch(var(--l-50) calc(var(--success-chroma) * var(--c-50)) var(--success-hue));
   --color-success-100: oklch(var(--l-100) calc(var(--success-chroma) * var(--c-100)) var(--success-hue));
@@ -188,6 +208,7 @@ COLOR PRIMITIVES
     :root {
       --brand-chroma: var(--brand-chroma-p3);
       --secondary-chroma: var(--secondary-chroma-p3);
+      --accent-chroma: var(--accent-chroma-p3);
       --success-chroma: var(--success-chroma-p3);
       --warning-chroma: var(--warning-chroma-p3);
       --error-chroma: var(--error-chroma-p3);
@@ -199,6 +220,7 @@ COLOR PRIMITIVES
       /* Future ultra-wide gamut support */
       --brand-chroma: calc(var(--brand-chroma-p3) * 1.2);
       --secondary-chroma: calc(var(--secondary-chroma-p3) * 1.2);
+      --accent-chroma: calc(var(--accent-chroma-p3) * 1.2);
       --success-chroma: calc(var(--success-chroma-p3) * 1.2);
       --warning-chroma: calc(var(--warning-chroma-p3) * 1.2);
       --error-chroma: calc(var(--error-chroma-p3) * 1.2);

@@ -1,185 +1,239 @@
 /*
 ================================================================================
-DARK THEME (DEFAULT)
+LIGHT THEME (DEFAULT)
 ================================================================================
 */
 :root {
-  color-scheme: dark;
+  color-scheme: light dark;
 
   /* ===== SURFACE FOUNDATION HIERARCHY ===== */
-  /* Simple rule: Each layer is 1 step lighter than the previous */
-  /* Page → Container → Card → Nested Card */
-
-  --surface-page: var(--color-neutral-950);
-  --surface-container: var(--color-neutral-900);
-  /* Main content areas */
-  --surface-card: var(--color-neutral-800);
+  --surface-page: var(--color-white);
+  /* Main page background */
+  --surface-container: var(--color-neutral-50);
+  /* Main content containers */
+  --surface-card: var(--color-neutral-100);
   /* Cards, panels */
-  --surface-nested: var(--color-neutral-600);
-  /* Nested elements in cards */
-  --surface-overlay: var(--color-neutral-950);
+  --surface-input: var(--color-white);
+  /* Form input backgrounds */
+  --surface-nested: var(--color-neutral-200);
+  /* Nested content areas */
+  --surface-elevated: var(--color-white);
   /* Modals, dropdowns, tooltips */
-  --surface-inverse: var(--color-white);
-  /* Inverse elements */
-  --surface-scrim: rgba(0, 0, 0, 0.6);
-  /* Scrim elements */
+  --surface-overlay: var(--color-white);
+  /* Overlay backgrounds */
+  --surface-scrim: color-mix(in oklch, var(--color-black) 40%, transparent);
 
   /* ===== COMPONENT SURFACE VARIANTS ===== */
+  --surface-transparent: transparent;
+  --surface-inverse: var(--color-black);
 
-  --surface-ghost: transparent;
-  --surface-neutral: var(--surface-card);
-  --surface-primary: var(--color-primary-700);
-  --surface-primary-muted: var(--color-primary-950);
-  --surface-secondary: var(--color-secondary-700);
-  --surface-secondary-muted: var(--color-secondary-950);
+  /* Brand */
+  --surface-primary: var(--color-primary-600);
+  --surface-primary-muted: var(--color-primary-50);
+  --surface-secondary: var(--color-secondary-600);
+  --surface-secondary-muted: var(--color-secondary-50);
+  --surface-accent: var(--color-accent-600);
+  --surface-accent-muted: var(--color-accent-50);
 
-  /* ===== INTERACTION CONFIGURATION ===== */
-  /* Centralized control for all interactive states */
-  --interaction-mix-target: var(--color-white);
-  --interaction-hover-strength: 12%;
-  --interaction-focus-strength: 15%;
-  --interaction-active-strength: 18%;
-  --interaction-selected-strength: 15%;
-  --interaction-drag-strength: 15%;
+  /* Semantic */
+  --surface-error: var(--color-error-600);
+  --surface-error-muted: var(--color-error-50);
+  --surface-success: var(--color-success-600);
+  --surface-success-muted: var(--color-success-50);
 
-  /* Generic state mix definitions */
-  --state-color-hover: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-hover-strength)), var(--interaction-mix-target) var(--interaction-hover-strength));
-  --state-color-focus: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-focus-strength)), var(--interaction-mix-target) var(--interaction-focus-strength));
-  --state-color-active: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-active-strength)), var(--interaction-mix-target) var(--interaction-active-strength));
-  --state-color-selected: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-selected-strength)), var(--interaction-mix-target) var(--interaction-selected-strength));
-  --state-color-drag: color-mix(in oklch, var(--surface-base) calc(100% - var(--interaction-drag-strength)), var(--interaction-mix-target) var(--interaction-drag-strength));
+  /* ===== INTERACTIVE SURFACE STATES ===== */
+  /* Hover states - 15% darker in light mode */
+  --surface-hover: color-mix(in oklch, var(--surface-card) 85%, var(--color-neutral-700));
+  --surface-primary-hover: color-mix(in oklch, var(--surface-primary) 85%, var(--color-neutral-900));
+  --surface-secondary-hover: color-mix(in oklch, var(--surface-secondary) 85%, var(--color-neutral-900));
+  --surface-accent-hover: color-mix(in oklch, var(--surface-accent) 85%, var(--color-neutral-900));
+  --surface-error-hover: color-mix(in oklch, var(--surface-error) 85%, var(--color-neutral-900));
+  --surface-success-hover: color-mix(in oklch, var(--surface-success) 85%, var(--color-neutral-900));
 
-  /* ===== UNIVERSAL INTERACTION STATES ===== */
-  /* Assign states to each surface variant by setting a --surface-base */
+  /* Active/pressed states - 20% darker in light mode */
+  --surface-active: color-mix(in oklch, var(--surface-card) 80%, var(--color-neutral-700));
+  --surface-primary-active: color-mix(in oklch, var(--surface-primary) 80%, var(--color-neutral-900));
+  --surface-secondary-active: color-mix(in oklch, var(--surface-secondary) 80%, var(--color-neutral-900));
+  --surface-accent-active: color-mix(in oklch, var(--surface-accent) 80%, var(--color-neutral-900));
+  --surface-error-active: color-mix(in oklch, var(--surface-error) 80%, var(--color-neutral-900));
+  --surface-success-active: color-mix(in oklch, var(--surface-success) 80%, var(--color-neutral-900));
 
-  /* Ghost states use surface-card as base for visibility */
-  --surface-ghost-hover: var(--state-color-hover, transparent);
-  --surface-ghost-focus: var(--state-color-focus, transparent);
-  --surface-ghost-active: var(--state-color-active, transparent);
-  --surface-ghost-selected: var(--state-color-selected, transparent);
-  --surface-ghost-drag: var(--state-color-drag, transparent);
-  --surface-ghost-disabled: var(--color-neutral-700);
+  /* Selected states */
+  --surface-selected-strong: var(--color-primary-700);
+  --surface-selected-muted: var(--color-primary-100);
 
-  /* All other surfaces use their base + interaction formula */
-  --surface-neutral-hover: var(--state-color-hover, transparent);
-  --surface-neutral-focus: var(--state-color-focus, transparent);
-  --surface-neutral-active: var(--state-color-active, transparent);
-  --surface-neutral-selected: var(--state-color-selected, transparent);
-  --surface-neutral-drag: var(--state-color-drag, transparent);
-  --surface-neutral-disabled: var(--color-neutral-700);
+  /* Disabled states */
+  --surface-disabled: color-mix(in oklch, var(--surface-card) 60%, var(--color-neutral-400));
 
-  --surface-primary-hover: var(--state-color-hover, transparent);
-  --surface-primary-focus: var(--state-color-focus, transparent);
-  --surface-primary-active: var(--state-color-active, transparent);
-  --surface-primary-selected: var(--state-color-selected, transparent);
-  --surface-primary-drag: var(--state-color-drag, transparent);
-  --surface-primary-disabled: var(--color-primary-800);
+  /* ===== CONTENT VARIANTS ===== */
+  --content-base: var(--color-neutral-950);
+  --content-muted: var(--color-neutral-600);
+  /* Secondary text, captions */
+  --content-faint: var(--color-neutral-500);
+  /* Placeholder text, meta info */
+  --content-disabled: var(--color-neutral-400);
+  /* Disabled text, inactive elements */
+  --content-inverse: var(--color-white);
 
-  --surface-primary-muted-hover: var(--state-color-hover, transparent);
-  --surface-primary-muted-focus: var(--state-color-focus, transparent);
-  --surface-primary-muted-active: var(--state-color-active, transparent);
-  --surface-primary-muted-selected: var(--state-color-selected, transparent);
-  --surface-primary-muted-drag: var(--state-color-drag, transparent);
-  --surface-primary-muted-disabled: var(--color-primary-800);
-
-  --surface-secondary-hover: var(--state-color-hover, transparent);
-  --surface-secondary-focus: var(--state-color-focus, transparent);
-  --surface-secondary-active: var(--state-color-active, transparent);
-  --surface-secondary-selected: var(--state-color-selected, transparent);
-  --surface-secondary-drag: var(--state-color-drag, transparent);
-  --surface-secondary-disabled: var(--color-secondary-800);
-
-  --surface-secondary-muted-hover: var(--state-color-hover, transparent);
-  --surface-secondary-muted-focus: var(--state-color-focus, transparent);
-  --surface-secondary-muted-active: var(--state-color-active, transparent);
-  --surface-secondary-muted-selected: var(--state-color-selected, transparent);
-  --surface-secondary-muted-drag: var(--state-color-drag, transparent);
-  --surface-secondary-muted-disabled: var(--color-secondary-800);
-
-  /* ===== CONTENT ===== */
-
-  --content-base: var(--color-white);
-  --content-weak: var(--color-neutral-200);
-  --content-weakest: var(--color-neutral-400);
-  --content-disabled: var(--color-neutral-500);
-  --content-inverse: var(--color-black);
+  /* Content on colored surfaces */
   --content-fixed-light: var(--color-white);
-  --content-fixed-dark: var(--color-neutral-950);
-  --content-on-primary: var(--color-white);
-  --content-on-secondary: var(--color-white);
-  --content-on-primary-muted: var(--color-primary-200);
-  --content-on-secondary-muted: var(--color-secondary-200);
-  --content-error: var(--color-error-400);
-  --content-success: var(--color-success-400);
+  --content-fixed-dark: var(--color-black);
+  --content-on-primary-muted: var(--color-primary-800);
+  --content-on-secondary-muted: var(--color-secondary-800);
+  --content-on-accent-muted: var(--color-accent-800);
 
-  /* ===== BORDER ===== */
+  /* Semantic content colors */
+  --content-error: var(--color-error-800);
+  --content-success: var(--color-success-800);
 
-  --border-base: var(--color-neutral-400);
-  --border-weak: var(--color-neutral-500);
-  --border-strong: var(--color-neutral-300);
-  --border-strongest: var(--color-neutral-100);
-  --border-primary: var(--color-primary-400);
-  --border-secondary: var(--color-secondary-400);
-  --border-error: var(--color-error-400);
-  --border-success: var(--color-success-400);
-  --border-focus: var(--color-secondary-400);
+  /* ===== BORDER VARIANTS ===== */
+  --border-base: var(--color-neutral-600);
+  /* Default borders */
+  --border-muted: var(--color-neutral-400);
+  /* Secondary borders */
+  --border-faint: var(--color-neutral-200);
+  /* Very subtle dividers */
+  --border-strong: var(--color-neutral-950);
+  /* Emphasized borders */
+  --border-disabled: var(--color-neutral-300);
+  /* Disabled element borders */
+
+  /* Interactive border states (OKLCH mix) */
+  --border-hover: color-mix(in oklch, var(--border-base) 70%, var(--color-neutral-950));
+  --border-active: color-mix(in oklch, var(--border-base) 50%, var(--color-neutral-950));
+  --border-focus: var(--color-secondary-600);
+  /* Focus ring (solid for accessibility) */
+  --border-primary: var(--color-primary-600);
+  --border-secondary: var(--color-secondary-600);
+  --border-accent: var(--color-accent-600);
+  --border-error: var(--color-error-600);
+  --border-success: var(--color-success-600);
+
+  /* ===== SCROLLBAR VARIANTS ===== */
+  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
+  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
+  --scrollbar-thumb-active: rgba(0, 0, 0, 0.6);
+  --scrollbar-track: transparent;
 }
 
 /*
 ================================================================================
-LIGHT THEME OVERRIDES
+DARK THEME OVERRIDES
 ================================================================================
+Dark theme overrides (only when needed)
+System preference handles most cases automatically
 */
 
-@media (prefers-color-scheme: light) {
-  :root:not(.theme-dark):not([data-theme="dark"]) {
-    color-scheme: light;
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* ===== SURFACE FOUNDATION HIERARCHY ===== */
+    --surface-page: var(--color-neutral-950);
+    --surface-container: var(--color-neutral-900);
+    --surface-card: var(--color-neutral-800);
+    --surface-input: var(--color-neutral-800);
+    --surface-nested: var(--color-neutral-700);
+    --surface-elevated: var(--color-neutral-850);
+    --surface-overlay: var(--color-neutral-800);
+    --surface-scrim: color-mix(in oklch, var(--color-black) 60%, transparent);
 
-    /* ===== SURFACE OVERRIDES ===== */
-    --surface-page: var(--color-white);
-    --surface-container: var(--color-neutral-50);
-    --surface-card: var(--color-neutral-100);
-    --surface-nested: var(--color-neutral-300);
-    --surface-overlay: var(--color-white);
-    --surface-inverse: var(--color-black);
-    --surface-scrim: rgba(0, 0, 0, 0.4);
+    /* ===== COMPONENT SURFACE VARIANTS ===== */
+    --surface-inverse: var(--color-white);
+    --surface-primary-muted: var(--color-primary-950);
+    --surface-secondary-muted: var(--color-secondary-950);
+    --surface-accent-muted: var(--color-accent-950);
+    --surface-error-muted: var(--color-error-950);
+    --surface-success-muted: var(--color-success-950);
 
-    /* ===== COMPONENT SURFACE OVERRIDES ===== */
-    --surface-primary: var(--color-primary-600);
-    --surface-primary-muted: var(--color-primary-100);
-    --surface-secondary: var(--color-secondary-600);
-    --surface-secondary-muted: var(--color-secondary-100);
+    /* ===== INTERACTIVE SURFACE STATES ===== */
 
-    /* ===== INTERACTION OVERRIDE ===== */
-    --interaction-mix-target: var(--color-black);
-    --interaction-hover-strength: 8%;
-    --interaction-focus-strength: 10%;
-    --interaction-active-strength: 12%;
-    --interaction-selected-strength: 10%;
-    --interaction-drag-strength: 10%;
-    /* All interaction states automatically recalculate! */
+    /* Hover states - 12% lighter in dark mode */
+    --surface-hover: color-mix(in oklch, var(--surface-card) 85%, var(--color-neutral-200));
+    --surface-primary-hover: color-mix(in oklch, var(--surface-primary) 85%, var(--color-neutral-200));
+    --surface-secondary-hover: color-mix(in oklch, var(--surface-secondary) 85%, var(--color-neutral-200));
+    --surface-accent-hover: color-mix(in oklch, var(--surface-accent) 85%, var(--color-neutral-200));
+    --surface-error-hover: color-mix(in oklch, var(--surface-error) 85%, var(--color-neutral-200));
+    --surface-success-hover: color-mix(in oklch, var(--surface-success) 85%, var(--color-neutral-200));
 
-    /* ===== CONTENT OVERRIDES ===== */
-    --content-base: var(--color-black);
-    --content-weak: var(--color-neutral-700);
-    --content-weakest: var(--color-neutral-500);
-    --content-disabled: var(--color-neutral-400);
-    --content-inverse: var(--color-white);
-    --content-fixed-dark: var(--color-black);
-    --content-on-primary-muted: var(--color-primary-800);
-    --content-on-secondary-muted: var(--color-secondary-800);
+    /* Active/pressed states - 25% lighter in dark mode */
+    --surface-active: color-mix(in oklch, var(--surface-card) 80%, var(--color-neutral-200));
+    --surface-primary-active: color-mix(in oklch, var(--surface-primary) 80%, var(--color-neutral-200));
+    --surface-secondary-active: color-mix(in oklch, var(--surface-secondary) 80%, var(--color-neutral-200));
+    --surface-accent-active: color-mix(in oklch, var(--surface-accent) 80%, var(--color-neutral-200));
+    --surface-error-active: color-mix(in oklch, var(--surface-error) 80%, var(--color-neutral-200));
+    --surface-success-active: color-mix(in oklch, var(--surface-success) 80%, var(--color-neutral-200));
+
+    /* Selected states */
+    --surface-selected-strong: var(--color-primary-100);
+    --surface-selected-muted: var(--color-primary-700);
+
+    /* Disabled states */
+    --surface-disabled: color-mix(in oklch, var(--surface-card) 60%, var(--color-neutral-600));
+
+    /* ===== CONTENT VARIANTS ===== */
+    --content-base: var(--color-white);
+    --content-muted: var(--color-neutral-200);
+    --content-faint: var(--color-neutral-400);
+    --content-disabled: var(--color-neutral-600);
+    --content-inverse: var(--color-neutral-950);
+    --content-on-primary-muted: var(--color-primary-100);
+    --content-on-secondary-muted: var(--color-secondary-100);
+    --content-on-accent-muted: var(--color-accent-100);
     --content-error: var(--color-error-600);
     --content-success: var(--color-success-600);
 
-    /* ===== BORDER OVERRIDES ===== */
-    --border-weak: var(--color-neutral-300);
-    --border-strong: var(--color-neutral-600);
-    --border-strongest: var(--color-neutral-800);
+    /* ===== BORDER VARIANTS ===== */
+    --border-base: var(--color-neutral-400);
+    --border-muted: var(--color-neutral-600);
+    --border-faint: var(--color-neutral-800);
+    --border-strong: var(--color-neutral-50);
+    --border-disabled: var(--color-neutral-700);
+
+    /* Interactive border states (OKLCH mix) */
+    --border-hover: color-mix(in oklch, var(--border-base) 70%, var(--color-white));
+    --border-active: color-mix(in oklch, var(--border-base) 40%, var(--color-white));
+    --border-focus: var(--color-secondary-500);
+
+    /* Semantic border colors */
     --border-primary: var(--color-primary-300);
     --border-secondary: var(--color-secondary-300);
     --border-error: var(--color-error-300);
     --border-success: var(--color-success-300);
-    --border-focus: var(--color-secondary-600);
+
+    /* ===== SCROLLBAR VARIANTS ===== */
+    --scrollbar-thumb: rgba(255, 255, 255, 0.3);
+    --scrollbar-thumb-hover: rgba(255, 255, 255, 0.5);
+    --scrollbar-thumb-active: rgba(255, 255, 255, 0.7);
+    --scrollbar-track: transparent;
+  }
+}
+
+/*
+================================================================================
+HIGH CONTRAST LIGHT MODE
+================================================================================
+*/
+
+@media (prefers-color-scheme: light) and (prefers-contrast: high) {
+  :root {
+    --border-base: var(--color-neutral-950);
+    --border-focus: var(--color-secondary-800);
+    --content-muted: var(--color-neutral-800);
+    --content-faint: var(--color-neutral-700);
+  }
+}
+
+/*
+================================================================================
+HIGH CONTRAST DARK MODE
+================================================================================
+*/
+
+@media (prefers-color-scheme: dark) and (prefers-contrast: high) {
+  :root {
+    --border-base: var(--color-white);
+    --border-focus: var(--color-secondary-300);
+    --content-muted: var(--color-neutral-200);
+    --content-faint: var(--color-neutral-300);
   }
 }
 
@@ -189,68 +243,48 @@ MANUAL THEME OVERRIDES (INHERIT FROM MEDIA QUERIES)
 ================================================================================
 */
 
-:root.theme-light,
-:root[data-theme="light"] {
+[data-theme="light"] {
   color-scheme: light;
 }
 
-:root.theme-dark,
-:root[data-theme="dark"] {
-  color-scheme: dark;
-}
-
-/* Re-apply dark theme variables for manual override without duplication */
-.theme-dark,
 [data-theme="dark"] {
-  --interaction-mix-target: var(--color-white);
-
-  /* Component surfaces */
-  --surface-primary: var(--color-primary-700);
+  color-scheme: dark;
+  /* Apply all dark theme variables from media query */
+  --surface-page: var(--color-neutral-950);
+  --surface-container: var(--color-neutral-900);
+  --surface-card: var(--color-neutral-800);
+  --surface-input: var(--color-neutral-800);
+  --surface-nested: var(--color-neutral-700);
+  --surface-elevated: var(--color-neutral-850);
+  --surface-overlay: var(--color-neutral-800);
+  --surface-scrim: rgba(0, 0, 0, 0.6);
+  --surface-inverse: var(--color-white);
   --surface-primary-muted: var(--color-primary-950);
-  --surface-secondary: var(--color-secondary-700);
   --surface-secondary-muted: var(--color-secondary-950);
+  --surface-accent-muted: var(--color-accent-950);
+  --surface-error-muted: var(--color-error-950);
+  --surface-success-muted: var(--color-success-950);
+  --surface-warning-muted: var(--color-amber-950);
+  --surface-info-muted: var(--color-cyan-950);
+  --content-strong: var(--color-white);
+  --content-base: var(--color-neutral-200);
+  --content-muted: var(--color-neutral-400);
+  --content-faint: var(--color-neutral-500);
+  --content-disabled: var(--color-neutral-600);
+  --content-inverse: var(--color-neutral-950);
+  --border-faint: var(--color-neutral-800);
+  --border-base: var(--color-neutral-700);
+  --border-muted: var(--color-neutral-600);
+  --border-strong: var(--color-neutral-400);
+  --border-disabled: var(--color-neutral-700);
+  --border-focus: var(--color-secondary-500);
 }
 
-/*
-================================================================================
-HIGH CONTRAST ENHANCEMENT
-================================================================================
-*/
+/* Manual + high contrast combinations */
+[data-theme="light"] {
+  @media (prefers-contrast: high) {}
+}
 
-@media (prefers-contrast: high) {
-  :root {
-    /* High contrast mode uses stronger surface differentiation */
-    --interaction-hover-strength: 25%;
-    --interaction-focus-strength: 30%;
-    --interaction-active-strength: 35%;
-    --interaction-selected-strength: 30%;
-    --interaction-drag-strength: 30%;
-
-    /* Maximum contrast surfaces */
-    --surface-page: var(--color-black);
-    --surface-container: var(--color-neutral-950);
-    --surface-card: var(--color-neutral-900);
-    --surface-nested: var(--color-neutral-700);
-
-    /* Enhanced content contrast */
-    --content-weak: var(--color-neutral-100);
-    --content-weakest: var(--color-neutral-300);
-
-    /* Enhanced border contrast */
-    --border-base: var(--color-neutral-300);
-    --border-weak: var(--color-neutral-400);
-  }
-
-  :root.theme-light,
-  :root[data-theme="light"] {
-    --surface-page: var(--color-white);
-    --surface-container: var(--color-neutral-50);
-    --surface-card: var(--color-neutral-100);
-    --surface-nested: var(--color-neutral-200);
-
-    --content-weak: var(--color-neutral-800);
-    --content-weakest: var(--color-neutral-600);
-    --border-base: var(--color-neutral-500);
-    --border-weak: var(--color-neutral-400);
-  }
+[data-theme="dark"] {
+  @media (prefers-contrast: high) {}
 }

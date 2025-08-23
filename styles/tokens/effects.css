@@ -51,7 +51,7 @@ Strong shadows and clear opacity values for maximum contrast.
 
   /* ===== BACKDROP EFFECTS ===== */
 
-  --backdrop-blur: blur(4px);
+  --backdrop-blur: blur(var(--blur-md));
   /* Backdrop blur effect */
 
 }

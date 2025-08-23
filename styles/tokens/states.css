@@ -7,13 +7,6 @@ Strong, clear state indicators with maximum contrast.
 */
 
 :root {
-  /* ===== FOCUS SYSTEM - WCAG 2.4.7 COMPLIANCE ===== */
-  --focus-ring-width: 3px;
-  /* Strong focus indicator */
-  --focus-ring-offset: 2px;
-  /* Clear separation */
-  --focus-ring-style: solid;
-  /* Maximum visibility */
 
   /* ===== OVERLAY OPACITY VALUES ===== */
   /* 🎯 USE FOR: Pure overlay effects on ANY surface/background */
@@ -96,13 +89,6 @@ HIGH CONTRAST MODE ENHANCEMENTS
 /* High contrast mode - Enhanced visibility (WCAG 1.4.11) */
 @media (prefers-contrast: high) {
   :root {
-
-    /* Maximum visibility focus indicators */
-    --focus-ring-width: 4px;
-    /* Thicker focus rings */
-    --focus-ring-offset: 3px;
-    /* More separation */
-
     /* Enhanced interaction feedback */
     --interaction-scale-hover: 1.03;
     --interaction-translate-hover: -2px;

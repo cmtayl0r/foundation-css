@@ -91,12 +91,6 @@ Simplified breakpoints and container patterns.
   /* Photo aspect ratio */
   --aspect-golden: 1.618 / 1;
   /* Golden ratio */
-
-  /* ===== TOUCH TARGETS ===== */
-  /* WCAG 2.2 Level AA requirement, prevents accidental taps */
-  --touch-target-default: 44px;
-  --touch-target-lg: 48px;
-  --touch-target-sm: 36px;
 }
 
 /*
@@ -132,35 +126,5 @@ RESPONSIVE LAYOUT PATTERNS
 @media (min-width: 1280px) {
   :root {
     --grid-columns-default: var(--grid-columns-wide);
-  }
-}
-
-/*
-================================================================================
-HIGH CONTRAST MODE ADJUSTMENTS
-================================================================================
-*/
-
-@media (prefers-contrast: high) {
-  :root {
-    /* Increase container padding for better content separation */
-    --container-padding: clamp(1.5rem, 5vw, 2.5rem);
-    --container-padding-lg: var(--space-xl);
-  }
-}
-
-/*
-================================================================================
-PRINT OPTIMIZATIONS
-================================================================================
-*/
-
-@media print {
-  :root {
-    /* Optimize for print layouts */
-    --container-full: 100%;
-    --container-padding: 0;
-    --grid-columns-default: 1;
-    /* Single column for print */
   }
 }
