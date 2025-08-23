@@ -5,83 +5,22 @@ CSS FOUNDATION ARCHITECTURE
 Accessibility-first Vanilla CSS design token system.
 */
 
-/* ===== 1️⃣ DESIGN TOKENS (FOUNDATION) ===== */
+/* ===== 1️⃣ DESIGN TOKENS ===== */
 /* Single import for all design tokens */
 @import "./tokens/index.css";
 
 /* ===== 2️⃣ BASE STYLES (RESET & FOUNDATIONS) ===== */
 /* Establish foundation before components */
-@import "./foundation/reset.css";
-@import "./foundation/app.css";
-@import "./foundation/accessibility.css";
+@import "./foundation/index.css";
 
 /* ===== 3️⃣ UTILITY CLASSES ===== */
 /* Import utility classes in optimal cascade order */
-@import "./utilities/typography-utilities.css";
-@import "./utilities/spacing-utilities.css";
-@import "./utilities/borders-utilities.css";
-@import "./utilities/motion-utilities.css";
-@import "./utilities/interactive-states.css";
-@import "./utilities/scrollbar-utilities.css";
+@import "./utilities/index.css";
 
-/* ===== 4️⃣ LAYOUT STYLES===== */
+/* ===== 4️⃣ LAYOUT STYLES ===== */
 /* Layout primitives to reduce complexity */
 @import "./layout/index.css";
 
 /* ===== 5️⃣ COMPONENT STYLES ===== */
 /* Components that use the foundation */
-@import "./components/layout-primitives.css";
-@import "./components/forms.css";
-@import "./components/ai-ui.css";
-
-/*
-================================================================================
-SYSTEM OVERVIEW
-================================================================================
-
-🎯 DESIGN PHILOSOPHY:
-- Accessibility-first (WCAG AA compliance)
-- High contrast by default (light and dark modes)
-- OKLCH color space with hex fallbacks
-- Strong reduced motion support
-- Build on-top with local CSS Modules for your components
-
-🎨 COLOR SYSTEM:
-- Option A - 11-step scales: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
-- Option B - 5-step scales: lightest, light, default, dark, darkest
-- 4 semantic colors: primary, secondary, error, success
-- High contrast neutrals for maximum readability
-- Wide gamut display optimization (P3)
-
-📏 SPACING SYSTEM:
-- 7-step scale: none, xs, sm, md, lg, xl, 2xl
-- 4px base grid for crisp pixel alignment
-- Semantic aliases: tight, default, comfortable, generous
-- Fluid spacing with responsive clamp()
-
-🔤 TYPOGRAPHY SYSTEM:
-- 6 essential sizes: sm, base, lg, xl, 2xl, 3xl
-- Accessibility-optimized font stacks
-- WCAG-compliant line heights (1.5+ for body text)
-- Semantic patterns for common use cases
-
-🖼️ VISUAL EFFECTS:
-- Strong shadows for clear depth perception
-- Essential opacity values for accessibility
-- High contrast focus indicators
-- Backdrop effects for modals/overlays
-
-🎬 MOTION SYSTEM:
-- Reduced motion first approach
-- Essential transitions only
-- Property-specific optimizations
-- Automatic motion disabling for preferences
-
-📱 LAYOUT SYSTEM:
-- Mobile-first breakpoints
-- Content-based containers (ch units)
-- Responsive padding and gaps
-- Essential aspect ratios
-
-================================================================================
-*/
+@import "./components/index.css";
